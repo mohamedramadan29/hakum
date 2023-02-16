@@ -1,5 +1,5 @@
 <?php
-$page_title = ' هاكم  - حسابي ';
+$page_title = ' هاكم  - جميع الرحلات  ';
 session_start();
 include 'init.php';
 ?>
