@@ -610,5 +610,8 @@ END ABOUT US SECTION
     padding: 0;
     background-color: transparent;
 }
+input[type='email']{
+    direction: rtl;
+}
 
 /****************************** END PROFILE PAGE  *******************/

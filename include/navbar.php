@@ -18,15 +18,27 @@
         <li class="nav-item">
           <a class="nav-link" href="contact_us"> تواصل معنا </a>
         </li>
-        <li class="nav-item new_account">
-          <a class="nav-link" href="register"> حساب جديد </a>
-        </li>
-        <li class="nav-item login">
-          <a class="nav-link" href="login"> دخول </a>
-        </li>
-        <li class="nav-item login">
-          <a class="nav-link" href="profile"> حسابي  </a>
-        </li>
+        <?php
+        if (isset($_SESSION['username'])) { ?>
+          <li class="nav-item login">
+            <a class="nav-link" href="profile"> حسابي </a>
+          </li>
+        <?php
+
+        } else {
+        ?>
+          <li class="nav-item new_account">
+            <a class="nav-link" href="register"> حساب جديد </a>
+          </li>
+          <li class="nav-item login">
+            <a class="nav-link" href="login"> دخول </a>
+          </li>
+        <?php
+        }
+
+        ?>
+
+
       </ul>
     </div>
   </div>

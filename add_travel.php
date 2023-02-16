@@ -68,28 +68,65 @@ include 'init.php';
                 </div>
                 <div class="col-lg-8">
                     <div class="slide2">
+                        <?php
+
+                        if (isset($_POST['add_travel'])) {
+                            $travel_from = $_POST['travel_from'];
+                            $travel_to = $_POST['travel_to'];
+                            $travel_date = $_POST['travel_date'];
+                            $travel_arrive_date = $_POST['travel_arrive_date'];
+
+                            $errors = [];
+                            if (empty($travel_from) || empty($travel_to) || empty($travel_date) || empty($travel_arrive_date)) {
+                                $errors[] = 'من فضلك ادخل المعلومات كاملة ';
+                            }
+                            if (empty($errors)) {
+                                $stmt = $connect->prepare("INSERT INTO travels (travel_from,travel_to,travel_date,travel_arrive_date,user_name)
+                                VALUES(:zfrom,:zto,:ztravel_date,:ztravel_arrive,:zuser_name)");
+                                $stmt->execute(array(
+                                    'zfrom' => $travel_from,
+                                    'zto' => $travel_to,
+                                    'ztravel_date' => $travel_date,
+                                    'ztravel_arrive' => $travel_arrive_date,
+                                    'zuser_name' => $_SESSION['username'],
+                                ));
+                                if ($stmt) {
+                        ?>
+                                    <li class="alert alert-success"> تم اضافة الرحلة بنجاح </li>
+                                <?php
+                                }
+                            } else {
+                                foreach ($errors as $error) {
+                                ?>
+                                    <li class="alert alert-danger"> <?php echo $error; ?> </li>
+                        <?php
+                                }
+                            }
+                        }
+
+                        ?>
                         <div class="my_form">
-                            <form action="" method="">
-                              
+                            <form action="" method="post" enctype="multipart/form-data">
+
                                 <div class="box">
                                     <label for=""> مكان المغادرة </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="travel_from" id="travel_from" class="form-control" value="<?php if (isset($_REQUEST['travel_from'])) echo $_REQUEST['travel_from'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان الوصول </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="travel_to" id="travel_to" class="form-control" value="<?php if (isset($_REQUEST['travel_to'])) echo $_REQUEST['travel_to'] ?>">
                                 </div>
                                 <div class="box">
-                                    <label for=""> توقيت الرحلة  </label>
-                                    <input type="date" name="username" id="username" class="form-control">
-                                </div>
+                                    <label for=""> توقيت الرحلة </label>
+                                    <input type="date" name="travel_date" id="travel_date" class="form-control" value="<?php if (isset($_REQUEST['travel_date'])) echo $_REQUEST['travel_date'] ?>">
+                                </div> 
                                 <div class="box">
-                                    <label for=""> توقيت الوصول المتوقع  </label>
-                                    <input type="date" name="username" id="username" class="form-control">
+                                    <label for=""> توقيت الوصول المتوقع </label>
+                                    <input type="date" name="travel_arrive_date" id="travel_arrive_date" class="form-control" value="<?php if (isset($_REQUEST['travel_arrive_date'])) echo $_REQUEST['travel_arrive_date'] ?>">
                                 </div>
-                               
+
                                 <div class="box">
-                                    <button type="submit" class="btn btn-primary"> اضافة رحلة </button>
+                                    <input type="submit" name="add_travel" class="btn btn-primary" value=" اضافة رحلة ">
                                 </div>
                             </form>
                         </div>

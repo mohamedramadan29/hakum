@@ -68,30 +68,80 @@ include 'init.php';
                 </div>
                 <div class="col-lg-8">
                     <div class="slide2">
+                        <?php
+
+                        if (isset($_POST['add_product'])) {
+                            $pro_name = $_POST['pro_name'];
+                            $pro_form = $_POST['pro_form'];
+                            $pro_to = $_POST['pro_to'];
+                            $arrieve_at = $_POST['arrieve_at'];
+                            if (!empty($_FILES['pro_image']['name'])) {
+                                $pro_image_name = $_FILES['pro_image']['name'];
+                                $pro_image_temp = $_FILES['pro_image']['tmp_name'];
+                                $pro_image_type = $_FILES['pro_image']['type'];
+                                $pro_image_size = $_FILES['pro_image']['size'];
+                                $pro_image_uploaded = time() . '_' . $pro_image_name;
+                                move_uploaded_file(
+                                    $pro_image_temp,
+                                    'website_uploads/' . $pro_image_uploaded
+                                );
+                            } else {
+                                $pro_image_uploaded = '';
+                            }
+                            $errors = [];
+                            if (empty($pro_name) || empty($pro_form) || empty($pro_to) || empty($arrieve_at)) {
+                                $errors[] = 'من فضلك ادخل المعلومات كاملة ';
+                            }
+                            if (empty($errors)) {
+                                $stmt = $connect->prepare("INSERT INTO products (pro_name,pro_image,pro_from,pro_to,arrieve_at,user_name)
+                                VALUES(:zname,:zimage,:zfrom,:zto,:zarrive_at,:zuser_id)");
+                                $stmt->execute(array(
+                                    'zname' => $pro_name,
+                                    'zimage' => $pro_image_uploaded,
+                                    'zfrom' => $pro_form,
+                                    'zto' => $pro_to,
+                                    'zarrive_at' => $arrieve_at,
+                                    'zuser_id' => $_SESSION['username'],
+                                ));
+                                if ($stmt) {
+                        ?>
+                                    <li class="alert alert-success"> تم اضافة الشحنة بنجاح </li>
+                                <?php
+                                }
+                            } else {
+                                foreach ($errors as $error) {
+                                ?>
+                                    <li class="alert alert-danger"> <?php echo $error; ?> </li>
+                        <?php
+                                }
+                            }
+                        }
+
+                        ?>
                         <div class="my_form">
-                            <form action="" method="">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <div class="box">
                                     <label for=""> اسم المنتج </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="pro_name" id="pro_name" class="form-control" value="<?php if (isset($_REQUEST['pro_name'])) echo $_REQUEST['pro_name'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان المغادرة </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="pro_form" id="pro_form" class="form-control" value="<?php if (isset($_REQUEST['pro_form'])) echo $_REQUEST['pro_form'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان الوصول </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="pro_to" id="pro_to" class="form-control" value="<?php if (isset($_REQUEST['pro_to'])) echo $_REQUEST['pro_to'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> موعد الوصول المتوقع </label>
-                                    <input type="date" name="username" id="username" class="form-control">
+                                    <input type="date" name="arrieve_at" id="arrieve_at" class="form-control" value="<?php if (isset($_REQUEST['arrieve_at'])) echo $_REQUEST['arrieve_at'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> صورة المنتج </label>
-                                    <input type="file" name="username" id="username" class="form-control">
+                                    <input type="file" name="pro_image" id="pro_image" class="form-control" value="<?php if (isset($_REQUEST['pro_image'])) echo $_REQUEST['pro_image'] ?>">
                                 </div>
                                 <div class="box">
-                                    <button type="submit" class="btn btn-primary"> اضافة شحنة </button>
+                                    <input type="submit" class="btn btn-primary" name="add_product" value="اضافة شحنة ">
                                 </div>
                             </form>
                         </div>

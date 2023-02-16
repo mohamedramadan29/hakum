@@ -5,7 +5,7 @@ Email:mr319242@gmail.com
 Phone:01011642731
 
 */
-  
+include 'connect.php';
 $tem  = "include/";
  
 

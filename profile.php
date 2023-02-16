@@ -2,6 +2,14 @@
 $page_title = ' هاكم  - حسابي ';
 session_start();
 include 'init.php';
+if (isset($_SESSION['username'])) {
+} else {
+    header("Location:index");
+}
+
+$stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
+$stmt->execute(array($_SESSION['username']));
+$userdata = $stmt->fetch();
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -11,7 +19,7 @@ include 'init.php';
                     <div class="slide1">
                         <div class="personal_image">
                             <img src="uploads/profile.png" alt="">
-                            <h3> Mohamed Ramadan </h3>
+                            <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -68,26 +76,58 @@ include 'init.php';
                 </div>
                 <div class="col-lg-8">
                     <div class="slide2">
+                        <?php 
+                        if (isset($_POST['save_change'])) {
+                            $email = $_POST['email'];
+                            $phone = $_POST['phone'];
+                            $birthday = $_POST['birthday'];
+                            $formerror = [];
+                            /*
+                            $stmt = $connect->prepare("SELECT * FROM users WHERE name !=? AND email =?");
+                            $stmt->execute(array($_SESSION['username'], $email));
+                            $data = $stmt->fetch();
+                            $count = $stmt->rowCount();
+                            echo $count;
+                            if ($count > 0) {
+                                $formerror[] = 'البريد الالكتروني مستخدم من قبل ';
+                            }*/
+                            if (empty($formerror)) {
+                                $stmt = $connect->prepare('UPDATE users SET email=?,phone=?,birthday=?');
+                                $stmt->execute(array($email, $phone, $birthday));
+                                if ($stmt) {
+                        ?>
+                                    <div class="alert alert-success"> تم تعديل البيانات بنجاح </div>
+                                <?php
+                                }
+                            } else {
+                                foreach ($formerror as $error) { ?>
+                                    <li class="alert alert-danger"> <?php echo $error; ?> </li>
+                        <?php
+                                }
+                            }
+                        }
+                        ?>
                         <div class="my_form">
-                            <form action="" method="">
+                            <form action="" method="post">
                                 <div class="box">
                                     <label for=""> اسم المستخدم </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input disabled type="text" name="name" id="name" class="form-control" value="<?php echo $userdata['name']; ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> البريد الالكتروني </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="email" id="email" class="form-control" value="<?php echo $userdata['email']; ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> رقم الهاتف </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="phone" id="phone" class="form-control" value="<?php echo $userdata['phone']; ?>">
                                 </div>
                                 <div class="box">
                                     <label for="">تاريخ الميلاد </label>
-                                    <input type="text" name="username" id="username" class="form-control">
+                                    <input type="text" name="birthday" id="birthday" class="form-control" value="<?php echo $userdata['birthday']; ?>">
                                 </div>
                                 <div class="box">
-                                    <button type="submit" class="btn btn-primary"> حفظ التغيرات </button>
+                                    <input type="submit" class="btn btn-primary" name="save_change" value=" حفظ التغيرات ">
+
                                 </div>
                             </form>
                         </div>
