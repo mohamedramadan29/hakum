@@ -2,7 +2,7 @@
 $page_title = ' هاكم - رحلات  ';
 session_start();
 include 'init.php';
-
+ 
 ?>
 
 <!-- START HERO SECTION  -->
@@ -10,19 +10,19 @@ include 'init.php';
     <div class="container-fluid">
         <div class="travel_head">
             <h2> جميع الرحلات </h2>
-            <button class="btn btn-primary"> اضف رحلة جديدة <i class="fa fa-plane"></i></button>
+            <a href="add_travel" class="btn btn-primary"> اضف رحلة جديدة <i class="fa fa-plane"></i> </a>
         </div>
         <div class="data">
             <form action="" method="post">
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="info">
-                        <span class="fa fa-home"></span><input type="text" class="form-control" placeholder="من مدينة | دولة ">
+                            <span class="fa fa-home"></span><input type="text" class="form-control" placeholder="من مدينة | دولة ">
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="info">
-                        <span class="fa fa-plane"></span><input type="text" class="form-control" placeholder="الي مدينة | دولة ">
+                            <span class="fa fa-plane"></span><input type="text" class="form-control" placeholder="الي مدينة | دولة ">
                         </div>
                     </div>
                     <div class="col-lg-3">

@@ -2,6 +2,11 @@
 $page_title = ' هاكم  - جميع الشحنات  ';
 session_start();
 include 'init.php';
+if (isset($_SESSION['username'])) {
+} else {
+    header("Location:login");
+}
+
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -11,7 +16,7 @@ include 'init.php';
                     <div class="slide1">
                         <div class="personal_image">
                             <img src="uploads/profile.png" alt="">
-                            <h3> Mohamed Ramadan </h3>
+                            <h3> <?php echo $_SESSION['username'] ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -71,38 +76,31 @@ include 'init.php';
                         <div class="travel">
                             <div class="data">
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class=" travel_data">
-                                            <div class="info">
-                                                <div class="product">
-                                                    <img src="uploads/product.jpg" alt="">
+                                    <?php
+                                    $stmt = $connect->prepare("SELECT * FROM products WHERE user_name = ?");
+                                    $stmt->execute(array($_SESSION['username']));
+                                    $allproduct = $stmt->fetchall();
+                                    foreach ($allproduct as $product) {
+                                    ?>
+                                        <div class="col-lg-12">
+                                            <div class=" travel_data">
+                                                <div class="info">
+                                                    <div class="product">
+                                                        <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
+                                                    </div>
+                                                    <div class="product_info">
+                                                        <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?> </p>
+                                                        <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $product['pro_from'] ?> </p>
+                                                        <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $product['pro_to'] ?> </p>
+                                                        <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
+                                                    </div>
                                                 </div>
-                                                <div class="product_info">
-                                                    <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                                    <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class=" travel_data">
-                                            <div class="info">
-                                                <div class="product">
-                                                    <img src="uploads/product.jpg" alt="">
-                                                </div>
-                                                <div class="product_info">
-                                                    <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                                    <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                                                </div>
                                             </div>
-
                                         </div>
-                                    </div>
+                                    <?php
+                                    }
+                                    ?> 
                                 </div>
                             </div>
                         </div>

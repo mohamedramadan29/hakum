@@ -4,7 +4,7 @@ session_start();
 include 'init.php';
 if (isset($_SESSION['username'])) {
 } else {
-    header("Location:index");
+    header("Location:login");
 }
 
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");

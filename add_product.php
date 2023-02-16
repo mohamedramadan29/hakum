@@ -2,6 +2,11 @@
 $page_title = ' هاكم  - اضافة شحنة ';
 session_start();
 include 'init.php';
+if (isset($_SESSION['username'])) {
+} else {
+    header("Location:login");
+}
+
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -11,7 +16,7 @@ include 'init.php';
                     <div class="slide1">
                         <div class="personal_image">
                             <img src="uploads/profile.png" alt="">
-                            <h3> Mohamed Ramadan </h3>
+                            <h3> <?php echo $_SESSION['username'] ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>

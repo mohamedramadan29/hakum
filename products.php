@@ -10,7 +10,8 @@ include 'init.php';
     <div class="container-fluid">
         <div class="travel_head">
             <h2> جميع الشحنات </h2>
-            <button class="btn btn-primary"> اضف شحنة جديدة <i class="fa fa-address-book"></i></button>
+            <a href="add_product" class="btn btn-primary">  اضف شحنة جديدة <i class="fa fa-address-book"></i> </a>
+ 
         </div>
         <div class="data">
             <form action="" method="post">
