@@ -1,0 +1,1820 @@
+@font-face {
+  font-family: 'bahaa_elden';
+  src: url('janna_regular.woff') format('embedded-opentype'),
+    url('janna_regular.ttf') format('truetype');
+
+}
+
+* {
+  font-family: 'bahaa_elden';
+}
+
+body {
+
+  font-family: 'bahaa_elden';
+  font-size: 17px !important;
+
+
+}
+
+html {
+  font-size: 17px !important;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover {
+  color: #fff;
+}
+
+.change_lang {
+  position: relative;
+  top: 9px;
+}
+
+.change_lang a {
+  text-decoration: none;
+  color: black !important;
+
+}
+
+.dashboard {}
+
+.dashboard h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard .data {
+  margin-top: 20px;
+}
+
+.dashboard .data h1 {
+  color: #676464;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard .data .info {
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  background: #0083d2;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.dashboard .data .info h2 {
+  font-size: 36px;
+}
+
+.dashboard .data .info h2 i {
+  margin-right: 10px;
+  color: #ededed;
+  font-size: 30px;
+}
+
+.dashboard .data .info span {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/*START ADD ITEMS FORMS*/
+
+.category {
+  margin-top: 60px;
+  background-color: #fff;
+}
+
+.category .data {
+  background-color: #e8edfd;
+  padding: 10px;
+}
+
+.category .data h1 {
+  color: #343a40;
+  margin-bottom: 20px;
+  font-size: 22px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.category .data .myform {
+  background: #e8edfd;
+
+  padding: 40px;
+}
+
+.category .data .myform label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #434343;
+ 
+ 
+}
+.category .data .myform .box3{
+  display: block;
+}
+.category .data .myform .box3 label {
+  margin-right: 30px;
+  margin-left: 30px;
+  float: none;
+  
+
+}
+.category .data .myform .box {
+  margin-top: 10px;
+}
+
+.category .data .myform .box2 {
+  display: inline-block;
+  margin-top: 15px;
+  width: 49%;
+}
+
+.category .data .myform input[type=text],
+.category .data .myform input[type=email],
+.category .data .myform input[type=submit],
+.category .data .myform input[type=select] {
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-color: #cfcfcf;
+  color: #6d6d6d;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.category .data .myform select {
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-color: #cfcfcf;
+  color: #6d6d6d;
+  border-radius: 5px;
+  height: 34px;
+
+}
+
+.category .data .myform input[type="submit"] {
+  text-align: center;
+  margin-top: 20px;
+  padding: 5px 10px;
+  display: block;
+  color: #343a40;
+  font-size: 15px;
+  margin: auto;
+  color: #fff;
+  background-color: #3598dc;
+  border-color: #3598dc;
+  font-weight: bold;
+}
+
+.alert-success {
+  padding: 10px;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  text-align: center;
+  font-size: 20px;
+}
+
+/*************************************************************/
+
+/*START REPORT PAGE*/
+
+.mytable .add {
+  background-color: #2a3f54;
+  border-color: #2a3f54;
+  margin-bottom: 20px;
+}
+
+.mytable .add a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.row {
+  margin-right: 0;
+}
+
+.custome_div .fa-upload {
+  position: relative;
+  top: -31px;
+  right: 10px;
+  font-size: 22px;
+}
+
+.adminimage {
+  width: 45px;
+  height: 45px;
+  border-radius: 100px;
+}
+
+.main_category h1 {
+  margin-top: 40px;
+}
+
+/*START DASHBOARD*/
+
+.dashboard {
+  padding: 30px;
+  background-color: #f4f6f9;
+  margin-top: 65px;
+}
+
+.dashboard h2 {
+  color: #343a40;
+  margin-bottom: 40px;
+  font-size: 22px;
+  margin-top: -30px;
+}
+
+.dashboard .small_box {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #e1dfdf;
+}
+
+.reports .small_box {
+  margin-top: 60px;
+}
+
+.dashboard .small_box_2 {
+  background-color: #28a745;
+}
+
+.dashboard .small_box_3 {
+  background-color: #ffc107;
+}
+
+.dashboard .small_box_4 {
+  background-color: #dc3545;
+}
+
+.dashboard .small_box .inner {
+  display: inline-block;
+  padding: 10px;
+
+}
+
+.dashboard .small_box .inner h3 {
+  color: #555555;
+  font-size: 22px;
+  font-weight: bold;
+
+}
+
+.dashboard .small_box .inner span {
+  color: #979797;
+  font-size: 14px;
+
+  display: block;
+}
+
+.dashboard .small_box .icon {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.dashboard .small_box .icon i {
+  color: #fff;
+  font-size: 25px;
+  position: relative;
+  background: #373636;
+  top: -40px;
+  left: 0px;
+  transition: all 0.4s ease-in-out;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 14px 2px #d7d7d7;
+}
+
+.reports .small_box .icon i {
+  left: 70px;
+}
+
+.dashboard .small_box:hover .icon i {
+  transform: scale(1.1);
+}
+
+.dashboard .small_box .small_box_footer {
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+  text-align: left;
+  padding: 0px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+}
+
+.reports .small_box .small_box_footer {
+
+  text-align: center;
+
+}
+
+.dashboard .small_box .small_box_footer p {
+  padding: 5px;
+}
+
+.dashboard .small_box .small_box_footer p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dashboard .small_box .small_box_footer i {
+  color: #17a2b8;
+  font-size: 12px;
+  margin-left: 6px;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  background: #fff;
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+}
+
+.dashboard .small_box2 .icon i {
+  background-color: #e63573;
+}
+
+.dashboard .small_box3 .icon i {
+  background-color: #48a44c;
+}
+
+.dashboard .small_box4 .icon i {
+  background-color: #2780ea;
+}
+
+.latest_order {
+  padding-top: 20px;
+}
+
+.latest_order h4 {
+  margin-bottom: 30px;
+  color: #ededed;
+  margin-bottom: 30px;
+}
+
+.latest_order .latest_table {
+  background: #343a40;
+  color: #fff;
+  border: 1px solid #7f7f7f;
+  border-radius: 4px;
+}
+
+.latest_order .latest_table tr {
+  color: #ededed;
+}
+
+.latest_order .latest_table th,
+.latest_order .latest_table td {
+  padding: 14px;
+}
+
+.latest_order .latest_table th {
+  background-color: #454d55;
+}
+
+/*START CUSTOMER REPORT*/
+
+.customer_report {}
+
+.customer_report h2 {
+  color: #343a40;
+  margin-bottom: 20px;
+  font-size: 22px;
+  margin-top: 70px;
+}
+
+.customer_report .mytable {
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.customer_report .mytable thead {}
+
+.customer_report .mytable tbody {}
+
+.customer_report .mytable tr {}
+
+.customer_report .mytable tr th {
+  background: #ffffff;
+  color: #474747;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.customer_report .mytable tr td {
+  color: #4f4e4e;
+  padding: 15px;
+  font-size: 15px;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  background: #ffffff;
+  color: #343a40;
+  box-shadow: none;
+  outline: none;
+  padding: 5px 10px;
+  border: none;
+  border: 1px solid #c9c9c9;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  background: #ffffff;
+  color: #595959;
+  outline: none;
+  box-shadow: none;
+  padding: 5px 10px;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+  color: #6d6d6d;
+  float: left;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+  color: #818181;
+  float: right;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+  color: #656464;
+}
+
+table.dataTable.display tbody tr.odd>.sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd>.sorting_1 {
+  background-color: #ffffff;
+}
+
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+  background-color: #fff;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  --bs-table-accent-bg: #fff;
+  color: var(--bs-table-striped-color);
+}
+
+table.dataTable.display tbody tr.even>.sorting_1,
+table.dataTable.order-column.stripe tbody tr.even>.sorting_1 {
+  background-color: #fff;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none;
+}
+
+table.dataTable.no-footer {
+  padding: 0;
+}
+
+.paging_simple_numbers {
+  float: right;
+}
+
+.dataTables_info {
+  float: left;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+  border: 1px solid #007bff;
+  background: #007bff;
+  padding: 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: #007bff !important;
+  border: 1px solid #e7e7e7;
+  background: #dfdfdf;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #007bff !important;
+  padding: 10px;
+  border-color: 1px solid #ccc;
+  border: 1px solid #ddd;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  position: relative;
+  background: #f4f6f9;
+}
+
+/*END CUSTOMER REPORT*/
+
+/*START IMAGE INFO*/
+
+.image_info {
+  cursor: pointer;
+  position: absolute;
+  background: #f4f6f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  top: -290px;
+  right: -278px;
+  transition: all 0.6s ease-in-out;
+  z-index: 999;
+  box-shadow: 0px 0px 14px 2px #dfdfdf;
+}
+
+.image_info .image_drive_info,
+.image_info .image_card_info {
+  display: inline-block;
+  width: 49%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.image_info .custome_div {
+  opacity: 0;
+}
+
+.image_info label {
+  position: relative;
+  top: 29px;
+  right: 43px;
+}
+
+.image_info .savebutton {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.pagination li {
+  background: #fff;
+  padding: 5px 10px;
+
+}
+
+.customer_report .counter {
+  margin-bottom: 10px;
+}
+
+.customer_report .counter span {
+  color: #818080;
+}
+
+#limit-records {
+  padding: 3px;
+  border: none;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.btn_image {
+  min-height: 130px;
+}
+
+.box2.checkbox {}
+
+.box2.checkbox input {
+  width: 17px;
+  position: relative;
+  top: 11px;
+  margin-left: 10px;
+
+}
+
+/*END IMAGE INFO*/
+
+/*START EDIT PAGE*/
+.edit_image_info {}
+
+.edit_image_info img {
+  max-width: 130px;
+  height: 130px;
+  margin: auto;
+  text-align: center;
+  display: block;
+}
+
+.edit_image_info .custome_div {
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.edit_image_info {
+  top: -600px;
+}
+
+.box2 span {
+  color: red;
+}
+
+/*END EDIT PAGE*/
+.preview {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border: 1px solid black;
+}
+
+.preview img {
+  display: none;
+}
+
+.dropify-wrapper .dropify-message {}
+
+.dropify-wrapper .dropify-message p {
+  font-size: 20px;
+}
+
+.uploadimage {
+  text-align: center;
+}
+
+textarea.form-control {
+  height: 60px;
+  text-align: right;
+}
+
+.add_rental_accident,
+.add_payment_accident,
+.show_new_payment_customer,
+.show_new_payment_customer2,
+.show_new_payment_customer3 {
+  position: absolute;
+  top: -900px;
+  transition: all 1s ease-in-out;
+  z-index: 9999999;
+  position: absolute;
+  right: 340px;
+}
+
+.show_new_payment_customer,
+.show_new_payment_customer2,
+.show_new_payment_customer3 {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  margin: auto;
+  position: absolute;
+  right: 340px;
+}
+
+.category2 .data h1 {
+  color: #111;
+}
+
+.addrental {}
+
+.overflow {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: none;
+}
+
+.box3 span {
+  color: #606060 !important;
+}
+
+.bootstrap-select.btn-group .dropdown-menu.inner {
+  text-align: right !important;
+}
+
+.small_box_footer p {
+  display: inline-block;
+}
+
+.small_box_footer a {
+  color: #646464 !important;
+  border: 1px solid #cfcfcf;
+  padding: 5px;
+  border-radius: 3px;
+
+}
+
+/* START LOGIN PAGE*/
+.login {
+  background-color: #f6f7fc;
+  min-height: 630px;
+  background-size: cover;
+  background-position: center;
+}
+
+.login form {
+  width: 550px;
+  margin: auto;
+  background-color: #ffff;
+  padding: 20px;
+  margin-top: 100px;
+  box-shadow: 0 15px 30px 0 rgb(0 0 0 / 20%);
+}
+
+.login form h1 {
+  text-align: center;
+  margin: auto;
+
+  color: #6c6c6c;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.login form label {
+  color: #6c6c6c;
+  float: right;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.login form input {
+  border: none;
+  border-radius: 4px;
+  height: 54px;
+  background: #efefef;
+
+}
+
+.login form input[type=submit] {
+  background-color: #364150;
+  margin-top: 20px;
+}
+
+.login form p {
+  text-align: center;
+  margin-top: 20px;
+  color: #6c6c6c;
+}
+
+.login form p a {
+  color: #6c6c6c;
+}
+
+.mynewimage {
+  max-width: 130px;
+  position: absolute;
+  top: 39px;
+  left: 17px;
+  z-index: 99;
+}
+
+
+
+
+/*START RENTAL REPORT*/
+.car_rental_report {
+
+  background-color: #fafafa;
+}
+
+.car_rental_report .data {}
+
+.car_rental_report .data .myform {
+  margin-top: 40px;
+  border: 1px solid #ccc;
+
+}
+
+.car_rental_report h2 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #4b545c;
+}
+
+.car_rental_report .section_head {
+  text-align: center;
+  background-color: #4b545c;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.car_rental_report .box2 {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.car_rental_report .box2 input {
+  text-align: right;
+  display: inline-block;
+  width: 80%;
+}
+
+.car_rental_report .box2 label {
+  width: 19%;
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+.car_rental_report .car_data_rec input {
+  display: block;
+  width: 100%;
+}
+
+.car_rental_report .car_data_rec .box2 label {
+  width: 100%;
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+/*END RENTAL REPORT*/
+
+/*START NEW STYLE MOVE TO RIGHT*/
+
+.layout-fixed .main-sidebar {
+  left: 0 !important;
+}
+
+.navbar-nav.ml-auto {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+/*START MAIN REPORT HEADER*/
+
+
+.car_rental_report {}
+
+.car_rental_report .section_head {
+  text-align: center;
+  background-color: #4b545c;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.main_report_head {
+  margin-top: 40px;
+}
+
+.car_rental_report .com_logo {}
+
+.car_rental_report .com_logo img {
+  max-width: 120px;
+  border-radius: 100px;
+  border: 1px solid #ccc;
+}
+
+.car_rental_report .com_name h2 {
+  font-size: 38px;
+  text-align: left !important;
+}
+
+.car_rental_report .com_phones {}
+
+.car_rental_report .com_phones ul {
+  margin-top: 10px;
+}
+
+.car_rental_report .com_phones ul li {
+  line-height: 2
+}
+
+.car_rental_report .com_phones ul li span {
+  color: #5d5b5b;
+
+}
+
+.car_rental_report .section_head {
+  text-align: center;
+  background-color: #4b545c;
+  color: #fff;
+  padding: 10px;
+}
+
+
+/*START RENTAL REPORT*/
+.car_rental_report {
+
+  background-color: #fafafa;
+}
+
+.car_rental_report .data {
+  overflow: hidden;
+}
+
+.car_rental_report .data .myform {
+  margin-top: 40px;
+  border: 1px solid #ccc;
+
+}
+
+.car_rental_report h2 {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: -14px;
+  color: #d63031;
+  font-size: 23px;
+
+}
+
+.car_rental_report h2 span {
+  margin-right: 20px;
+}
+
+.car_rental_report .section_head {
+  text-align: center;
+  background-color: #4b545c;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.car_rental_report .box2 {
+  text-align: right;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #6a1b1a;
+}
+
+.car_rental_report .box2 input {
+  text-align: right;
+  display: inline-block;
+  width: 60%;
+  border: none;
+  background: transparent;
+
+}
+
+.car_rental_report .box2 label {
+  width: 19%;
+  font-size: 14px;
+  padding-right: 10px;
+  color: #eb4d4b;
+}
+
+.car_rental_report .box2 .label_en {
+  text-align: left;
+}
+
+.car_rental_report .car_data_rec input {
+  display: block;
+  width: 100%;
+}
+
+.car_rental_report .car_data_rec .box2 label {
+  width: 100%;
+  font-size: 14px;
+  padding-right: 10px;
+}
+
+.sectionone .box2 {
+
+  border-bottom: none !important;
+  margin: 0;
+  padding: 0;
+
+  border-left: 1px solid #6a1b1a;
+
+  margin-right: -15px;
+
+}
+
+.sectionone .box2 span {
+  color: #eb4d4b;
+}
+
+.sectionone .box2.first {
+  border-right: 1px solid transparent;
+}
+
+.sectionone .box2 input {
+  display: block;
+  width: 100%;
+  border: none;
+  text-align: center;
+}
+
+.sectionone .box2 label {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.sectiontwo {}
+
+.sectiontwo .col-4 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.car_rental_report .car_data_rec .sectiontwo .box2 {
+  border: 1px solid #6a1b1a;
+  padding: 0;
+  margin: 0;
+  border-left: 0;
+  border-top: 0 !important;
+}
+
+.car_rental_report .car_data_rec .sectiontwo .box2 label {
+
+
+  width: 170px;
+}
+
+.car_rental_report .car_data_rec .sectiontwo .box2 input {
+  display: inline-block !important;
+  width: 40%;
+  border-right: 1px solid #6a1b1a;
+  border-radius: 0;
+}
+
+.sectionthree {}
+
+.sectionthree .box2 {
+  margin: 0;
+  padding: 0;
+
+  border-left: 1px solid #6a1b1a;
+  margin-top: -8px;
+  margin-right: -15px;
+  border-bottom: 1px solid #6a1b1a !important;
+
+
+}
+
+.sectionthree .box2 span {
+  color: #eb4d4b;
+}
+
+.sectionthree .box2.first {
+  border-right: 1px solid transparent;
+}
+
+.sectionthree .box2 input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-top: 1px solid #6a1b1a;
+  border-radius: 0;
+}
+
+.sectionthree .box2 label {
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.sectionfour {
+  color: #eb4d4b;
+}
+
+.sectionfour .sectionfourone {}
+
+.sectionfour .sectionfourone ul {}
+
+.sectionfour .sectionfourone ul li,
+.sectionfourtwo ul li {
+  margin-top: 0px;
+}
+
+.sectionfour .sectionfourone ul li {}
+
+.sectionfour input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+
+.last_section {
+  padding: 10px;
+}
+
+.section_head_last1 {
+  margin-bottom: 10px;
+}
+
+.section_head_last {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 4px;
+}
+
+.last_section h6 {
+  text-align: center !important;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.payment_rec2 {}
+
+.payment_rec2 .sectionthree {
+  border-top: 1px solid #ccc;
+}
+
+.payment_rec2 .sectionthree .box2 {
+  border: none !important;
+  text-align: center;
+}
+
+
+/*END RENTAL REPORT*/
+
+/*START NEW STYLE MOVE TO RIGHT*/
+
+.layout-fixed .main-sidebar {
+  left: 0 !important;
+}
+
+.navbar-nav.ml-auto {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+  display: none;
+}
+
+/*START MAIN REPORT HEADER*/
+
+
+.car_rental_report {}
+
+.com_name_en {
+  text-align: left;
+}
+
+.com_name_ar .com_name {
+  text-align: right;
+}
+
+.com_name_ar .com_name h2 {
+  text-align: right !important;
+}
+
+.car_rental_report .section_head {
+  text-align: center;
+  background-color: #4b545c;
+  color: #fff;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.main_report_head {
+  margin-top: 0px;
+  color: #9d2323;
+}
+
+.car_rental_report .com_logo {}
+
+.car_rental_report .com_logo img {
+
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  display: block;
+  border-radius: 0 !important;
+  border: none !important;
+
+}
+
+.car_rental_report .com_name h2 {
+  font-size: 38px;
+  color: #d63031;
+  margin-top: 10px;
+
+}
+
+.car_rental_report .com_phones {}
+
+.car_rental_report .com_phones ul {
+  margin-top: 10px;
+}
+
+.car_rental_report .com_phones ul li {
+  line-height: 2
+}
+
+.car_rental_report .com_phones ul li span {
+  color: #9d6667;
+
+}
+
+.car_rental_report .section_head {
+  text-align: center;
+  background-color: #eb4d4b;
+  color: #fff;
+  padding: 5px;
+  margin-bottom: 0;
+}
+
+.car_rental_report .section_head span {
+  margin-right: 20px;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .car_rental_report .section_head {
+    text-align: center;
+    background-color: #eb4d4b !important;
+    color: #fff !important;
+
+  }
+
+  .car_rental_report .com_name h2 {
+
+    color: #d63031 !important;
+  }
+
+  .car_rental_report .com_logo img {
+
+    max-width: 80px;
+    margin: auto;
+    text-align: center;
+    display: block;
+
+  }
+
+  .car_rental_report .com_phones ul li span {
+    color: #9d6667 !important;
+
+  }
+
+  .car_rental_report h2 {
+
+    color: #4b545c !important;
+  }
+
+  .car_rental_report .section_head span {
+
+    color: #fff;
+
+  }
+
+  .car_rental_report h2 {
+
+    color: #d63031 !important;
+  }
+
+  .hiddenprint {
+    display: none !important;
+  }
+
+  .car_rental_report .com_logo img {
+    max-width: 80px;
+    border-radius: none !important;
+    border: none !important;
+  }
+
+  .data-report button {
+    display: none !important;
+  }
+}
+
+/*/////////////////////////////////////////////*/
+.user-panel img {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 100px !important;
+}
+
+.category .data .myform select {
+  padding: 0 !important;
+  height: 40px;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+  display: none !important;
+}
+
+.car_rental_report .section_head_last {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+
+/*START DATA REPORT IN DASHBOARD*/
+.data-report {
+  margin-top: 40px;
+}
+
+.data-report .data-report-head {
+  margin: auto;
+  background-color: #efefef;
+  font-size: 16px;
+  padding: 6px;
+  color: #373636;
+}
+
+.data-report div.table {
+  max-height: 200px;
+}
+
+.data-report button {
+
+  margin: auto;
+  display: block;
+  color: white;
+  outline: none;
+  font-size: 13px;
+}
+
+.data-report button:hover {
+  color: #fff;
+}
+
+.data-report tr td {
+  min-width: 140px !important;
+}
+
+.user-panel .info-leftsidebar {
+  line-height: 8px;
+}
+
+.card {
+  text-align: left !important;
+  margin-top: 20px;
+}
+
+.card #search_box {
+  text-align: left !important;
+}
+
+.myyf1 label {
+  float: left !important;
+}
+
+.sidebar-mini .nav-sidebar,
+.sidebar-mini .nav-sidebar>.nav-header,
+.sidebar-mini .nav-sidebar .nav-link {
+  white-space: normal !important;
+  line-height: 1 !important;
+  font-size: 15px;
+}
+
+.sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p {
+  white-space: wrap !important;
+  width: auto !important;
+}
+
+.mynavbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 250px);
+  margin-bottom: 60px;
+
+}
+
+.mytogglebutton {
+  margin-right: 0px !important;
+  border: none !important;
+}
+
+@media(max-width:991px) {
+  .mytogglebutton {
+    margin-right: 0px !important;
+
+  }
+}
+
+.fa-solid, .fas {
+  margin-left: 10px;
+}
+
+.nav-sidebar .nav-treeview>.nav-item>.nav-link>.nav-icon {
+  margin-left: 10px;
+}
+
+.fa, .fa-brands, .fa-duotone, .fa-light,
+.fa-regular, .fa-solid, .fa-thin,
+.fab, .fad, .fal, .far, .fas, .fat {
+  margin-left: 10px;
+}
+
+.mynavbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 60px;
+
+}
+
+textarea.addinstament {
+  height: 100px;
+}
+
+.category .data .myform .insrall_button {
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-top: 20px;
+}
+
+.category .data .myform .insrall_button input[type=submit] {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.car_size {
+  width: 100px;
+  height: 100px;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  content: "" !important;
+}
+
+.bread_dasha {
+  position: relative;
+  top: -30px;
+}
+
+.bread .breadcrumb {
+  background-color: #fff;
+}
+
+.bread a {
+  color: #898888 !important;
+  text-decoration: underline;
+}
+
+.bread i {
+  font-size: 10px;
+  margin-right: 10px;
+}
+
+.bread .fa-heart {
+  font-size: 16px;
+  color: #dc3545;
+}
+
+.data .title {
+  text-align: right !important;
+  background: #e8edfd;
+  padding: 15px 10px 2px 10px;
+  border-bottom: 2px solid #009688;
+  color: #434343;
+  display: flex;
+  justify-content: space-between;
+}
+
+.data .title h6 {
+  color: #36c6d3;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 10px;
+  display: inline-block;
+
+}
+
+
+.data .title .com_title_info {
+  display: inline-block;
+}
+
+.data .title .com_title_info img {
+  width: 60px;
+  display: inline-block;
+  margin-bottom: 10px;
+  border-radius: 100px;
+}
+
+.data .title .com_title_info h4 {
+  display: inline-block;
+
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: underline;
+  font-size: 22px;
+  font-weight: bold;
+  color: #36c6d3;
+}
+
+.data .title h6 i {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.data2_dash .title {
+  text-align: right !important;
+  background: #e8edfd;
+  padding: 15px 10px 2px 10px;
+  border-bottom: 2px solid #009688;
+  color: #434343;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -40px;
+  margin-bottom: 35px;
+}
+
+.main-sidebar {
+  background-color: #364150;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: #2c3542;
+  color: #fff;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+  padding: 4px 10px !important;
+}
+
+.rent_button {
+  display: inline-block;
+  float: left;
+}
+
+.rental_title h6 {
+  display: inline-block;
+}
+
+.print_box {
+  margin: auto;
+  text-align: center;
+}
+
+.print_box input {
+  display: inline-block !important;
+}
+
+.print_box button {
+  display: inline-block !important;
+}
+
+.color1 {
+  color: #ff9800;
+}
+
+.color2 {
+  color: #36c6d3;
+}
+
+.color3 {
+  color: #6eff00;
+}
+
+.color4 {
+  color: #f4d03f;
+}
+
+.color6 {
+  color: #8bc34a;
+}
+
+.color7 {
+  color: #ffa500;
+}
+
+.color8 {
+  color: #e281a2;
+}
+
+.color9 {
+  color: #00c19e;
+}
+
+.color10 {
+  color: #aff553;
+}
+
+.color11 {
+  color: #ff006a;
+}
+
+.color12 {
+  color: #00eaff;
+}
+
+.color13 {
+  color: #36d33b;
+}
+
+.nav-item {
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.nav-sidebar .nav-link>.right,
+.nav-sidebar .nav-link>p>.right {
+  font-size: 10px !important;
+}
+
+.print_image {
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-top: 4px;
+}
+
+.box input[type=submit] {
+  display: block;
+  margin: auto;
+}
+
+@media(max-width:991px) {
+  .bread a {
+    font-size: 14px;
+  }
+
+  .breadcrumb>li {
+    display: inline-block;
+    margin-left: -15px;
+  }
+
+  .dashboard .small_box {
+    margin-bottom: 40px;
+  }
+
+  .data-report .info {
+    margin-bottom: 20px;
+  }
+
+  .btn-sm, .btn-group-sm>.btn {
+    margin: auto !important;
+    display: block !important;
+    text-align: center !important;
+    margin-bottom: 4px !important;
+  }
+
+  .table>tbody>tr>td, .table>tbody>tr>th,
+  .table>tfoot>tr>td, .table>tfoot>tr>th,
+  .table>thead>tr>td, .table>thead>tr>th {
+    padding: 4px 10px !important;
+    font-size: 15px !important;
+  }
+
+  .category .data .myform .box2 {
+    width: 100%;
+  }
+
+  .navbar-expand .navbar-nav {
+    position: relative;
+    left: 0px;
+  }
+}
+
+input[type=select]:selected {
+  background: red !important;
+}
+
+.selected {
+  text-align: center;
+  height: 400px;
+}
+
+.nav-sidebar>.nav-item {
+  text-align: left !important;
+}
+
+.nav-sidebar .nav-link>.right, .nav-sidebar .nav-link>p>.right {
+  position: absolute;
+  right: 1rem !important;
+  top: 0.7rem;
+  right: auto;
+}
+
+.fa-print {
+  text-align: center;
+  margin: auto;
+}
+
+input[type="date"] {
+  height: 40px;
+}
+
+.topnav .nav-item {
+  border: none !important;
+}
+
+/* START SHOW DATA */
+.category .data .show_data_form {
+  background-color: #fff;
+}
+
+.category .data .show_data_form h2 {
+  font-weight: bold;
+  color: #36c6d3;
+  font-size: 22px;
+}
+
+.category .data .show_data_form ul {}
+
+.category .data .show_data_form ul li {
+  padding: 10px;
+
+
+}
+
+.category .data .show_data_form ul li img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px #fcfcfc;
+}
+
+.category .data .show_data_form .image {}
+
+.category .data .show_data_form .image img {
+  width: 250px;
+  height: 250px;
+}
+
+.category .data .show_data_form .image h4 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.category .data .show_data_form li span {
+  color: #111;
+  font-weight: bold;
+  text-shadow: 0 0 black;
+  font-size: 16px;
+}
+
+.category .data .show_data_form .car_image {
+  display: inline-block;
+
+}
+
+.category .data .show_data_form .car_image img {
+  width: 250px;
+  height: 250px;
+}
+
+.category .data .show_data_form .car_info {
+  display: inline-block;
+}
+
+.category .data .show_data_form .select_state {
+  color: #111;
+  font-weight: bold;
+  text-shadow: 0 0 black;
+  font-size: 16px;
+}
+
+.category .data .show_data_form .image {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.category .data .table td img {
+  width: 145px;
+}
+
+/* END SHOW DATA*/
+.nav li.active-tab {
+  background-color: #fff;
+  color: #fff;
+  border-radius: 7px;
+}
+
+.nav li.active-tab a {
+  color: #111 !important;
+}
+
+.nav li.active-tab a:hover {
+  color: #111 !important;
+}
+
+.brand-link {
+  text-align: center !important;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  margin-right: -25px;
+  /* margin-left: -24px; */
+}
