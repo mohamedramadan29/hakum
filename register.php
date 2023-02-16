@@ -9,8 +9,8 @@ include 'init.php';
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login_form">
-                        <h2>  حساب جديد   </h2>
-                        <form action="">
+                        <h2> حساب جديد </h2>
+                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
                             <div class="box">
                                 <label for=""> اسم المستخدم </label>
                                 <input type="text" name="username" id="username" class="form-control">
@@ -28,11 +28,11 @@ include 'init.php';
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="box">
-                                <button class="btn btn-primary"> تسجيل دخول  </button>
+                                <button class="btn btn-primary"> تسجيل دخول </button>
                             </div>
                             <div class="box forget_box">
                                 <label for="">
-                                <a href="login">  تسجيل دخول  </a> 
+                                    <a href="login"> تسجيل دخول </a>
                                 </label>
                             </div>
                         </form>
