@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($admindata > 0) {
         $_SESSION['admin_id'] = $data['admin_id'];
         header('Location:main.php?dir=dashboard&page=dashboard');
-        exit();
+        //exit();
     }
 }
 ?>

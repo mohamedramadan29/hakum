@@ -73,6 +73,11 @@ include $tem . 'left_sidebar.php';
             include 'settings/report.php';
         }
         // END Settings  
+        // START dashbaord    
+        if ($dir == 'dashboard' && $page == 'dashboard') {
+            include 'dashboard.php';
+        }
+        // END dashbaord  
         ?>
     </div>
 </div>

@@ -16,18 +16,88 @@ $pagetitle = ' الرئيسية  ';
             <div class="col-lg-3">
                 <div class="small_box small_box2">
                     <div class="icon">
-                        <span> <i class="fa fa-cart-plus"></i> </span>
+                        <span> <i class="fa fa-users"></i> </span>
                     </div>
                     <div class="inner">
-                        <span> الاعضاء </span>
-                        <h3> 10 </h3>
+                        <span> المستخدمين  </span>
+                        <?php 
+                        $stmt = $connect->prepare("SELECT * FROM users");
+                        $stmt->execute();
+                        $count= $stmt->rowcount();
+                        
+                        ?>
+                        <h3> <?php echo $count ?> </h3>
                     </div>
                     <div class="small_box_footer">
                         
-                        <p> <a class="btn btn-primary btn-sm" href="main.php?dir=cars&page=report"> مشاهدة الاعضاء </a> </p>
+                        <p> <a class="btn btn-primary btn-sm" href="main.php?dir=users&page=report"> مشاهدة المستخدمين </a> </p>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3">
+                <div class="small_box small_box2">
+                    <div class="icon">
+                        <span> <i class="fa fa-book"></i> </span>
+                    </div>
+                    <div class="inner">
+                        <span> الشحنات   </span>
+                        <?php 
+                        $stmt = $connect->prepare("SELECT * FROM products");
+                        $stmt->execute();
+                        $count= $stmt->rowcount();
+                        
+                        ?>
+                        <h3> <?php echo $count ?> </h3>
+                    </div>
+                    <div class="small_box_footer">
+                        
+                        <p> <a class="btn btn-primary btn-sm" href="main.php?dir=products&page=report"> مشاهدة الشحنات </a> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="small_box small_box2">
+                    <div class="icon">
+                        <span> <i class="fa fa-plane"></i> </span>
+                    </div>
+                    <div class="inner">
+                        <span> الرحلات   </span>
+                        <?php 
+                        $stmt = $connect->prepare("SELECT * FROM travels");
+                        $stmt->execute();
+                        $count= $stmt->rowCount();
+                        
+                        ?>
+                        <h3> <?php echo $count ?> </h3>
+                    </div>
+                    <div class="small_box_footer">
+                        
+                        <p> <a class="btn btn-primary btn-sm" href="main.php?dir=travels&page=report"> مشاهدة الشحنات </a> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="small_box small_box2">
+                    <div class="icon">
+                        <span> <i class="fa fa-dollar"></i> </span>
+                    </div>
+                    <div class="inner">
+                        <span> شحن الرصيد   </span>
+                        <?php 
+                        $stmt = $connect->prepare("SELECT * FROM balance_add");
+                        $stmt->execute();
+                        $count= $stmt->rowcount();
+                        
+                        ?>
+                        <h3> <?php echo $count ?> </h3>
+                    </div>
+                    <div class="small_box_footer">
+                        
+                        <p> <a class="btn btn-primary btn-sm" href="main.php?dir=balance&page=report"> مشاهدة التحويلات  </a> </p>
+                    </div>
+                </div>
+            </div>
+          
         </div>
     </div>
 
