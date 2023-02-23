@@ -9,19 +9,22 @@ if (isset($_SESSION['username'])) {
 if (isset($_GET['user'])) {
     $username = $_GET['user'];
 }
+if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
+    $travel_id = $_GET['travel_id'];
+}
 ?>
+
 <div class="chat_section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="data" id="chat">
                     <?php
-                    $stmt = $connect->prepare("SELECT * FROM chat WHERE (msg_from = ? AND msg_to = ?) OR (msg_to = ? or msg_from=?) ORDER BY id ");
-                    $stmt->execute(array($username, $_SESSION['username'],  $username, $_SESSION['username']));
+                    $stmt = $connect->prepare("SELECT * FROM chat WHERE (msg_from = ? AND msg_to = ? AND travel_id=?) OR (msg_to = ? AND msg_from=? AND travel_id=?) ORDER BY id ");
+                    $stmt->execute(array($username, $_SESSION['username'], $travel_id,  $username, $_SESSION['username'], $travel_id));
                     $count = $stmt->rowCount();
                     if ($count > 0) {
                         $allmessage = $stmt->fetchAll();
-
                         foreach ($allmessage as $msg) {
                             if ($msg['msg_from'] == $_SESSION['username']) { ?>
                                 <div class="send_message sender_message">
@@ -82,31 +85,15 @@ if (isset($_GET['user'])) {
                     <div class="form">
                         <form class="form-group insert ajax_form" action="" method="POST" autocomplete="on" enctype="multipart/form-data">
                             <div class="message_text">
-                                <input type="hidden" name="to_person" value="<?php echo $other_person ?>">
+                                <input type="hidden" name="from_person" id="from_person" value="<?php echo $_SESSION['username'] ?>">
+                                <input type="hidden" name="to_person" value="<?php echo $username; ?>">
+                                <input type="hidden" name="travel_id" value="<?php echo $travel_id; ?>">
                                 <textarea required name="message_data" id=""></textarea>
                                 <div class="send_message_button">
-                                    <button name="send_message" type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
+                                    <button name="send_message" id="send_message" type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
                                 </div>
                             </div>
                         </form>
-                        <?php
-                        if (isset($_POST['send_message'])) {
-                            $from = $_SESSION['username'];
-                            $to = $username;
-                            $msg = $_POST['message_data'];
-                            $date = date("Y-m-d h:i:sa"); 
-                            $stmt = $connect->prepare("INSERT INTO chat (msg_from, msg_to, msg, date)
-                            value(:zfrom, :zto, :zmsg , :zdate)
-                            ");
-                            $stmt->execute(array(
-                                "zfrom" => $from,
-                                "zto" => $to,
-                                "zmsg" => $msg,
-                                "zdate" => $date,
-                            ));
-                        }
-
-                        ?>
                     </div>
                 </div>
             </div>
@@ -154,18 +141,27 @@ if (isset($_GET['user'])) {
     </div>
 </div>
 <script>
-    function calc() {
-        var subtotal = document.getElementById("sub_total").value;
-        var discount = document.getElementById("discount").value;
-        var total = document.getElementById("total").value;
+    $(document).ready(function() {
 
-        var discount_val = subtotal * 5 / 100;
+        $("#send_message").click(function() {
+            let msg = $("#message_data").val();
+            let from_person =
+                $.ajax({
 
-        var total_val = subtotal - discount_val;
+                    type: "POST",
+                    url: "msg/send_travel_msg.php",
+                    data: {
+                        msg: msg
+                    },
+                    success: function() {
+                        $("#msg").val('');
+                    }
 
-        document.getElementById('discount').value = discount_val;
-        document.getElementById('total').value = total_val;
-    }
+                });
+
+        });
+
+    });
 </script>
 
 

@@ -98,9 +98,9 @@ include 'init.php';
                                 <div class="send_request">
                                     <?php
                                     if (isset($_SESSION['username'])) {
-                                        
+
                                     ?>
-                                        <a href="message?user=<?php echo $travel['user_name']?>" class="button btn"> ارسل طلب </a>
+                                        <a href="message?user=<?php echo $travel['user_name'] ?>&travel_id=<?php echo $travel['travel_id']; ?>" class="button btn"> ارسل طلب </a>
                                     <?php
                                     } else {
                                     ?>
