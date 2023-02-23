@@ -19,7 +19,7 @@ include $tem . 'left_sidebar.php';
 
 
         // START EDUCATION WEB  /////////////////////////////////////////
-        // START COMPANY
+        // START users 
         if ($dir == 'users' && $page == 'add') {
         } elseif ($dir == 'users' && $page == 'edit') {
         } elseif ($dir == 'users' && $page == 'delete') {
@@ -29,13 +29,55 @@ include $tem . 'left_sidebar.php';
         } elseif ($dir == 'users' && $page == 'view') {
             include 'users/view.php';
         }
-        // END COMPANY
- 
+        // END users 
+
+        // START travels  
+        if ($dir == 'travels' && $page == 'add') {
+        } elseif ($dir == 'travels' && $page == 'edit') {
+        } elseif ($dir == 'travels' && $page == 'delete') {
+            include 'travels/delete.php';
+        } elseif ($dir == 'travels' && $page == 'report') {
+            include 'travels/report.php';
+        } elseif ($dir == 'travels' && $page == 'view') {
+            include 'travels/view.php';
+        }
+        // END travels 
+        // START products  
+        if ($dir == 'products' && $page == 'add') {
+        } elseif ($dir == 'products' && $page == 'edit') {
+        } elseif ($dir == 'products' && $page == 'delete') {
+            include 'products/delete.php';
+        } elseif ($dir == 'products' && $page == 'report') {
+            include 'products/report.php';
+        } elseif ($dir == 'products' && $page == 'view') {
+            include 'products/view.php';
+        }
+        // END products 
+
+        // START balance   
+        if ($dir == 'balance' && $page == 'add') {
+        } elseif ($dir == 'balance' && $page == 'edit') {
+        } elseif ($dir == 'balance' && $page == 'delete') {
+            include 'balance/delete.php';
+        } elseif ($dir == 'balance' && $page == 'report') {
+            include 'balance/report.php';
+        }
+        // END balance  
+        // START Settings   
+        if ($dir == 'settings' && $page == 'add') {
+        } elseif ($dir == 'settings' && $page == 'edit') {
+            include 'settings/edit.php';
+        } elseif ($dir == 'settings' && $page == 'delete') {
+            include 'settings/delete.php';
+        } elseif ($dir == 'settings' && $page == 'report') {
+            include 'settings/report.php';
+        }
+        // END Settings  
         ?>
     </div>
 </div>
 </div>
-<?php 
+<?php
 include $tem . 'footer.php';
 
 ob_end_flush();

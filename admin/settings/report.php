@@ -4,7 +4,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"> <i class="fa fa-heart"></i> <a href="main.php?dir=dashboard&page=dashboard"> <?php echo  $website_title; ?></a> <i class="fa fa-chevron-left"></i> </li>
-                    <li class="breadcrumb-item active" aria-current="page"> مشاهدة تقسيمات الادمن </li>
+                    <li class="breadcrumb-item active" aria-current="page"> الاعدادات </li>
                 </ol>
             </nav>
         </div>
@@ -16,30 +16,16 @@
                     <tr>
                         <th> اسم المستخدم </th>
                         <th> البريد الالكتروني </th>
-                        <th> اسم القسم </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody> <?php
-                        $stmt = $connect->prepare('SELECT * FROM admin ');
+                        $stmt = $connect->prepare('SELECT * FROM admin');
                         $stmt->execute();
                         $alltype = $stmt->fetchAll();
                         foreach ($alltype as $type) { ?> <tr>
                             <td><?php echo $type['admin_name']; ?> </td>
                             <td><?php echo $type['admin_email']; ?> </td>
-                            <td> <?php
-                                    if ($type['admin_prev'] == 1) {
-                                        echo ' الادمن العام  ';
-                                    }
-                                    if ($type['admin_prev'] == 2) {
-                                        echo ' فريق الخدمة  ';
-                                    }
-                                    if ($type['admin_prev'] == 3) {
-                                        echo ' المدرب ';
-                                    }
-
-                                    ?> </td>
-
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editrecord<?php echo $type['admin_id']; ?>">
                                     تعديل <i class="fa fa-eye"></i>
@@ -57,7 +43,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="myform">
-                                            <form class="form-group insert ajax_form" action="main.php?dir=settings&page=edit" method="POST" autocomplete="on" enctype="multipart/form-data">
+                                            <form class="form-group insert" action="main.php?dir=settings&page=edit" method="POST" autocomplete="on" enctype="multipart/form-data">
                                                 <input type="hidden" name="admin_id" value="<?php echo $type['admin_id'] ?>">
                                                 <div class="row">
                                                     <div class="col-lg-12">
@@ -79,7 +65,7 @@
 
                                                     </div>
                                                     <div class="box submit_box">
-                                                        <input class="btn btn-outline-primary btn-sm" name="" type="submit" value="  تعديل القسم   ">
+                                                        <input class="btn btn-outline-primary btn-sm" name="" type="submit" value="  تعديل المستخدم    ">
                                                     </div>
                                                 </div>
                                             </form>

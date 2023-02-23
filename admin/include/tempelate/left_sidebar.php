@@ -30,7 +30,7 @@
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa fa-building color2"></i>
                           <p>
-                              المستخدمين 
+                              المستخدمين
                               <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
@@ -38,7 +38,7 @@
                           <li class="nav-item" id="lnk-rep-whatsapp">
                               <a href="main.php?dir=users&page=report" class="nav-link">
                                   <i class="far fa-circle nav-icon color3"></i>
-                                  <p>  مشاهدة المستخدمين   </p>
+                                  <p> مشاهدة المستخدمين </p>
                               </a>
                           </li>
                       </ul>
@@ -51,13 +51,13 @@
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa-solid fa-users color2"></i>
                           <p>
-                              الرحلات 
+                              الرحلات
                               <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item" id="lnk-rep-country">
-                              <a href="main.php?dir=individual&page=report" class="nav-link">
+                              <a href="main.php?dir=travels&page=report" class="nav-link">
                                   <i class="far fa-circle nav-icon color3"></i>
                                   <p> مشاهدة الرحلات </p>
                               </a>
@@ -72,28 +72,28 @@
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa-solid fa-images color2"></i>
                           <p>
-                              الشحنات 
+                              الشحنات
                               <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item" id="lnk-rep-coash">
-                              <a href="main.php?dir=coashes&page=report" class="nav-link">
+                              <a href="main.php?dir=products&page=report" class="nav-link">
                                   <i class="far fa-circle nav-icon color3"></i>
-                                  <p> مشاهدة الشحنات  </p>
+                                  <p> مشاهدة الشحنات </p>
                               </a>
                           </li>
                       </ul>
                   </li>
                   <!-- END Coashes Section -->
-              
-         
+
+
                   <!-- END Services Section -->
                   <li class="nav-item" id="lnk-message">
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa-solid fa-envelope color2"></i>
                           <p>
-                              رسائل  المستخدمين
+                              رسائل المستخدمين
                               <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
@@ -126,30 +126,36 @@
                           </li>
                       </ul>
                   </li>
-            
+
+                  <!--   START Add balance  -->
+                  <li class="nav-item" id="lnk-coash">
+                      <a href="#" class="nav-link nav-link2">
+                          <i class="fa-solid fa-images color2"></i>
+                          <p>
+                              الرصيد وعمليات الشحن
+                              <i class="right fas fa-angle-left "></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item" id="lnk-rep-coash">
+                              <a href="main.php?dir=balance&page=report" class="nav-link">
+                                  <i class="far fa-circle nav-icon color3"></i>
+                                  <p> مشاهدة التحويلات </p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <!-- END Add Balance  -->
 
                   <li class="nav-item" id="lnk-review">
-                      <a href="#" class="nav-link nav-link2">
+                      <a href="main.php?dir=settings&page=report" class="nav-link nav-link2">
                           <i class="fa fa-dashboard color2"></i>
                           <p>
                               الاعدادات
                               <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item" id="lnk-rep-review">
-                              <a href="main.php?dir=settings&page=report" class="nav-link">
-                                  <i class="far fa-circle nav-icon color3"></i>
-                                  <p> التحكم في اقسام الادمن </p>
-                              </a>
-                          </li>
-                          <li class="nav-item" id="lnk-rep-review2">
-                              <a href="main.php?dir=review&page=ind_review" class="nav-link">
-                                  <i class="far fa-circle nav-icon color3"></i>
-                                  <p> تقيمات المتدربين </p>
-                              </a>
-                          </li>
-                      </ul>
+                     
                   </li>
 
                   <li class="nav-item">

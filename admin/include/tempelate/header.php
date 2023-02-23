@@ -1,5 +1,5 @@
 
-<?php $website_title = ' لوحة تحكم انتقاء  '; ?>
+<?php $website_title = ' لوحة تحكم هاكم   '; ?>
 <!DOCTYPE html>
 <html lang="en">
 
