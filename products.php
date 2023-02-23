@@ -10,8 +10,8 @@ include 'init.php';
     <div class="container-fluid">
         <div class="travel_head">
             <h2> جميع الشحنات </h2>
-            <a href="add_product" class="btn btn-primary">  اضف شحنة جديدة <i class="fa fa-address-book"></i> </a>
- 
+            <a href="add_product" class="btn btn-primary"> اضف شحنة جديدة <i class="fa fa-address-book"></i> </a>
+
         </div>
         <div class="data">
             <form action="" method="post">
@@ -48,150 +48,53 @@ include 'init.php';
         <div class="data">
 
             <div class="row">
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                                <img src="uploads/product.jpg" alt="">
+                <?php
+                $stmt = $connect->prepare("SELECT * FROM products");
+                $stmt->execute();
+                $allproduct = $stmt->fetchall();
+                foreach ($allproduct as $product) { ?>
+                    <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
+                        <div class="travel_data">
+                            <div class="info">
+                                <div class="product">
+                                    <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
+                                </div>
+                                <div class="product_info">
+                                    <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?>"</p>
+                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $product['pro_from'] ?>" </p>
+                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $product['pro_to'] ?>" </p>
+                                    <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?>"</p>
+                                </div>
                             </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                                <img src="uploads/product.jpg" alt="">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
+                            <div class="person_info">
+                                <div class="image_person">
+                                <?php
+                                    $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
+                                    $stmt->execute(array($product['user_name']));
+                                    $userdata = $stmt->fetch();
+                                    if ($userdata['profile_image'] != "") {
+                                    ?>
+                                        <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <img src="uploads/avatar.gif" alt="">
+                                    <?php
+                                    }
+                                    ?>
+                                    
+                                    <p> <?php echo $product['user_name'] ?> </p>
+                                </div>
+                                <div class="send_request">
+                                    <a href="#" class="button btn"> ارسل طلب </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                                <img src="uploads/product.jpg" alt="">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                                <img src="uploads/product.jpg" alt="">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                                <img src="uploads/product.jpg" alt="">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                                <img src="uploads/product.jpg" alt="">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> اوراق شخصية </p>
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> 12 سبتمر 2023 </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <?php
+                } ?>
+ 
             </div>
         </div>
         <div class="pagin">

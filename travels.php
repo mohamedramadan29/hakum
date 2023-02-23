@@ -2,9 +2,7 @@
 $page_title = ' هاكم - رحلات  ';
 session_start();
 include 'init.php';
- 
 ?>
-
 <!-- START HERO SECTION  -->
 <div class="form_search">
     <div class="container-fluid">
@@ -45,163 +43,124 @@ include 'init.php';
 <div class="travel travel_page">
     <div class="container-fluid">
         <div class="data">
+            <?php
+            $stmt = $connect->prepare("SELECT * FROM travels");
+            $stmt->execute();
+            $total_pages = $stmt->RowCount();
+            $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+
+            $num_result_in_page = 5;
+            ?>
 
             <div class="row">
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
+                <?php
+                $stmt = $connect->prepare("SELECT * FROM travels");
+               /* $calc_page = ($page - 1) * $num_result_in_page;
+                if ($calc_page < 1) {
+                    $calc_page = 1;
+                }
+                */
+                //$stmt->bindParam('ii',$calc_page, $num_result_in_page);
+                $stmt->execute();
+                $alltravel = $stmt->fetchall();
+                foreach ($alltravel as $travel) { ?>
+                    <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
+                        <div class="travel_data">
+                            <div class="info">
+                                <div class="product">
+                                </div>
+                                <div class="product_info">
+                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $travel['travel_from'] ?> </p>
+                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $travel['travel_to'] ?> </p>
+                                    <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
+                                    <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                </div>
                             </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> 12 سبتمر 2023 </p>
-                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                            <div class="person_info">
+                                <div class="image_person">
+                                    <?php
+                                    $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
+                                    $stmt->execute(array($travel['user_name']));
+                                    $userdata = $stmt->fetch();
+                                    if ($userdata['profile_image'] != "") {
+                                    ?>
+                                        <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <img src="uploads/avatar.gif" alt="">
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <p> <?php echo $travel['user_name'] ?> </p>
+                                </div>
+                                <div class="send_request">
+                                    <a href="#" class="button btn"> ارسل طلب </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> 12 سبتمر 2023 </p>
-                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> 12 سبتمر 2023 </p>
-                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> 12 سبتمر 2023 </p>
-                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> 12 سبتمر 2023 </p>
-                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
-                    <div class="travel_data">
-                        <div class="info">
-                            <div class="product">
-                            </div>
-                            <div class="product_info">
-                                <p> <span> <img src="uploads/from.png" alt=""> من : </span> القاهرة </p>
-                                <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> الاسكندرية </p>
-                                <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> 12 سبتمر 2023 </p>
-                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
-                            </div>
-                        </div>
-                        <div class="person_info">
-                            <div class="image_person">
-                                <img src="uploads/avatar.gif" alt="">
-                                <p> Mohamed Ramadan </p>
-                            </div>
-                            <div class="send_request">
-                                <a href="#" class="button btn"> ارسل طلب </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <?php
+
+                }
+                ?>
             </div>
         </div>
         <div class="pagin">
             <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">السابق</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">التالي </a>
-                    </li>
-                </ul>
+                <?php
+                /*
+                if (ceil($total_pages / $num_result_in_page) > 0) { ?>
+                    <ul class="pagination">
+                        <?php if ($page > 1) : ?>
+                            <li class="prev"><a href="travels?page=<?php echo $page - 1 ?>">Prev</a></li>
+                        <?php endif; ?>
+
+                        <?php if ($page > 3) : ?>
+                            <li class="start"><a href="travels?page=1">1</a></li>
+                            <li class="dots">...</li>
+                        <?php endif; ?>
+
+                        <?php if ($page - 2 > 0) : ?><li class="page"><a href="travels?page=<?php echo $page - 2 ?>"><?php echo $page - 2 ?></a></li><?php endif; ?>
+                        <?php if ($page - 1 > 0) : ?><li class="page"><a href="travels?page=<?php echo $page - 1 ?>"><?php echo $page - 1 ?></a></li><?php endif; ?>
+
+                        <li class="currentpage"><a href="travels?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+
+                        <?php if ($page + 1 < ceil($total_pages / $num_result_in_page) + 1) : ?><li class="page"><a href="travels?page=<?php echo $page + 1 ?>"><?php echo $page + 1 ?></a></li><?php endif; ?>
+                        <?php if ($page + 2 < ceil($total_pages / $num_result_in_page) + 1) : ?><li class="page"><a href="travels?page=<?php echo $page + 2 ?>"><?php echo $page + 2 ?></a></li><?php endif; ?>
+
+                        <?php if ($page < ceil($total_pages / $num_result_in_page) - 2) : ?>
+                            <li class="dots">...</li>
+                            <li class="end"><a href="travels?page=<?php echo ceil($total_pages / $num_result_in_page) ?>"><?php echo ceil($total_pages / $num_result_in_page) ?></a></li>
+                        <?php endif; ?>
+
+                        <?php if ($page < ceil($total_pages / $num_result_in_page)) : ?>
+                            <li class="next"><a href="travels?page=<?php echo $page + 1 ?>">Next</a></li>
+                        <?php endif; ?>
+                    </ul>
+                    <!--
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">السابق</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">التالي </a>
+                        </li>
+                    </ul>
+                -->
+                <?php
+
+                }
+                */
+                ?>
             </nav>
         </div>
     </div>
