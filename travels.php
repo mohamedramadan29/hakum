@@ -55,7 +55,7 @@ include 'init.php';
             <div class="row">
                 <?php
                 $stmt = $connect->prepare("SELECT * FROM travels");
-               /* $calc_page = ($page - 1) * $num_result_in_page;
+                /* $calc_page = ($page - 1) * $num_result_in_page;
                 if ($calc_page < 1) {
                     $calc_page = 1;
                 }
@@ -96,7 +96,20 @@ include 'init.php';
                                     <p> <?php echo $travel['user_name'] ?> </p>
                                 </div>
                                 <div class="send_request">
-                                    <a href="#" class="button btn"> ارسل طلب </a>
+                                    <?php
+                                    if (isset($_SESSION['username'])) {
+                                        
+                                    ?>
+                                        <a href="message?user=<?php echo $travel['user_name']?>" class="button btn"> ارسل طلب </a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="login" class="button btn"> ارسل طلب </a>
+
+                                    <?php
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
 

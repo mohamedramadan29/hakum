@@ -16,25 +16,15 @@ $userdata = $stmt->fetch();
         <div class="data">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="slide1">
+                <div class="slide1">
                         <div class="personal_image">
-                            <?php
-                            if ($userdata['profile_image'] != "") {
-                            ?>
-                                <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
-                            <?php
-                            } else {
-                            ?>
-                             <img src="uploads/profile.png"
-                            <?php
-                            }
-                            ?>
-
-                            <h3> <?php echo $userdata['name']; ?> </h3>
+                            <img src="uploads/profile.png" alt="">
+                            <h3>   <?php echo $_SESSION['username'] ?> </h3>
                         </div>
-                        <div class="control_setting"> 
+                        <div class="control_setting">
+                            <h6> لوحة التحكم </h6>
                             <div class="row">
-                              
+                                
                                 <div class="col-4">
                                     <a href="profile">
                                         <div class="control_setting_section active">
