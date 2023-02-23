@@ -622,4 +622,45 @@ input[type='email']{
     direction: rtl;
 }
 
+.profile .slide2 .balance_section{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom:20px;
+}
+.profile .slide2 .balance_section .balance_num h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.profile .slide2 .balance_section .balance_num span{
+    font-size: 25px;
+    color: var(--main-color);
+}
+.profile .slide2 .balance_show .btn{
+    width: 200px;
+    /* height: 100px; */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    font-size: 22px;
+}
+.profile .slide2 .add_balance{
+    margin-top:30px;
+}
+.profile .slide2 .add_balance h6{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.profile .slide2 .add_balance .box{
+margin-bottom: 30px;
+}
+.profile .slide2 .add_balance .box input{
+    text-align: right;
+}
+.profile .slide2 .add_balance label{
+    margin-bottom: 15px;
+}
 /****************************** END PROFILE PAGE  *******************/

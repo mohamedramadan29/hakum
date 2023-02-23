@@ -21,12 +21,7 @@ if (isset($_SESSION['username'])) {
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
                             <div class="row">
-                                <div class="col-4">
-                                    <div class="control_setting_section ">
-                                        <i class="fa fa-home"></i>
-                                        <p> الرئيسية </p>
-                                    </div>
-                                </div>
+                              
                                 <div class="col-4">
                                     <a href="profile">
                                         <div class="control_setting_section">
@@ -65,6 +60,14 @@ if (isset($_SESSION['username'])) {
                                             <i class="fa fa-home"></i>
                                             <p> رحلاتي </p>
                                         </div>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="balance">
+                                    <div class="control_setting_section">
+                                        <i class="fa fa-dollar"></i>
+                                        <p> الرصيد  </p>
+                                    </div>
                                     </a>
                                 </div>
                             </div>
