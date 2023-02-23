@@ -19,7 +19,6 @@ include 'init.php';
                 <div class="col-6">
                     <img src="uploads/contact.svg" alt="">
                 </div>
-
             </div>
         </div>
     </div>
@@ -31,6 +30,46 @@ include 'init.php';
         <div class="data">
             <div class="row">
                 <div class="col-lg-6">
+                    <?php
+
+                    if (isset($_POST['send_message'])) {
+                        $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+                        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+                        $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+                        $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+                        $formerror = [];
+                        if (empty($name)) {
+                            $formerror[] = ' من فضلك ادخل الاسم  ';
+                        }
+                        if (empty($email)) {
+                            $formerror[] = ' من فضلك ادخل البريد الالكتروني  ';
+                        }
+                        if (empty($message)) {
+                            $formerror[] = ' من فضلك ادخل رسالتك   ';
+                        }
+                        if (empty($formerror)) {
+                            $stmt = $connect->prepare("INSERT INTO contact_us (name, email, subject, message)
+                            VALUE(:zname, :zemail, :zsub,:zmessage)");
+                            $stmt->execute(array(
+                                "zname" => $name,
+                                "zemail" => $email,
+                                "zsub" => $subject,
+                                "zmessage" => $message,
+                            ));
+                            if ($stmt) {
+                    ?>
+                                <li class="alert alert-success"> تم ارسال رسالتك بنجاح , سوف نتواصل معك في اقرب وقت </li>
+                            <?php
+                            }
+                        } else {
+                            foreach ($formerror as $error) {
+                            ?>
+                                <li class="alert alert-danger"> <?php echo $error; ?> </li>
+                    <?php
+                            }
+                        }
+                    }
+                    ?>
                     <div class="info">
                         <form action="#" method="post">
                             <div class="box">
@@ -50,13 +89,13 @@ include 'init.php';
                                 <textarea name="message" id="message" class="form-control"></textarea>
                             </div>
                             <div class="box">
-                                <button class="btn btn-primary" type="submit"> ارسال  </button>
+                                <button class="btn btn-primary" type="submit" name="send_message"> ارسال </button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d950645.7063253215!2d39.77165849088825!3d21.450468423549314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118db!2z2KzYr9ipINin2YTYs9i52YjYr9mK2Kk!5e0!3m2!1sar!2seg!4v1676466815283!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d950645.7063253215!2d39.77165849088825!3d21.450468423549314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118db!2z2KzYr9ipINin2YTYs9i52YjYr9mK2Kk!5e0!3m2!1sar!2seg!4v1676466815283!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <!--
                 <div class="col-lg-6">

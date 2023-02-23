@@ -73,6 +73,16 @@ include $tem . 'left_sidebar.php';
             include 'settings/report.php';
         }
         // END Settings  
+        // START Contact    
+        if ($dir == 'contact' && $page == 'add') {
+        } elseif ($dir == 'contact' && $page == 'edit') {
+            include 'contact/edit.php';
+        } elseif ($dir == 'contact' && $page == 'delete') {
+            include 'contact/delete.php';
+        } elseif ($dir == 'contact' && $page == 'report') {
+            include 'contact/report.php';
+        }
+        // END Contact  
         // START dashbaord    
         if ($dir == 'dashboard' && $page == 'dashboard') {
             include 'dashboard.php';
