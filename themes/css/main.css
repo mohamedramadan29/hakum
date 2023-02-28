@@ -27,7 +27,9 @@ body {
 .navbar a {
     color: #606060;
 }
-
+.navbar .active{
+    color: var(--main-color);
+}
 /*
 START HERO SECTION
 */

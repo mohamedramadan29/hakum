@@ -7,31 +7,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index">الرئيسية</a>
+          <a class="nav-link" id="index" aria-current="page" href="index">الرئيسية</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="travels"> رحلات </a>
+          <a class="nav-link" id="travels" href="travels"> رحلات </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="products"> شحنات </a>
+          <a class="nav-link" id="products" href="products"> شحنات </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact_us"> تواصل معنا </a>
+          <a class="nav-link" id="contact_us" href="contact_us"> تواصل معنا </a>
         </li>
         <?php
         if (isset($_SESSION['username'])) { ?>
           <li class="nav-item login">
-            <a class="nav-link" href="profile"> حسابي </a>
+            <a id="profile" class="nav-link" href="profile"> حسابي </a>
           </li>
         <?php
 
         } else {
         ?>
           <li class="nav-item new_account">
-            <a class="nav-link" href="register"> حساب جديد </a>
+            <a id="register" class="nav-link" href="register"> حساب جديد </a>
           </li>
           <li class="nav-item login">
-            <a class="nav-link" href="login"> دخول </a>
+            <a id="login" class="nav-link" href="login"> دخول </a>
           </li>
         <?php
         }

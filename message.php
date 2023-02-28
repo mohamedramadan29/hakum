@@ -19,78 +19,18 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
         <div class="row">
             <div class="col-lg-8">
                 <div class="data" id="chat">
-                    <?php
-                    $stmt = $connect->prepare("SELECT * FROM chat WHERE (msg_from = ? AND msg_to = ? AND travel_id=?) OR (msg_to = ? AND msg_from=? AND travel_id=?) ORDER BY id ");
-                    $stmt->execute(array($username, $_SESSION['username'], $travel_id,  $username, $_SESSION['username'], $travel_id));
-                    $count = $stmt->rowCount();
-                    if ($count > 0) {
-                        $allmessage = $stmt->fetchAll();
-                        foreach ($allmessage as $msg) {
-                            if ($msg['msg_from'] == $_SESSION['username']) { ?>
-                                <div class="send_message sender_message">
-                                    <div>
-                                        <?php
-                                        $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
-                                        $stmt->execute(array($_SESSION['username']));
-                                        $userdata = $stmt->fetch();
-                                        if (empty($userdata['profile_image'])) { ?>
-                                            <img src="uploads/profile.png" alt="">
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
-                                        <?php
-                                        }
-                                        ?>
+                    <div id="demo">
 
-                                    </div>
-                                    <div class="message_info">
-                                        <p class="sender_name"> <?php echo  $_SESSION['username'] ?> </p>
-                                        <p class="sender_time"> <?php echo $msg['date'] ?> </p>
-                                        <p class="sender_m_data"> <?php echo $msg['msg'] ?>
-                                        </p>
-                                        <p class="sender_m_data"> <a target="_blank" href="uploads/"> الفايل </a> </p>
-                                    </div>
-                                </div>
-                            <?php
-                            } else { ?>
-                                <div class="send_message recever_message">
-                                    <div>
-                                        <?php
-                                        $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
-                                        $stmt->execute(array($username));
-                                        $userdata = $stmt->fetch();
-                                        if (empty($userdata['profile_image'])) { ?>
-                                            <img src="uploads/profile.png" alt="">
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                    <div class="message_info">
-                                        <p class="sender_name"> <?php echo $username; ?> </p>
-                                        <p class="sender_time"> <?php echo $msg['date'] ?> </p>
-                                        <p class="sender_m_data"> <?php echo $msg['msg'] ?>
-                                        </p>
-                                    </div>
-                                </div>
-                    <?php
-                            }
-                        }
-                    }
-                    ?>
+                    </div>
                     <div class="form">
-                        <form class="form-group insert ajax_form" action="" method="POST" autocomplete="on" enctype="multipart/form-data">
+                        <form class="form-group" action="javascript:void(0)" id="ajax-form" method="POST" autocomplete="on" enctype="multipart/form-data">
                             <div class="message_text">
                                 <input type="hidden" name="from_person" id="from_person" value="<?php echo $_SESSION['username'] ?>">
-                                <input type="hidden" name="to_person" value="<?php echo $username; ?>">
-                                <input type="hidden" name="travel_id" value="<?php echo $travel_id; ?>">
-                                <textarea required name="message_data" id=""></textarea>
+                                <input type="hidden" name="to_person" id="to_person" value="<?php echo $username; ?>">
+                                <input type="hidden" name="travel_id" id="travel_id" value="<?php echo $travel_id; ?>">
+                                <textarea required name="msg" id="msg"></textarea>
                                 <div class="send_message_button">
-                                    <button name="send_message" id="send_message" type="submit" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane"></i></button>
+                                    <input type="submit" class="btn btn-primary" name="submit" value="submit">
                                 </div>
                             </div>
                         </form>
@@ -140,24 +80,56 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
         </div>
     </div>
 </div>
-<script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<!-- to fetch message -->
+
+<script type="text/javascript">
     $(document).ready(function() {
+        setInterval(function() {
+            let from = $("#from_person").val();
+            let to = $("#to_person").val();
+            let travel_id = $("#travel_id").val();
+            $.ajax({
+                type: "POST",
+                url: "msg/fetch_travel_msg.php?travel_id=" +travel_id + '&from=' + from + '&to=' + to,
+                dataType: "html",
+                success: function(data) {
+                    $('#demo').html(data);
+                }
+            });
+        }, 1000);
+    });
+</script>
 
-        $("#send_message").click(function() {
-            let msg = $("#message_data").val();
-            let from_person =
-                $.ajax({
 
-                    type: "POST",
-                    url: "msg/send_travel_msg.php",
-                    data: {
-                        msg: msg
-                    },
-                    success: function() {
-                        $("#msg").val('');
-                    }
 
-                });
+
+<!-- to insert message -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+
+        $('#ajax-form').submit(function(e) {
+            e.preventDefault();
+            let msg = $("#msg").val();
+            let from_person = $("#from_person").val();
+            let to_person = $("#to_person").val();
+            let travel_id = $("#travel_id").val();
+            $.ajax({
+                type: "POST",
+                url: "msg/send_travel_msg",
+                data: {
+                    msg: msg,
+                    from_person: from_person,
+                    to_person: to_person,
+                    travel_id: travel_id
+                },
+                success: function() {
+                    $("#msg").val('');
+                    $("#demo").load();
+                }
+
+            });
 
         });
 
