@@ -30,6 +30,7 @@ $userdata = $stmt->fetch();
                                                                 ?> <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
+                            <h6> لوحة التحكم </h6>
                             <div class="row">
 
                                 <div class="col-4">
@@ -89,7 +90,7 @@ $userdata = $stmt->fetch();
                         <div class="balance_section">
                             <div class="balance_num">
                                 <h3> الرصيد الكلي </h3>
-                                
+
                                 <span> <?php echo $userdata['balance']; ?> دولار </span>
                             </div>
                             <div class="balance_show">
@@ -117,13 +118,13 @@ $userdata = $stmt->fetch();
                                         "zdiscount" => $discount,
                                         "ztotal" => $total,
                                     ));
-                                    
+
                                     $stmt = $connect->prepare("SELECT * FROM balance_add WHERE user_name=?");
                                     $stmt->execute(array($_SESSION['username']));
                                     $alldata = $stmt->fetchAll();
                                     $sum_total = 0;
-                                    foreach($alldata as $data){
-                                        $sum_total += $data['balance_total']; 
+                                    foreach ($alldata as $data) {
+                                        $sum_total += $data['balance_total'];
                                     }
                                     $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name=?");
                                     $stmt->execute(array($sum_total, $_SESSION['username']));

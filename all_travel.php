@@ -7,7 +7,11 @@ if (isset($_SESSION['username'])) {
     header("Location:login");
 }
 
+$stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
+$stmt->execute(array($_SESSION['username']));
+$userdata = $stmt->fetch();
 ?>
+
 <div class="profile">
     <div class="container-fluid">
         <div class="data">
@@ -15,13 +19,21 @@ if (isset($_SESSION['username'])) {
                 <div class="col-lg-4">
                     <div class="slide1">
                         <div class="personal_image">
-                            <img src="uploads/profile.png" alt="">
-                            <h3> <?php echo $_SESSION['username'] ?></h3>
+                            <?php
+                            if ($userdata['profile_image'] != "") {
+                            ?>
+                                <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                            <?php
+                            } else {
+                            ?>
+                                <img src="uploads/profile.png" <?php
+                                                            }
+                                                                ?> <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
                             <div class="row">
-                                
+
                                 <div class="col-4">
                                     <a href="profile">
                                         <div class="control_setting_section">
@@ -64,10 +76,10 @@ if (isset($_SESSION['username'])) {
                                 </div>
                                 <div class="col-4">
                                     <a href="balance">
-                                    <div class="control_setting_section">
-                                        <i class="fa fa-dollar"></i>
-                                        <p> الرصيد  </p>
-                                    </div>
+                                        <div class="control_setting_section">
+                                            <i class="fa fa-dollar"></i>
+                                            <p> الرصيد </p>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
