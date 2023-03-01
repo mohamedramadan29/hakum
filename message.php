@@ -30,7 +30,7 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
                                 <input type="hidden" name="travel_id" id="travel_id" value="<?php echo $travel_id; ?>">
                                 <textarea required name="msg" id="msg"></textarea>
                                 <div class="send_message_button">
-                                    <input type="submit" class="btn btn-primary" name="submit" value="submit">
+                                    <button type="submit" class="btn btn-primary btn-block"> ارسال <i class="fa fa-plane"></i> </button>
                                 </div>
                             </div>
                         </form>
@@ -41,39 +41,72 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
                 <div class="chat_reason">
                     <h2>معلومات</h2>
                     <div class="info">
-                        <p>تواصل مع المستخدم بشان طلب التعاقد</p>
-                        <div class="alert alert-info"> تم اتمام التعاقد مع المتدرب من قبل <i class="fa fa-check"></i></div>
-                        <div class="chat_com_option">
-                            <div class="company_review">
-                                <form action="" method="post">
-                                    <textarea placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="chat_com_option">
-                            <div class="company_review">
-                                <form action="" method="post">
-                                    <textarea placeholder="من فضلك اكتب تقيمك للمنصة" name="com_review" id="" class="form-control"></textarea>
-                                    <input class="btn btn-primary" name="send_review" type="submit" value="   ارسال التقيم  ">
-                                </form>
-                                <?php
-                                if (isset($_POST['send_review'])) {
-                                    $review = $_POST['com_review'];
-                                    $stmt = $connect->prepare("INSERT INTO company_review (com_id, com_review) VALUES (:zcom_id,:zcom_review)");
-                                    $stmt->execute(array(
-                                        "zcom_id" => $_SESSION['com_id'],
-                                        "zcom_review" => $review,
-                                    ));
-                                    if ($stmt) {
-                                ?>
-                                        <div class="alert alert-success"> شكرا لك علي تقيمك لمنصة انتقاء </div>
-                                <?php
+                        <?php
+                        $stmt = $connect->prepare("SELECT * FROM travels WHERE travel_id=?");
+                        $stmt->execute(array($travel_id));
+                        $data = $stmt->fetch();
+                        ?>
+                        <p>الرحلة من : <?php echo $data['travel_from'];  ?> <span class="fa fa-arrow-left"></span> الي : <?php echo $data['travel_to'];  ?> </p>
+                        <p> موعد الرحلة: <?php echo $data['travel_date'];  ?> </p>
+                        <p> موعد الوصل المتوقع : <?php echo $data['travel_arrive_date'];  ?> </p>
+                        <?php
+                        if ($_SESSION['username'] === $data['user_name']) {
+                        } else {
+                        ?>
+                            <form action="" method="post">
+                                <label for=""> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
+                                <br>
+                                <br>
+                                <input min="1" type="number" required class="form-control" name="deal_value" id="deal_value">
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-sm"> اتمام الصفقة </button>
+                            </form>
+                            <?php
+                            if (isset($_POST['deal_value']) && $_POST['deal_value'] != '' && is_numeric($_POST['deal_value'])) {
+                                $deal_value = $_POST['deal_value'];
+                                $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
+                                $stmt->execute(array($_SESSION['username']));
+                                $userdata = $stmt->fetch();
+                                $count = $stmt->rowcount();
+                                if ($count > 0) {
+                                    if ($userdata['balance'] >= $deal_value) {
+                                        // insert travel to travels_deal done
+                                        $stmt = $connect->prepare("INSERT INTO travel_deal (travel_id, travel_owner, product_owner , price)
+                                        VALUE(:ztravel_id, :ztravel_owner , :zproduct_owner , :zprice)
+                                        ");
+                                        $stmt->execute(array(
+                                            "ztravel_id" => $travel_id,
+                                            "ztravel_owner" => $data['user_name'],
+                                            "zproduct_owner" => $_SESSION['username'],
+                                            "zprice" => $deal_value
+                                        ));
+                                        // discount value form users account
+                                        $new_balance = $userdata['balance'] - $deal_value;
+                                        $stmt = $connect->prepare("UPDATE users SET balance=?");
+                                        $stmt->execute(array($new_balance));
+                                        if ($stmt) {
+                            ?>
+                                            <br>
+                                            <div class="alert alert-success"> راائع :: تم الاتفاق و عمل الصفقة بنجاح </div>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <div>
+                                            <p class="alert alert-danger"> من فضلك رصيد الحالي لا يسمح باتمام الصفقة </p>
+                                            <a href="balance" class="btn btn-warning btn-sm"> اشحن الان </a>
+                                        </div>
+                            <?php
                                     }
                                 }
-                                ?>
-                            </div>
-                        </div>
+                            }
+
+                            ?>
+                        <?php
+                        }
+
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -92,7 +125,7 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
             let travel_id = $("#travel_id").val();
             $.ajax({
                 type: "POST",
-                url: "msg/fetch_travel_msg.php?travel_id=" +travel_id + '&from=' + from + '&to=' + to,
+                url: "msg/fetch_travel_msg.php?travel_id=" + travel_id + '&from=' + from + '&to=' + to,
                 dataType: "html",
                 success: function(data) {
                     $('#demo').html(data);
@@ -101,9 +134,6 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
         }, 1000);
     });
 </script>
-
-
-
 
 <!-- to insert message -->
 <script type="text/javascript">

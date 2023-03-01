@@ -10,12 +10,12 @@ $count = $stmt->rowCount();
 if ($count > 0) {
     $allmessage = $stmt->fetchAll();
     foreach ($allmessage as $msg) {
-        if ($msg['msg_from'] == $_SESSION['username']) { ?>
+        if ($msg['msg_from'] == $from) { ?>
             <div class="send_message sender_message">
                 <div>
                     <?php
                     $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
-                    $stmt->execute(array($_SESSION['username']));
+                    $stmt->execute(array($from));
                     $userdata = $stmt->fetch();
                     if (empty($userdata['profile_image'])) { ?>
                         <img src="uploads/profile.png" alt="">
@@ -29,11 +29,11 @@ if ($count > 0) {
 
                 </div>
                 <div class="message_info">
-                    <p class="sender_name"> <?php echo  $_SESSION['username'] ?> </p>
+                    <p class="sender_name"> <?php echo $from ?> </p>
                     <p class="sender_time"> <?php echo $msg['date'] ?> </p>
                     <p class="sender_m_data"> <?php echo $msg['msg'] ?>
                     </p>
-                    <p class="sender_m_data"> <a target="_blank" href="uploads/"> الفايل </a> </p>
+                    <!--<p class="sender_m_data"> <a target="_blank" href="uploads/"> الفايل </a> </p> -->
                 </div>
             </div>
         <?php
@@ -42,7 +42,7 @@ if ($count > 0) {
                 <div>
                     <?php
                     $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
-                    $stmt->execute(array($username));
+                    $stmt->execute(array($to));
                     $userdata = $stmt->fetch();
                     if (empty($userdata['profile_image'])) { ?>
                         <img src="uploads/profile.png" alt="">
@@ -55,7 +55,7 @@ if ($count > 0) {
                     ?>
                 </div>
                 <div class="message_info">
-                    <p class="sender_name"> <?php echo $username; ?> </p>
+                    <p class="sender_name"> <?php echo $to; ?> </p>
                     <p class="sender_time"> <?php echo $msg['date'] ?> </p>
                     <p class="sender_m_data"> <?php echo $msg['msg'] ?>
                     </p>

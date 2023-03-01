@@ -98,14 +98,18 @@ include 'init.php';
                                 <div class="send_request">
                                     <?php
                                     if (isset($_SESSION['username'])) {
-
+                                        if ($_SESSION['username'] === $travel['user_name']) {
                                     ?>
-                                        <a href="message?user=<?php echo $travel['user_name'] ?>&travel_id=<?php echo $travel['travel_id']; ?>" class="button btn"> ارسل طلب </a>
-                                    <?php
+                                            <a href="all_travel" class="button btn"> تفاصيل الرحلة </a>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="message?user=<?php echo $travel['user_name'] ?>&travel_id=<?php echo $travel['travel_id']; ?>" class="button btn"> ارسل طلب </a>
+                                        <?php
+                                        }
                                     } else {
-                                    ?>
+                                        ?>
                                         <a href="login" class="button btn"> ارسل طلب </a>
-
                                     <?php
                                     }
 
