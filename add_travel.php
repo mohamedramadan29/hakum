@@ -44,7 +44,7 @@ $userdata = $stmt->fetch();
                                 </div>
                                 <div class="col-4">
                                     <a href="add_product">
-                                        <div class="control_setting_section active">
+                                        <div class="control_setting_section ">
                                             <i class="fa fa-plus"></i>
                                             <p> اضافة شحنة </p>
                                         </div>
@@ -52,7 +52,7 @@ $userdata = $stmt->fetch();
                                 </div>
                                 <div class="col-4">
                                     <a href="add_travel">
-                                        <div class="control_setting_section">
+                                        <div class="control_setting_section active">
                                             <i class="fa fa-plus"></i>
                                             <p> اضافة رحلة </p>
                                         </div>
