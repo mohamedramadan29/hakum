@@ -31,6 +31,7 @@ $userdata = $stmt->fetch();
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
+                            <br>
                             <div class="row">
 
                                 <div class="col-4">
@@ -43,8 +44,8 @@ $userdata = $stmt->fetch();
                                 </div>
                                 <div class="col-4">
                                     <a href="add_product">
-                                        <div class="control_setting_section">
-                                            <i class="fa fa-book"></i>
+                                        <div class="control_setting_section active">
+                                            <i class="fa fa-plus"></i>
                                             <p> اضافة شحنة </p>
                                         </div>
                                     </a>
@@ -52,7 +53,7 @@ $userdata = $stmt->fetch();
                                 <div class="col-4">
                                     <a href="add_travel">
                                         <div class="control_setting_section">
-                                            <i class="fa fa-plane"></i>
+                                            <i class="fa fa-plus"></i>
                                             <p> اضافة رحلة </p>
                                         </div>
                                     </a>
@@ -60,7 +61,7 @@ $userdata = $stmt->fetch();
                                 <div class="col-4">
                                     <a href="all_product">
                                         <div class="control_setting_section">
-                                            <i class="fa fa-plane"></i>
+                                            <i class="fa fa-book"></i>
                                             <p> شحناتي </p>
                                         </div>
                                     </a>
@@ -68,14 +69,14 @@ $userdata = $stmt->fetch();
                                 <div class="col-4">
                                     <a href="all_travel">
                                         <div class="control_setting_section">
-                                            <i class="fa fa-home"></i>
+                                            <i class="fa fa-plane"></i>
                                             <p> رحلاتي </p>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="col-4">
                                     <a href="balance">
-                                        <div class="control_setting_section active">
+                                        <div class="control_setting_section">
                                             <i class="fa fa-dollar"></i>
                                             <p> الرصيد </p>
                                         </div>

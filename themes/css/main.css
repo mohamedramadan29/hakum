@@ -23,13 +23,47 @@ body {
     padding: 15px;
     box-shadow: 0px 0px 6px 0px #ccc;
 }
+.navbar .notification{
+    font-size: 22px;
+    margin-top: 1px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.navbar .notification i{
+    color:#858181;
+}
+.navbar .dropdown{
+    top: -11px;
+}
+.navbar .dropdown img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.navbar .dropdown li{
+    padding-bottom: 5px;
+}
+.navbar .dropdown li i{
+    padding-left: 10px;
+    font-size: 15px;
+}
+.dropdown-menu[data-bs-popper] {
+    left: 0;
+    right: auto;
+}
+.dropdown-item:focus, .dropdown-item:hover{
+    background-color: var(--second-color);
+    color:#fff;
+}
 
 .navbar a {
     color: #606060;
 }
-.navbar .active{
+
+.navbar .active {
     color: var(--main-color);
 }
+
 /*
 START HERO SECTION
 */
@@ -170,7 +204,7 @@ END ABOUT US SECTION
 
 
 .travel .data .info .product img {
- 
+
     max-width: 150px;
     max-height: 160px;
 }
@@ -554,16 +588,18 @@ END ABOUT US SECTION
     padding: 10px;
     border-radius: 10px;
 }
-.profile .data .slide1 .control_setting a{
+
+.profile .data .slide1 .control_setting a {
     text-decoration: none;
 }
+
 .profile .personal_image {
     text-align: center;
 }
 
 .profile .personal_image img {
     width: 150px;
-    height:150px;
+    height: 150px;
     border-radius: 100%;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -573,7 +609,8 @@ END ABOUT US SECTION
     font-size: 18px;
 
 }
-.control_setting{
+
+.control_setting {
     margin-bottom: 60px;
     margin-top: 100px;
 }
@@ -616,31 +653,36 @@ END ABOUT US SECTION
 .profile .slide2 .my_form .box input {
     height: 45px;
 }
-.profile .travel{
+
+.profile .travel {
     padding: 0;
     background-color: transparent;
 }
-input[type='email']{
+
+input[type='email'] {
     direction: rtl;
 }
 
-.profile .slide2 .balance_section{
-    display:flex;
+.profile .slide2 .balance_section {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #f1f1f1;
-    padding-bottom:20px;
+    padding-bottom: 20px;
 }
-.profile .slide2 .balance_section .balance_num h3{
+
+.profile .slide2 .balance_section .balance_num h3 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 30px;
 }
-.profile .slide2 .balance_section .balance_num span{
+
+.profile .slide2 .balance_section .balance_num span {
     font-size: 25px;
     color: var(--main-color);
 }
-.profile .slide2 .balance_show .btn{
+
+.profile .slide2 .balance_show .btn {
     width: 200px;
     /* height: 100px; */
     align-items: center;
@@ -648,23 +690,29 @@ input[type='email']{
     padding: 20px;
     font-size: 22px;
 }
-.profile .slide2 .add_balance{
-    margin-top:30px;
+
+.profile .slide2 .add_balance {
+    margin-top: 30px;
 }
-.profile .slide2 .add_balance h6{
+
+.profile .slide2 .add_balance h6 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 30px;
 }
-.profile .slide2 .add_balance .box{
-margin-bottom: 30px;
+
+.profile .slide2 .add_balance .box {
+    margin-bottom: 30px;
 }
-.profile .slide2 .add_balance .box input{
+
+.profile .slide2 .add_balance .box input {
     text-align: right;
 }
-.profile .slide2 .add_balance label{
+
+.profile .slide2 .add_balance label {
     margin-bottom: 15px;
 }
+
 /****************************** END PROFILE PAGE  *******************/
 
 /* START CHAT SECTION  */

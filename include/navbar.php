@@ -20,8 +20,22 @@
         </li>
         <?php
         if (isset($_SESSION['username'])) { ?>
-          <li class="nav-item login">
-            <a id="profile" class="nav-link" href="profile"> حسابي </a>
+
+          <li class="nav-item notification"> <a href="#"> <i class="fa fa-envelope nav-link"></i> </a> </li>
+          <li class="nav-item notification"> <a href="#"> <i class="fa fa-bell nav-link"></i> </a> </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="uploads/avatar.gif" alt="">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="profile"> <i class="fa fa-user"></i> حسابي </a></li>
+              <li><a class="dropdown-item" href="all_travel"> <i class="fa fa-plane"></i> رحلاتي </a></li>
+              <li><a class="dropdown-item" href="all_product"> <i class="fa fa-book"></i> شحناتي </a></li>
+              <li><a class="dropdown-item" href="add_travel"> <i class="fa fa-plus"></i> اضافة رحلة </a></li>
+              <li><a class="dropdown-item" href="add_product"> <i class="fa fa-plus"></i> اضافة شحنة </a></li>
+              <li><a class="dropdown-item" href="balance"> <i class="fa fa-dollar"></i> الرصيد </a></li>
+              <li><a class="dropdown-item" href="logout"> <i class="fa fa-sign-out"></i> تسجيل خروج </a></li>
+            </ul>
           </li>
         <?php
 
