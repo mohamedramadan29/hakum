@@ -15,11 +15,11 @@ include 'init.php';
                         <a href="register" class="button btn btn-default animate__animated animate__fadeInUp"> سجل الان </a>
                     </div>
                 </div>
-                <!--
+                
                 <div class="col-6">
                     <img src="uploads/header.svg" alt="">
                 </div>
--->
+
 
             </div>
         </div>

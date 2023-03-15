@@ -2,16 +2,13 @@
 $page_title = ' هاكم - الشحنات  ';
 session_start();
 include 'init.php';
-
 ?>
-
 <!-- START HERO SECTION  -->
 <div class="form_search">
     <div class="container-fluid">
         <div class="travel_head">
             <h2> جميع الشحنات </h2>
             <a href="add_product" class="btn btn-primary"> اضف شحنة جديدة <i class="fa fa-address-book"></i> </a>
-
         </div>
         <div class="data">
             <form action="" method="post">
@@ -60,15 +57,30 @@ include 'init.php';
                                     <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
                                 </div>
                                 <div class="product_info">
-                                    <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?>"</p>
-                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $product['pro_from'] ?>" </p>
-                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $product['pro_to'] ?>" </p>
-                                    <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?>"</p>
+                                    <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?></p>
+                                    <p> <span> <img src="uploads/from.png" alt="">  من : </span> <?php
+                                    $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                    $stmt->execute(array($product['pro_from_country']));
+                                    $country_data = $stmt->fetch();
+                                    $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                    $stmt->execute(array($product['pro_from_city']));
+                                    $city_data = $stmt->fetch();
+                                    echo $country_data['name']. "-" . $city_data['name']  ?> </p>
+                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                    <?php
+                                    $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                    $stmt->execute(array($product['pro_to_country']));
+                                    $country_data = $stmt->fetch();
+                                    $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                    $stmt->execute(array($product['pro_to_city']));
+                                    $city_data = $stmt->fetch();
+                                    echo $country_data['name']. "-" . $city_data['name']  ?>  </p>
+                                    <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?></p>
                                 </div>
                             </div>
                             <div class="person_info">
                                 <div class="image_person">
-                                <?php
+                                    <?php
                                     $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
                                     $stmt->execute(array($product['user_name']));
                                     $userdata = $stmt->fetch();
@@ -82,11 +94,10 @@ include 'init.php';
                                     <?php
                                     }
                                     ?>
-                                    
                                     <p> <?php echo $product['user_name'] ?> </p>
                                 </div>
                                 <div class="send_request">
-                                    <a href="#" class="button btn"> ارسل طلب </a>
+                                    <a href="#" class="button btn"> التفاصيل وارسال طلب  </a>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +105,7 @@ include 'init.php';
 
                 <?php
                 } ?>
- 
+
             </div>
         </div>
         <div class="pagin">

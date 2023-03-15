@@ -106,8 +106,25 @@ $userdata = $stmt->fetch();
                                                         <div class="product">
                                                         </div>
                                                         <div class="product_info">
-                                                            <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $travel['travel_from'] ?> </p>
-                                                            <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $travel['travel_to'] ?> </p>
+                                                            <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                                                                <?php
+                                                                $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                                                $stmt->execute(array($travel['travel_from_country']));
+                                                                $country_data = $stmt->fetch();
+                                                                $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                                                $stmt->execute(array($travel['travel_from_city']));
+                                                                $city_data = $stmt->fetch();
+                                                                echo $country_data['name'] . "-" . $city_data['name']
+                                                                ?></p>
+                                                            <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                                                <?php
+                                                                $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                                                $stmt->execute(array($travel['travel_to_country']));
+                                                                $country_data = $stmt->fetch();
+                                                                $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                                                $stmt->execute(array($travel['travel_to_city']));
+                                                                $city_data = $stmt->fetch();
+                                                                echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
                                                             <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
                                                             <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
                                                         </div>

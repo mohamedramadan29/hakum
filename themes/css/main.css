@@ -92,7 +92,7 @@ START HERO SECTION
 
 .hero .data .info p {
     font-size: 30px;
-    color: var(--main-color);
+    color: #fff;
     line-height: 1.6;
     font-weight: 500;
 }
@@ -247,8 +247,10 @@ END ABOUT US SECTION
 .travel .data .person_info .send_request .button {
     background-color: var(--main-color);
     color: #fff;
-    width: 130px;
+    width: auto;
     padding: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 /* END TRAVEL SECTIONS */

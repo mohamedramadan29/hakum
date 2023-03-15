@@ -46,15 +46,41 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
                         $stmt->execute(array($travel_id));
                         $data = $stmt->fetch();
                         ?>
-                        <p>الرحلة من : <?php echo $data['travel_from'];  ?> <span class="fa fa-arrow-left"></span> الي : <?php echo $data['travel_to'];  ?> </p>
+                        <p>الرحلة من :
+
+
+
+                            <?php
+                            $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                            $stmt->execute(array($data['travel_from_country']));
+                            $country_data = $stmt->fetch();
+                            $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                            $stmt->execute(array($data['travel_from_city']));
+                            $city_data = $stmt->fetch();
+                            echo $country_data['name'] . "-" . $city_data['name']
+                            ?>
+                            <br>
+                            <span class="fa fa-arrow-left"></span> الي :
+
+                            <?php
+                            $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                            $stmt->execute(array($data['travel_to_country']));
+                            $country_data = $stmt->fetch();
+                            $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                            $stmt->execute(array($data['travel_to_city']));
+                            $city_data = $stmt->fetch();
+                            echo $country_data['name'] . "-" . $city_data['name']  ?>
+
+                        </p>
                         <p> موعد الرحلة: <?php echo $data['travel_date'];  ?> </p>
                         <p> موعد الوصل المتوقع : <?php echo $data['travel_arrive_date'];  ?> </p>
+                        <p> الوزن المتاح : <?php echo $data['av_weight'];  ?> كجم  </p>
                         <?php
                         if ($_SESSION['username'] === $data['user_name']) {
                         } else {
                         ?>
                             <form action="" method="post">
-                                <label for=""> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
+                                <label for="" style="color: red;"> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
                                 <br>
                                 <br>
                                 <input min="1" type="number" required class="form-control" name="deal_value" id="deal_value">
