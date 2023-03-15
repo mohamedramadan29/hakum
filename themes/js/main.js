@@ -24,4 +24,6 @@
         $("#profile").addClass("active"); 
       }
 
+      $(".select2").select2();
+
     })(jQuery);

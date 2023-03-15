@@ -93,8 +93,11 @@ $user_id = $userdata['user_id'];
 
                         if (isset($_POST['add_product'])) {
                             $pro_name = $_POST['pro_name'];
-                            $pro_form = $_POST['pro_form'];
-                            $pro_to = $_POST['pro_to'];
+                            $pro_form_country = $_POST['pro_form_country'];
+                            $pro_from_city = $_POST['pro_from_city'];
+                            $pro_to_country = $_POST['pro_to_country'];
+                            $pro_to_city = $_POST['pro_to_city'];
+                            
                             $arrieve_at = $_POST['arrieve_at'];
                             $pro_weight = $_POST['pro_weight'];
                             $pro_desc = $_POST['pro_desc'];
@@ -112,19 +115,22 @@ $user_id = $userdata['user_id'];
                                 $pro_image_uploaded = '';
                             }
                             $errors = [];
-                            if (empty($pro_name) || empty($pro_form) || empty($pro_to) || empty($arrieve_at) || empty($pro_desc) || empty($pro_weight)) {
+                            if (empty($pro_name) || empty($pro_form_country) || empty($pro_to_country) || empty($arrieve_at) || empty($pro_desc) || empty($pro_weight)) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {
-                                $stmt = $connect->prepare("INSERT INTO products (pro_name,pro_weight,pro_image,pro_desc,pro_from,pro_to,arrieve_at,user_name,user_id)
-                                VALUES(:zname,:zweight,:zimage,:zdesc,:zfrom,:zto,:zarrive_at,:zuser_name,:zuser_id)");
+                                $stmt = $connect->prepare("INSERT INTO products (pro_name,pro_weight,pro_image,
+                                pro_desc,pro_from_country,pro_from_city,pro_to_country,pro_to_city,arrieve_at,user_name,user_id)
+                                VALUES(:zname,:zweight,:zimage,:zdesc,:zfrom_country,:zfrom_city,:zto_country,:zto_city,:zarrive_at,:zuser_name,:zuser_id)");
                                 $stmt->execute(array(
                                     'zname' => $pro_name,
                                     'zweight' => $pro_weight,
                                     'zimage' => $pro_image_uploaded,
                                     'zdesc' => $pro_desc,
-                                    'zfrom' => $pro_form,
-                                    'zto' => $pro_to,
+                                    'zfrom_country' => $pro_form_country,
+                                    'zfrom_city' => $pro_from_city,
+                                    'zto_country' => $pro_to_country,
+                                    'zto_city' => $pro_to_city, 
                                     'zarrive_at' => $arrieve_at,
                                     'zuser_name' => $_SESSION['username'],
                                     'zuser_id' => $user_id,
@@ -152,12 +158,55 @@ $user_id = $userdata['user_id'];
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان المغادرة </label>
-                                    <input required type="text" name="pro_form" id="pro_form" class="form-control" value="<?php if (isset($_REQUEST['pro_form'])) echo $_REQUEST['pro_form'] ?>">
+                                    <div class="pro_from">
+                                        <div>
+                                            <select name="pro_form_country" id="pro_form_country" class="form-control select2">
+                                                <option value=""> -- اختر الدولة --</option>
+                                                <?php
+                                                $stmt = $connect->prepare("SELECT * FROM countries");
+                                                $stmt->execute();
+                                                $allcountry = $stmt->fetchAll();
+                                                foreach ($allcountry as $country) {
+                                                ?>
+                                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <select name="pro_from_city" class="form-control select2" id="pro_from_city">
+                                                <option value=""> -- اختر المدينة -- </option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان الوصول </label>
-                                    <input required type="text" name="pro_to" id="pro_to" class="form-control" value="<?php if (isset($_REQUEST['pro_to'])) echo $_REQUEST['pro_to'] ?>">
+                                    <div class="pro_from">
+                                        <div>
+                                            <select name="pro_to_country" id="pro_to_country" class="form-control select2">
+                                                <option value=""> -- اختر الدولة --</option>
+                                                <?php
+                                                $stmt = $connect->prepare("SELECT * FROM countries");
+                                                $stmt->execute();
+                                                $allcountry = $stmt->fetchAll();
+                                                foreach ($allcountry as $country) {
+                                                ?>
+                                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <select name="pro_to_city" class="form-control select2" id="pro_to_city">
+                                                <option value=""> -- اختر المدينة -- </option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="box">
                                     <label for=""> موعد الوصول المتوقع </label>
                                     <input required type="date" name="arrieve_at" id="arrieve_at" class="form-control" value="<?php if (isset($_REQUEST['arrieve_at'])) echo $_REQUEST['arrieve_at'] ?>">
@@ -185,7 +234,47 @@ $user_id = $userdata['user_id'];
         </div>
     </div>
 </div>
-
 <?php
-
 include $tem . 'footer.php';
+?>
+
+<script>
+    $(document).ready(function() {
+        // مكان المغادرة 
+        $('#pro_form_country').change(function() {
+            var country_id = $(this).val();
+            if (country_id != '') {
+                $.ajax({
+                    url: "get_cities.php",
+                    method: "POST",
+                    data: {
+                        country_id: country_id
+                    },
+                    success: function(data) {
+                        $('#pro_from_city').html(data);
+                    }
+                });
+            } else {
+                $('#pro_from_city').html('<option value="">-- اختر المدينة --</option>');
+            }
+        });
+        // مكان الوصول
+        $('#pro_to_country').change(function() {
+            var country_id = $(this).val();
+            if (country_id != '') {
+                $.ajax({
+                    url: "get_cities.php",
+                    method: "POST",
+                    data: {
+                        country_id: country_id
+                    },
+                    success: function(data) {
+                        $('#pro_to_city').html(data);
+                    }
+                });
+            } else {
+                $('#pro_to_city').html('<option value="">-- اختر المدينة --</option>');
+            }
+        });
+    });
+</script>
