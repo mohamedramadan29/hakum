@@ -25,9 +25,10 @@ $userdata = $stmt->fetch();
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png" <?php
+                                <img src="uploads/profile.png"> <?php
                                                             }
-                                                                ?> <h3> <?php echo $userdata['name']; ?> </h3>
+                                                                ?>
+                            <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -95,24 +96,31 @@ $userdata = $stmt->fetch();
                                     $stmt = $connect->prepare("SELECT * FROM products WHERE user_name = ?");
                                     $stmt->execute(array($_SESSION['username']));
                                     $allproduct = $stmt->fetchall();
-                                    foreach ($allproduct as $product) {
+                                    $count = $stmt->rowCount();
+                                    if ($count > 0) {
+                                        foreach ($allproduct as $product) {
                                     ?>
-                                        <div class="col-lg-12">
-                                            <div class=" travel_data">
-                                                <div class="info">
-                                                    <div class="product">
-                                                        <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
+                                            <div class="col-lg-12">
+                                                <div class=" travel_data">
+                                                    <div class="info">
+                                                        <div class="product">
+                                                            <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?> </p>
+                                                            <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $product['pro_from'] ?> </p>
+                                                            <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $product['pro_to'] ?> </p>
+                                                            <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
+                                                        </div>
                                                     </div>
-                                                    <div class="product_info">
-                                                        <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?> </p>
-                                                        <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $product['pro_from'] ?> </p>
-                                                        <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $product['pro_to'] ?> </p>
-                                                        <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
-                                                    </div>
-                                                </div>
 
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <div class="alert alert-success"> لا يوجد لديك شحنات في الوقت الحالي </div>
                                     <?php
                                     }
                                     ?>

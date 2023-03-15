@@ -10,6 +10,7 @@ if (isset($_SESSION['username'])) {
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
+$user_id = $userdata['user_id'];
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -25,9 +26,10 @@ $userdata = $stmt->fetch();
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png" <?php
+                                <img src="uploads/profile.png"> <?php
                                                             }
-                                                                ?> <h3> <?php echo $userdata['name']; ?> </h3>
+                                                                ?>
+                            <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -95,20 +97,23 @@ $userdata = $stmt->fetch();
                             $travel_to = $_POST['travel_to'];
                             $travel_date = $_POST['travel_date'];
                             $travel_arrive_date = $_POST['travel_arrive_date'];
+                            $av_weight = $_POST['av_weight'];
 
                             $errors = [];
-                            if (empty($travel_from) || empty($travel_to) || empty($travel_date) || empty($travel_arrive_date)) {
+                            if (empty($travel_from) || empty($travel_to) || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight)) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {
-                                $stmt = $connect->prepare("INSERT INTO travels (travel_from,travel_to,travel_date,travel_arrive_date,user_name)
-                                VALUES(:zfrom,:zto,:ztravel_date,:ztravel_arrive,:zuser_name)");
+                                $stmt = $connect->prepare("INSERT INTO travels (travel_from,travel_to,travel_date,travel_arrive_date,av_weight,user_name,user_id)
+                                VALUES(:zfrom,:zto,:ztravel_date,:ztravel_arrive,:zav_weight,:zuser_name,:zuser_id)");
                                 $stmt->execute(array(
                                     'zfrom' => $travel_from,
                                     'zto' => $travel_to,
                                     'ztravel_date' => $travel_date,
                                     'ztravel_arrive' => $travel_arrive_date,
+                                    'zav_weight' => $av_weight,
                                     'zuser_name' => $_SESSION['username'],
+                                    'zuser_id' => $user_id,
                                 ));
                                 if ($stmt) {
                         ?>
@@ -144,7 +149,10 @@ $userdata = $stmt->fetch();
                                     <label for=""> توقيت الوصول المتوقع </label>
                                     <input type="date" name="travel_arrive_date" id="travel_arrive_date" class="form-control" value="<?php if (isset($_REQUEST['travel_arrive_date'])) echo $_REQUEST['travel_arrive_date'] ?>">
                                 </div>
-
+                                <div class="box">
+                                    <label for="">  الوزن المتاح (كجم) </label>
+                                    <input type="number" name="av_weight" id="av_weight" class="form-control" value="<?php if (isset($_REQUEST['av_weight'])) echo $_REQUEST['av_weight'] ?>">
+                                </div>
                                 <div class="box">
                                     <input type="submit" name="add_travel" class="btn btn-primary" value=" اضافة رحلة ">
                                 </div>

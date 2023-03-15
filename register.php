@@ -52,7 +52,7 @@ include 'init.php';
                             ));
                             if ($stmt) {
                     ?>
-                                <div class="alert alert-suceess"> راائع , تم عمل الحساب بنجاح سجل دخولك الان </div>
+                                <div class="alert alert-success"> راائع , تم عمل الحساب بنجاح سجل دخولك الان </div>
                             <?php
                             }
                         } else { ?>

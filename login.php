@@ -27,6 +27,7 @@ include 'init.php';
                             $count = $stmt->rowCount();
                             if ($count > 0) {
                                 $_SESSION['username'] = $_POST['name'];
+                                $_SESSION['userid'] = $_POST['user_id'];
                                // echo "Goood";
                                 header('Location:profile');
                             } else {

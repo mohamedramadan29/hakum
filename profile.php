@@ -25,9 +25,10 @@ $userdata = $stmt->fetch();
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png" <?php
+                                <img src="uploads/profile.png"> <?php
                                                             }
-                                                                ?> <h3> <?php echo $userdata['name']; ?> </h3>
+                                                                ?>
+                            <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>

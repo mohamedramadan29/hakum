@@ -26,9 +26,10 @@ $userdata = $stmt->fetch();
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png" <?php
+                                <img src="uploads/profile.png"> <?php
                                                             }
-                                                                ?> <h3> <?php echo $userdata['name']; ?> </h3>
+                                                                ?>
+                            <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -96,25 +97,32 @@ $userdata = $stmt->fetch();
                                     $stmt = $connect->prepare("SELECT * FROM travels WHERE user_name = ?");
                                     $stmt->execute(array($_SESSION['username']));
                                     $alltravel = $stmt->fetchall();
-                                    foreach ($alltravel as $travel) { ?>
-                                        <div class="col-lg-12">
-                                            <div class="travel_data">
-                                                <div class="info">
-                                                    <div class="product">
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $travel['travel_from'] ?> </p>
-                                                        <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $travel['travel_to'] ?> </p>
-                                                        <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
-                                                        <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                    $count = $stmt->rowCount();
+                                    if ($count > 0) {
+                                        foreach ($alltravel as $travel) { ?>
+                                            <div class="col-lg-12">
+                                                <div class="travel_data">
+                                                    <div class="info">
+                                                        <div class="product">
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php echo $travel['travel_from'] ?> </p>
+                                                            <p> <span> <img src="uploads/airport.png" alt=""> الي : </span> <?php echo $travel['travel_to'] ?> </p>
+                                                            <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
+                                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <div class="alert alert-success"> لا يوجد لديك رحلات في الوقت الحالي </div>
                                     <?php
-
                                     }
+
                                     ?>
 
 

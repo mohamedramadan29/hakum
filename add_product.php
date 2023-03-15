@@ -9,6 +9,7 @@ if (isset($_SESSION['username'])) {
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
+$user_id = $userdata['user_id'];
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -24,9 +25,10 @@ $userdata = $stmt->fetch();
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png" <?php
+                                <img src="uploads/profile.png"> <?php
                                                             }
-                                                                ?> <h3> <?php echo $userdata['name']; ?> </h3>
+                                                                ?>
+                            <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -94,6 +96,8 @@ $userdata = $stmt->fetch();
                             $pro_form = $_POST['pro_form'];
                             $pro_to = $_POST['pro_to'];
                             $arrieve_at = $_POST['arrieve_at'];
+                            $pro_weight = $_POST['pro_weight'];
+                            $pro_desc = $_POST['pro_desc'];
                             if (!empty($_FILES['pro_image']['name'])) {
                                 $pro_image_name = $_FILES['pro_image']['name'];
                                 $pro_image_temp = $_FILES['pro_image']['tmp_name'];
@@ -108,19 +112,22 @@ $userdata = $stmt->fetch();
                                 $pro_image_uploaded = '';
                             }
                             $errors = [];
-                            if (empty($pro_name) || empty($pro_form) || empty($pro_to) || empty($arrieve_at)) {
+                            if (empty($pro_name) || empty($pro_form) || empty($pro_to) || empty($arrieve_at) || empty($pro_desc) || empty($pro_weight)) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {
-                                $stmt = $connect->prepare("INSERT INTO products (pro_name,pro_image,pro_from,pro_to,arrieve_at,user_name)
-                                VALUES(:zname,:zimage,:zfrom,:zto,:zarrive_at,:zuser_id)");
+                                $stmt = $connect->prepare("INSERT INTO products (pro_name,pro_weight,pro_image,pro_desc,pro_from,pro_to,arrieve_at,user_name,user_id)
+                                VALUES(:zname,:zweight,:zimage,:zdesc,:zfrom,:zto,:zarrive_at,:zuser_name,:zuser_id)");
                                 $stmt->execute(array(
                                     'zname' => $pro_name,
+                                    'zweight' => $pro_weight,
                                     'zimage' => $pro_image_uploaded,
+                                    'zdesc' => $pro_desc,
                                     'zfrom' => $pro_form,
                                     'zto' => $pro_to,
                                     'zarrive_at' => $arrieve_at,
-                                    'zuser_id' => $_SESSION['username'],
+                                    'zuser_name' => $_SESSION['username'],
+                                    'zuser_id' => $user_id,
                                 ));
                                 if ($stmt) {
                         ?>
@@ -141,23 +148,31 @@ $userdata = $stmt->fetch();
                             <form action="" method="post" enctype="multipart/form-data">
                                 <div class="box">
                                     <label for=""> اسم المنتج </label>
-                                    <input type="text" name="pro_name" id="pro_name" class="form-control" value="<?php if (isset($_REQUEST['pro_name'])) echo $_REQUEST['pro_name'] ?>">
+                                    <input required type="text" name="pro_name" id="pro_name" class="form-control" value="<?php if (isset($_REQUEST['pro_name'])) echo $_REQUEST['pro_name'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان المغادرة </label>
-                                    <input type="text" name="pro_form" id="pro_form" class="form-control" value="<?php if (isset($_REQUEST['pro_form'])) echo $_REQUEST['pro_form'] ?>">
+                                    <input required type="text" name="pro_form" id="pro_form" class="form-control" value="<?php if (isset($_REQUEST['pro_form'])) echo $_REQUEST['pro_form'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> مكان الوصول </label>
-                                    <input type="text" name="pro_to" id="pro_to" class="form-control" value="<?php if (isset($_REQUEST['pro_to'])) echo $_REQUEST['pro_to'] ?>">
+                                    <input required type="text" name="pro_to" id="pro_to" class="form-control" value="<?php if (isset($_REQUEST['pro_to'])) echo $_REQUEST['pro_to'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> موعد الوصول المتوقع </label>
-                                    <input type="date" name="arrieve_at" id="arrieve_at" class="form-control" value="<?php if (isset($_REQUEST['arrieve_at'])) echo $_REQUEST['arrieve_at'] ?>">
+                                    <input required type="date" name="arrieve_at" id="arrieve_at" class="form-control" value="<?php if (isset($_REQUEST['arrieve_at'])) echo $_REQUEST['arrieve_at'] ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> صورة المنتج </label>
-                                    <input type="file" name="pro_image" id="pro_image" class="form-control" value="<?php if (isset($_REQUEST['pro_image'])) echo $_REQUEST['pro_image'] ?>">
+                                    <input required type="file" name="pro_image" id="pro_image" class="form-control" value="<?php if (isset($_REQUEST['pro_image'])) echo $_REQUEST['pro_image'] ?>">
+                                </div>
+                                <div class="box">
+                                    <label for=""> وزن المنتج (كجم)</label>
+                                    <input required type="number" min="1" name="pro_weight" id="pro_to" class="form-control" value="<?php if (isset($_REQUEST['pro_weight'])) echo $_REQUEST['pro_weight'] ?>">
+                                </div>
+                                <div class="box">
+                                    <label for=""> وصف المنتج </label>
+                                    <textarea required name="pro_desc" class="form-control"><?php if (isset($_REQUEST['pro_desc'])) echo $_REQUEST['pro_desc'] ?></textarea>
                                 </div>
                                 <div class="box">
                                     <input type="submit" class="btn btn-primary" name="add_product" value="اضافة شحنة ">
