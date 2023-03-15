@@ -12,8 +12,9 @@ if (isset($_GET['user'])) {
 if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
     $travel_id = $_GET['travel_id'];
 }
+$stmt = $connect->prepare("UPDATE chat SET noti_show = 1 WHERE msg_from = ? AND msg_to = ? AND travel_id=? ");
+$stmt->execute(array($username, $_SESSION['username'], $travel_id))
 ?>
-
 <div class="chat_section">
     <div class="container">
         <div class="row">
@@ -74,7 +75,7 @@ if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
                         </p>
                         <p> موعد الرحلة: <?php echo $data['travel_date'];  ?> </p>
                         <p> موعد الوصل المتوقع : <?php echo $data['travel_arrive_date'];  ?> </p>
-                        <p> الوزن المتاح : <?php echo $data['av_weight'];  ?> كجم  </p>
+                        <p> الوزن المتاح : <?php echo $data['av_weight'];  ?> كجم </p>
                         <?php
                         if ($_SESSION['username'] === $data['user_name']) {
                         } else {

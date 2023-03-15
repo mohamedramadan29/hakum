@@ -19,9 +19,53 @@
           <a class="nav-link" id="contact_us" href="contact_us"> تواصل معنا </a>
         </li>
         <?php
-        if (isset($_SESSION['username'])) { ?>
-          <li class="nav-item notification"> <a href="#"> <i class="fa fa-envelope nav-link"></i> </a> </li>
-          <li class="nav-item notification"> <a href="#"> <i class="fa fa-bell nav-link"></i> </a> </li>
+        if (isset($_SESSION['username'])) {
+          
+          $stmt = $connect->prepare("SELECT * FROM chat WHERE msg_to=? ORDER BY id DESC LIMIT 15");
+          $stmt->execute(array($_SESSION['username']));
+          $allchats = $stmt->fetchAll();
+          
+        ?>
+          <li class="nav-item notification dropdown" aria-labelledby="navbarDropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-envelope nav-link"></i> </a>
+            <span class="noti_num">
+              <?php
+              $stmt = $connect->prepare("SELECT * FROM chat WHERE msg_to=? AND noti_show=0");
+              $stmt->execute(array($_SESSION['username']));
+         
+          $count = $stmt->rowCount();
+              if ($count > 0) {
+                echo $count;
+              }
+              ?> </span>
+            <ul class="dropdown-menu chat_not_box" aria-labelledby="navbarDropdown">
+              <?php foreach ($allchats as $chat) {
+              ?>
+                <li>
+                  <a class="dropdown-item" href="message?user=<?php echo $chat['msg_from']; ?>&travel_id=<?php echo $chat['travel_id']; ?>"> <?php
+                                                                                                                                              $msg = $chat['msg'];
+                                                                                                                                              $msg = explode(' ', $msg);
+                                                                                                                                              $msg = implode(' ', array_slice($msg, 0, 8)) . "...";
+                                                                                                                                              echo $msg ?> </a>
+                </li>
+              <?php
+              } ?>
+            </ul>
+          </li>
+          <li class="nav-item notification dropdown" aria-labelledby="navbarDropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bell nav-link"></i> </a>
+            <span class="noti_num"> <?php
+                                    if ($count > 0) {
+                                      echo $count;
+                                    }
+                                    ?> </span>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="profile"> <i class="fa fa-user"></i> حسابي </a></li>
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="uploads/avatar.gif" alt="">
@@ -34,7 +78,7 @@
               <li><a class="dropdown-item" href="add_product"> <i class="fa fa-plus"></i> اضافة شحنة </a></li>
               <li><a class="dropdown-item" href="balance"> <i class="fa fa-dollar"></i> الرصيد </a></li>
               <li><a class="dropdown-item" href="logout"> <i class="fa fa-sign-out"></i> تسجيل خروج </a></li>
-              <li><a data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" style="color:red" class="dropdown-item"> <i class="fa fa-trash"></i> الغاء الحساب  </a></li>
+              <li><a data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" style="color:red" class="dropdown-item"> <i class="fa fa-trash"></i> الغاء الحساب </a></li>
             </ul>
           </li>
         <?php
@@ -59,25 +103,25 @@
 <!-- Modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<br>
-<br>
-<br>  
-<div class="modal-dialog">
-  <form action="remove_account" method="post">
-  
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">الغاء الحساب </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <br>
+  <br>
+  <br>
+  <div class="modal-dialog">
+    <form action="remove_account" method="post">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">الغاء الحساب </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p> هل انت متاكد من الغاء الحساب الخاص بك </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+          <button type="submit" class="btn btn-danger">نعم متاكد </button>
+        </div>
       </div>
-      <div class="modal-body">
-      <p> هل انت متاكد من الغاء الحساب الخاص بك </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
-        <button type="submit" class="btn btn-danger">نعم متاكد </button>
-      </div>
-    </div>
     </form>
   </div>
 </div>

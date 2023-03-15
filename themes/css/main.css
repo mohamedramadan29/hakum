@@ -23,37 +23,67 @@ body {
     padding: 15px;
     box-shadow: 0px 0px 6px 0px #ccc;
 }
-.navbar .notification{
+
+.navbar .notification {
     font-size: 22px;
     margin-top: 1px;
     margin-right: 5px;
     margin-left: 5px;
+    position: relative;
 }
-.navbar .notification i{
-    color:#858181;
+
+.navbar .notification .noti_num {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    font-size: 15px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
 }
-.navbar .dropdown{
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.navbar .notification i {
+    color: #858181;
+}
+
+.navbar .dropdown {
     top: -11px;
 }
-.navbar .dropdown img{
+
+.chat_not_box {
+    width: 350px;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.navbar .dropdown img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-.navbar .dropdown li{
+
+.navbar .dropdown li {
     padding-bottom: 5px;
 }
-.navbar .dropdown li i{
+
+.navbar .dropdown li i {
     padding-left: 10px;
     font-size: 15px;
 }
+
 .dropdown-menu[data-bs-popper] {
     left: 0;
     right: auto;
 }
-.dropdown-item:focus, .dropdown-item:hover{
+
+.dropdown-item:focus,
+.dropdown-item:hover {
     background-color: var(--second-color);
-    color:#fff;
+    color: #fff;
 }
 
 .navbar a {
@@ -936,41 +966,49 @@ input[type='email'] {
 
 /* START PRIVACY POLICY */
 
-.privacy{
+.privacy {
     background-color: #fbfbfb;
     padding: 40px;
 }
-.privacy .data{
+
+.privacy .data {
     padding: 10px;
     background-color: #fff;
-    padding-top:40px;
-    padding-bottom:40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
-.privacy .data ul{
 
-}
-.privacy .data ul li{
+.privacy .data ul {}
+
+.privacy .data ul li {
     margin-top: 10px;
     margin-bottom: 10px;
     line-height: 2;
     color: #4c4b4b;
 }
-.pro_from{
- display: flex;
+
+.pro_from {
+    display: flex;
 }
-.pro_from label{
+
+.pro_from label {
     display: block;
 }
-.select2-container .select2-selection--single{
-    height: 45px;;
+
+.select2-container .select2-selection--single {
+    height: 45px;
+    ;
 }
-.select2-container--default .select2-selection--single .select2-selection__rendered{
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: 45px;
 }
-.select2-container--default .select2-selection--single .select2-selection__arrow{
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 8px;
 }
-.select2-container{
+
+.select2-container {
     min-width: 350px;
-    margin-right:10px;
+    margin-right: 10px;
 }
