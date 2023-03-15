@@ -73,6 +73,7 @@ START HERO SECTION
     background-position: center;
     padding-top: 220px;
     background-repeat: no-repeat;
+    min-height: 500px;
 
 }
 
@@ -82,18 +83,16 @@ START HERO SECTION
     max-width: 100%;
 }
 
-
-
 .hero .data .info h2 {
     font-weight: 900;
     font-size: 50px;
-    color: #fff;
+    color: var(--second-color);
     margin-bottom: 30px;
 }
 
 .hero .data .info p {
     font-size: 30px;
-    color: #fff;
+    color: var(--main-color);
     line-height: 1.6;
     font-weight: 500;
 }
@@ -931,4 +930,26 @@ input[type='email'] {
 .chat_section .chat_reason .chat_com_option .btn-danger:hover {
     background-color: #c23616;
     border-color: #c23616;
+}
+
+/* START PRIVACY POLICY */
+
+.privacy{
+    background-color: #fbfbfb;
+    padding: 40px;
+}
+.privacy .data{
+    padding: 10px;
+    background-color: #fff;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+.privacy .data ul{
+
+}
+.privacy .data ul li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 2;
+    color: #4c4b4b;
 }

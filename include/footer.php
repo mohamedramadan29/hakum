@@ -15,7 +15,7 @@
                             <li> <a href="travels"> الرحلات </a> </li>
                             <li> <a href="products"> الشحنات </a> </li>
                             <li> <a href="contact_us"> تواصل معنا </a> </li>
-                            <li> <a href="#"> سياسة الخصوصية </a> </li>
+                            <li> <a href="privacy_policy"> سياسة الخصوصية </a> </li>
                         </ul>
                     </div>
                 </div>

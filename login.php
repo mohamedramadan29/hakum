@@ -57,7 +57,6 @@ include 'init.php';
                                 <label for=""> كلمة المرور </label>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
-
                             <div class="box">
                                 <button class="btn btn-primary" name="login" type="submit"> تسجيل دخول </button>
                             </div>
