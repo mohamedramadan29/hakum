@@ -131,8 +131,16 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                         // discount value form users account
                                         $new_balance = $userdata['balance'] - $deal_value;
                                         $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name = ? ");
-                                        $stmt->execute(array($new_balance,$_SESSION['username']));
+                                        $stmt->execute(array($new_balance, $_SESSION['username']));
                                         if ($stmt) {
+                                            $stmt = $connect->prepare("INSERT INTO all_notification (noti_from,noti_to,message)
+                                            VALUE(:zfrom,:zto,:zmessage)
+                                            ");
+                                            $stmt->execute(array(
+                                                "zfrom" => $_SESSION['username'],
+                                                "zto" => $data['user_name'],
+                                                "zmessage" => 'لقد بدا ' . $_SESSION['username'] . "صفقة جديدة بينكما",
+                                            ));
                             ?>
                                             <br>
                                             <div class="alert alert-success"> راائع :: تم بدء الصفقة بينكما بنجاح </div>
