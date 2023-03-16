@@ -48,9 +48,6 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                         $data = $stmt->fetch();
                         ?>
                         <p>الرحلة من :
-
-
-
                             <?php
                             $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                             $stmt->execute(array($data['travel_from_country']));
@@ -81,16 +78,38 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                         } else {
                         ?>
                             <form action="" method="post">
-                                <label for="" style="color: red;"> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
+                                <div>
+                                    <label for="" style="color: red;"> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
+
+                                    <br>
+                                    <input min="1" type="number" required class="form-control" name="deal_value" id="deal_value" onchange="calc()">
+
+                                </div>
                                 <br>
+
+                                <div class="">
+                                    <div class="box">
+                                        <label> رسوم المنصة 5 % (دولار) </label>
+                                        <br>
+                                        <input readonly required min="1" type="number" id="discount" name="discount" class="form-control">
+                                    </div>
+                                </div>
                                 <br>
-                                <input min="1" type="number" required class="form-control" name="deal_value" id="deal_value">
+                                <div class="">
+                                    <div class="box">
+                                        <label> المبلغ المستحق بعد الرسوم (دولار) </label>
+                                        <br>
+                                        <input readonly min="1" type="number" id="total" name="total" class="form-control">
+                                    </div>
+                                </div>
                                 <br>
-                                <button type="submit" class="btn btn-primary btn-sm"> اتمام الصفقة </button>
+                                <button type="submit" class="btn btn-primary btn-sm"> الدفع وبدء الصفقه </button>
                             </form>
                             <?php
                             if (isset($_POST['deal_value']) && $_POST['deal_value'] != '' && is_numeric($_POST['deal_value'])) {
-                                $deal_value = $_POST['deal_value'];
+                                $deal_value = filter_var($_POST['deal_value'], FILTER_SANITIZE_NUMBER_INT);
+                                $discount = $deal_value * 5 / 100;
+                                $total = $deal_value - $discount;
                                 $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
                                 $stmt->execute(array($_SESSION['username']));
                                 $userdata = $stmt->fetch();
@@ -98,23 +117,25 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                 if ($count > 0) {
                                     if ($userdata['balance'] >= $deal_value) {
                                         // insert travel to travels_deal done
-                                        $stmt = $connect->prepare("INSERT INTO travel_deal (travel_id, travel_owner, product_owner , price)
-                                        VALUE(:ztravel_id, :ztravel_owner , :zproduct_owner , :zprice)
+                                        $stmt = $connect->prepare("INSERT INTO travel_deal (travel_id, travel_owner, product_owner , sub_total,discount,total)
+                                        VALUE(:ztravel_id, :ztravel_owner , :zproduct_owner , :zsub_total,:zdiscount,:ztotal)
                                         ");
                                         $stmt->execute(array(
                                             "ztravel_id" => $travel_id,
                                             "ztravel_owner" => $data['user_name'],
                                             "zproduct_owner" => $_SESSION['username'],
-                                            "zprice" => $deal_value
+                                            "zsub_total" => $deal_value,
+                                            "zdiscount" => $discount,
+                                            "ztotal" => $total
                                         ));
                                         // discount value form users account
                                         $new_balance = $userdata['balance'] - $deal_value;
-                                        $stmt = $connect->prepare("UPDATE users SET balance=?");
-                                        $stmt->execute(array($new_balance));
+                                        $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name = ? ");
+                                        $stmt->execute(array($new_balance,$_SESSION['username']));
                                         if ($stmt) {
                             ?>
                                             <br>
-                                            <div class="alert alert-success"> راائع :: تم الاتفاق و عمل الصفقة بنجاح </div>
+                                            <div class="alert alert-success"> راائع :: تم بدء الصفقة بينكما بنجاح </div>
                                         <?php
                                         }
                                     } else {
@@ -127,19 +148,31 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                     }
                                 }
                             }
-
                             ?>
                         <?php
                         }
-
                         ?>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function calc() {
+        var subtotal = document.getElementById("deal_value").value;
+        var discount = document.getElementById("discount").value;
+        var total = document.getElementById("total").value;
+
+        var discount_val = subtotal * 5 / 100;
+
+        var total_val = subtotal - discount_val;
+
+        document.getElementById('discount').value = discount_val;
+        document.getElementById('total').value = total_val;
+
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <!-- to fetch message -->

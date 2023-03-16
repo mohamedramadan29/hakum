@@ -97,73 +97,18 @@ $userdata = $stmt->fetch();
 
                         </div>
                         <div class="add_balance">
-                            <?php
-                            if (isset($_POST['add_balance'])) {
-                                $sub_total = filter_var($_POST['sub_total'], FILTER_SANITIZE_NUMBER_INT);
-                                $forerror = [];
-                                if (empty($sub_total)) {
-                                    $forerror[] = 'من فضلك ادخل المبلغ المراد شحنة';
-                                } else {
-
-                                    $discount = $_POST['sub_total'] * 5 / 100;
-                                    $total = $_POST['sub_total'] - $discount;
-                                }
-                                if (empty($forerror)) {
-                                    $stmt = $connect->prepare("INSERT INTO balance_add (user_name, balance_subtotal,balance_discount ,balance_total) VALUES
-                                    (:zusername, :zsubtotal, :zdiscount, :ztotal)");
-                                    $stmt->execute(array(
-                                        "zusername" => $_SESSION['username'],
-                                        "zsubtotal" => $sub_total,
-                                        "zdiscount" => $discount,
-                                        "ztotal" => $total,
-                                    ));
-
-                                    $stmt = $connect->prepare("SELECT * FROM balance_add WHERE user_name=?");
-                                    $stmt->execute(array($_SESSION['username']));
-                                    $alldata = $stmt->fetchAll();
-                                    $sum_total = 0;
-                                    foreach ($alldata as $data) {
-                                        $sum_total += $data['balance_total'];
-                                    }
-                                    $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name=?");
-                                    $stmt->execute(array($sum_total, $_SESSION['username']));
-                                    if ($stmt) {
-                            ?>
-                                        <div class="alert alert-success"> تم شحن الرصيد بنجاح </div>
-                                    <?php
-                                    }
-                                } else {
-                                    foreach ($forerror as $error) {
-                                    ?>
-                                        <div class="alert alert-danger"> <?php echo $error ?> </div>
-                            <?php
-                                    }
-                                }
-                            }
-                            ?>
                             <h6> شحن الرصيد </h6>
                             <form class="" method="post" autocomplete="off">
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="box">
+                                            <input type="hidden" name="user_name" value="<?php echo $_SESSION['username']; ?>">
                                             <label>ادخل المبلغ المراد شحن (دولار) </label>
-                                            <input min="1" required type="number" id="sub_total" name="sub_total" class="form-control" onchange="calc()">
+                                            <input min="1" required type="number" id="sub_total" name="sub_total" class="form-control">
+                                            <span class="sub_total" style="color: red;"></span>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="box">
-                                            <label> رسوم المنصة 5 % (دولار) </label>
-                                            <input readonly required min="1" type="number" id="discount" name="discount" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="box">
-                                            <label> المبلغ المستحق بعد الرسوم (دولار) </label>
-                                            <input readonly min="1" type="number" id="total" name="total" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <input class="btn btn-primary" type="submit" name="add_balance" value="شحن الرصيد ">
+                                    <div id="paypal-button-container">
                                     </div>
                                 </div>
                             </form>
@@ -175,22 +120,72 @@ $userdata = $stmt->fetch();
     </div>
 </div>
 
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=Aa6xGlT7CdEYFS463meNhvyq6Tovq_rlYBK0U2pEMalXKRMy-1GxSFwAd6_UrMFQkaYxQRn-Dop6Gk61&currency=USD"></script>
 <script>
-    function calc() {
-        var subtotal = document.getElementById("sub_total").value;
-        var discount = document.getElementById("discount").value;
-        var total = document.getElementById("total").value;
+    paypal.Buttons({
+        onClick() {
+            var subtotal = $("#sub_total").val();
 
-        var discount_val = subtotal * 5 / 100;
+            if (subtotal.length == 0) {
+                $(".sub_total").text("* من فضلك ادخل المبلغ المراد شحنه ");
 
-        var total_val = subtotal - discount_val;
+            } else {
+                $(".sub_total").text("");
 
-        document.getElementById('discount').value = discount_val;
-        document.getElementById('total').value = total_val;
-    }
+            }
+            if (subtotal.length == 0) {
+                return false;
+            }
+        },
+        onCancel: function(data) {
+            alert(" لم تكتمل عملية الدفع");
+
+        },
+        // Sets up the transaction when a payment button is clicked
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: $("#sub_total").val() // Can also reference a variable or function
+                    }
+                }]
+            });
+        },
+        application_context: {
+            shipping_preference: 'NO_SHIPPING'
+        },
+        // Finalize the transaction after payer approval
+        onApprove: (data, actions) => {
+            return actions.order.capture().then(function(orderData) {
+                // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                const transaction = orderData.purchase_units[0].payments.captures[0];
+
+                var sub_total = $("#sub_total").val();
+                var data = {
+                    'sub_total': sub_total,
+                    'payment_mode': 'pay with paypal',
+                    'transaction_id': transaction.id
+                }
+                $.ajax({
+                    method: "POST",
+                    url: "charge_balance.php",
+                    data: data,
+                    datatype: "datatype",
+                    success: function(response) {
+                        if (response == 201) {
+                            alert("Successess");
+                            actions.redirect('http://localhost/hakum/balance');
+                        }
+
+                    },
+                });
+            });
+        }
+    }).render('#paypal-button-container');
 </script>
-
-
 <?php
 
 include $tem . 'footer.php';
