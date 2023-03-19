@@ -68,7 +68,6 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                             $stmt->execute(array($data['travel_to_city']));
                             $city_data = $stmt->fetch();
                             echo $country_data['name'] . "-" . $city_data['name']  ?>
-
                         </p>
                         <p> موعد الرحلة: <?php echo $data['travel_date'];  ?> </p>
                         <p> موعد الوصل المتوقع : <?php echo $data['travel_arrive_date'];  ?> </p>
@@ -76,35 +75,54 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                         <?php
                         if ($_SESSION['username'] === $data['user_name']) {
                         } else {
+                            $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id=? AND product_owner=? AND status=1");
+                            $stmt->execute(array($data['travel_id'], $_SESSION['username']));
+                            $deal_data_options = $stmt->fetch();
+                            $count = $stmt->rowCount();
+                            if ($count > 0) {
                         ?>
-                            <form action="" method="post">
-                                <div>
-                                    <label for="" style="color: red;"> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
+                                <form action="" method="post">
+                                    <p style="font-weight: bold;"> سعر الصفقة المتفق علية : <?php echo $deal_data_options['sub_total'];  ?> دولار </p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recieve_deal">
+                                        استلام الصفقة <i class="fa fa-check"></i>
+                                    </button>
+                                    <!--<button type="" class="btn btn-primary"> تعديل الصفقة </button> -->
+                                    <button type="" class="btn btn-danger"> الغاء الصفقة <i class="fa fa-close"></i></button>
+                                </form>
+                            <?php
+                            } else {
+                            ?>
+                                <form action="" method="post">
+                                    <div>
+                                        <label for="" style="color: red;"> ادخل سعر الصفقة المتفق علية (بالدولار) </label>
 
+                                        <br>
+                                        <input min="1" type="number" required class="form-control" name="deal_value" id="deal_value" onchange="calc()">
+
+                                    </div>
                                     <br>
-                                    <input min="1" type="number" required class="form-control" name="deal_value" id="deal_value" onchange="calc()">
-
-                                </div>
-                                <br>
-
-                                <div class="">
-                                    <div class="box">
-                                        <label> رسوم المنصة 5 % (دولار) </label>
-                                        <br>
-                                        <input readonly required min="1" type="number" id="discount" name="discount" class="form-control">
+                                    <div class="">
+                                        <div class="box">
+                                            <label> رسوم المنصة 5 % (دولار) </label>
+                                            <br>
+                                            <input readonly required min="1" type="number" id="discount" name="discount" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="">
-                                    <div class="box">
-                                        <label> المبلغ المستحق بعد الرسوم (دولار) </label>
-                                        <br>
-                                        <input readonly min="1" type="number" id="total" name="total" class="form-control">
+                                    <br>
+                                    <div class="">
+                                        <div class="box">
+                                            <label> المبلغ المستحق بعد الرسوم (دولار) </label>
+                                            <br>
+                                            <input readonly min="1" type="number" id="total" name="total" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <button type="submit" class="btn btn-primary btn-sm"> الدفع وبدء الصفقه </button>
-                            </form>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary btn-sm"> الدفع وبدء الصفقه </button>
+                                </form>
+                            <?php
+                            }
+                            ?>
+
                             <?php
                             if (isset($_POST['deal_value']) && $_POST['deal_value'] != '' && is_numeric($_POST['deal_value'])) {
                                 $deal_value = filter_var($_POST['deal_value'], FILTER_SANITIZE_NUMBER_INT);
@@ -166,6 +184,42 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
         </div>
     </div>
 </div>
+<!-- START MODEAL FOR SUCCESS OR DANGER   -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="recieve_deal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> استلام الصفقة </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="deals_actions/recieve_deal.php" method="post">
+                <div class="modal-body">
+                    <p> هل انت متاكد من استلام الصفقة ؟ </p>
+                    <input type="hidden" name="travel_id" value="<?php echo $deal_data_options['travel_id']; ?>">
+                    <input type="hidden" name="travel_owner" value="<?php echo $deal_data_options['travel_owner']; ?>">
+                    <input type="hidden" name="product_owner" value="<?php echo $deal_data_options['product_owner']; ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" name="recieve_deal" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary"> نعم متاكد </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--  END MODAL -->
 <script>
     function calc() {
         var subtotal = document.getElementById("deal_value").value;
