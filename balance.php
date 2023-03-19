@@ -96,10 +96,69 @@ $userdata = $stmt->fetch();
                 </div>
                 <div class="col-lg-8">
                     <div class="slide2">
+                        <?php
+                        if (isset($_POST['with_draw_money'])) {
+                            $request_money = $_POST['withdraw_total'];
+                            $formerror = [];
+
+                            if ($request_money < 10) {
+                                $formerror[] = 'من فضلك ادخل مبلغ اكبر من 10 دولار ';
+                            }
+                            $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
+                            $stmt->execute(array($_SESSION['username']));
+                            $withuser = $stmt->fetch();
+                            $userbalance = $withuser['balance']; 
+                            if ($userbalance < $request_money) {
+                                ?>
+                                <li class="alert alert-danger"> رصيدك الحالي لا يسمح بعمل هذا الطلب  </li>
+                                <?php
+                                $formerror[] = ' رصيدك الحالي لا يسمح بعمل هذا الطلب  ';
+                            } elseif ($userbalance >= $request_money && empty($formerror)) {
+                                $new_balance = $userbalance - $request_money;
+                                $stmt = $connect->prepare("INSERT INTO withdraw (user,price)
+                            VALUE(:zuser,:zprice)
+                            ");
+                                $stmt->execute(array(
+                                    "zuser" => $_SESSION['username'],
+                                    "zprice" => $request_money
+                                ));
+                                $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name=?");
+                                $stmt->execute(array($new_balance, $_SESSION['username']));
+                                if ($stmt) {
+                        ?>
+                                    <p class="alert alert-success"> تم طلب سحب اموال بنجاح يستغرق طلب السحب عادة اقل من 24 ساعه </p>
+                                <?php
+                                }
+                            } else {
+                                foreach ($formerror as $error) {
+                                ?>
+                                    <li class="alert alert-danger"> <?php echo $error; ?> </li>
+                        <?php
+                                }
+                            }
+                        }
+
+
+                        ?>
                         <div class="balance_section">
-                            <div class="balance_num">
-                                <h3> الرصيد الكلي </h3>
-                                <span> <?php echo $userdata['balance']; ?> دولار </span>
+
+                            <div class="balance_num" style="display: flex; justify-content: space-between; width:100%">
+                                <div>
+                                    <h3> الرصيد الكلي </h3>
+                                    <span> <?php echo $userdata['balance']; ?> دولار </span>
+                                    <br>
+                                    <!--
+                                    <h3> طلبات السحب  </h3>
+                                    <span> 30 دولار </span>
+                    -->
+
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#withdraw">
+                                        سحب رصيد
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                         <div class="add_balance">
@@ -128,6 +187,39 @@ $userdata = $stmt->fetch();
 </div>
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="withdraw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <br>
+    <br>
+    <br>
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> طلب سحب </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+
+                    <div class="box" style="width: 100%;">
+
+                        <input type="hidden" name="user_name" value="<?php echo $_SESSION['username']; ?>">
+                        <label>ادخل المبلغ المراد سحبة (دولار) </label>
+                        <input min="1" required type="number" id="withdraw_total" name="withdraw_total" class="form-control">
+                        <p style="color:red"> اقل مبلغ سحب يكون 10 دولار </p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary" name="with_draw_money"> سحب </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=Aa6xGlT7CdEYFS463meNhvyq6Tovq_rlYBK0U2pEMalXKRMy-1GxSFwAd6_UrMFQkaYxQRn-Dop6Gk61&currency=USD"></script>
 <script>

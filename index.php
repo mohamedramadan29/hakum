@@ -8,9 +8,10 @@ include 'init.php';
     <div class="container">
         <div class="data">
             <div class="row">
+                <!--
                 <div class="col-6">
                     <div class="info">
-                       <!-- <h2 class="animate__animated animate__fadeInUp animate__delay-0.3s"> هاكم </h2> -->
+                       <!-- <h2 class="animate__animated animate__fadeInUp animate__delay-0.3s"> هاكم </h2>  
                         <p class="animate__animated animate__fadeInUp animate__delay-0.6s">التوصيل السريع الامن <br> أثناء السفر</p>
                         <a href="register" class="button btn btn-default animate__animated animate__fadeInUp"> سجل الان </a>
                     </div>
@@ -19,6 +20,7 @@ include 'init.php';
                 <div class="col-6">
                     <img src="uploads/header.svg" alt="">
                 </div>
+-->
 
 
             </div>
@@ -274,7 +276,7 @@ include 'init.php';
             <div class="data">
                 <h2> سجل الان في هاكم </h2>
                 <p> التوصيل السريع الامن أثناء السفر </p>
-                <a href="#" class="button btn"> سجل الان </a>
+                <a href="register" class="button btn"> سجل الان </a>
             </div>
         </div>
     </div>
