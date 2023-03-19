@@ -75,7 +75,7 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                         <?php
                         if ($_SESSION['username'] === $data['user_name']) {
                         } else {
-                            $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id=? AND product_owner=? AND status=1");
+                            $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id=? AND product_owner=?");
                             $stmt->execute(array($data['travel_id'], $_SESSION['username']));
                             $deal_data_options = $stmt->fetch();
                             $count = $stmt->rowCount();
@@ -83,11 +83,26 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                         ?>
                                 <form action="" method="post">
                                     <p style="font-weight: bold;"> سعر الصفقة المتفق علية : <?php echo $deal_data_options['sub_total'];  ?> دولار </p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recieve_deal">
-                                        استلام الصفقة <i class="fa fa-check"></i>
-                                    </button>
-                                    <!--<button type="" class="btn btn-primary"> تعديل الصفقة </button> -->
-                                    <button type="" class="btn btn-danger"> الغاء الصفقة <i class="fa fa-close"></i></button>
+                                    <?php
+                                    if ($deal_data_options['status'] == 1) {
+                                    ?>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recieve_deal">
+                                            استلام الصفقة <i class="fa fa-check"></i>
+                                        </button>
+                                        <!--<button type="" class="btn btn-primary"> تعديل الصفقة </button> -->
+                                        <button type="" class="btn btn-danger"> الغاء الصفقة <i class="fa fa-close"></i></button>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <p class="alert alert-success">
+                                            تم اتمام و استلام الصفقة بنجاح <i class="fa fa-check"></i>
+                                    </p>
+
+                                    <?php
+                                    }
+
+                                    ?>
+
                                 </form>
                             <?php
                             } else {
@@ -122,7 +137,6 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                             <?php
                             }
                             ?>
-
                             <?php
                             if (isset($_POST['deal_value']) && $_POST['deal_value'] != '' && is_numeric($_POST['deal_value'])) {
                                 $deal_value = filter_var($_POST['deal_value'], FILTER_SANITIZE_NUMBER_INT);
@@ -135,8 +149,8 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                 if ($count > 0) {
                                     if ($userdata['balance'] >= $deal_value) {
                                         // insert travel to travels_deal done
-                                        $stmt = $connect->prepare("INSERT INTO travel_deal (travel_id, travel_owner, product_owner , sub_total,discount,total)
-                                        VALUE(:ztravel_id, :ztravel_owner , :zproduct_owner , :zsub_total,:zdiscount,:ztotal)
+                                        $stmt = $connect->prepare("INSERT INTO travel_deal (travel_id, travel_owner, product_owner , sub_total,discount,total,status)
+                                        VALUE(:ztravel_id, :ztravel_owner , :zproduct_owner , :zsub_total,:zdiscount,:ztotal,1)
                                         ");
                                         $stmt->execute(array(
                                             "ztravel_id" => $travel_id,
@@ -212,7 +226,7 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                 </div>
                 <div class="modal-footer">
                     <button type="button" name="recieve_deal" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
-                    <button type="submit" class="btn btn-primary"> نعم متاكد </button>
+                    <button type="submit" class="btn btn-primary" name="recieve_deal"> نعم متاكد </button>
                 </div>
             </form>
 
