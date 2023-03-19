@@ -84,6 +84,14 @@ $user_id = $userdata['user_id'];
                                         </div>
                                     </a>
                                 </div>
+                                <div class="col-4">
+                                    <a href="deals">
+                                        <div class="control_setting_section">
+                                            <i class="fa fa-handshake"></i>
+                                            <p> صفقاتي  </p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
