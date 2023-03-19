@@ -86,7 +86,7 @@ $userdata = $stmt->fetch();
                                     <a href="deals">
                                         <div class="control_setting_section">
                                             <i class="fa fa-handshake"></i>
-                                            <p> صفقاتي  </p>
+                                            <p> صفقاتي </p>
                                         </div>
                                     </a>
                                 </div>
@@ -99,25 +99,24 @@ $userdata = $stmt->fetch();
                         <div class="balance_section">
                             <div class="balance_num">
                                 <h3> الرصيد الكلي </h3>
-
                                 <span> <?php echo $userdata['balance']; ?> دولار </span>
                             </div>
-
                         </div>
                         <div class="add_balance">
                             <h6> شحن الرصيد </h6>
                             <form class="" method="post" autocomplete="off">
                                 <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="box">
+                                    <div class="col-lg-6">
+                                        <div class="box" style="width: 100%;">
                                             <input type="hidden" name="user_name" value="<?php echo $_SESSION['username']; ?>">
                                             <label>ادخل المبلغ المراد شحن (دولار) </label>
                                             <input min="1" required type="number" id="sub_total" name="sub_total" class="form-control">
                                             <span class="sub_total" style="color: red;"></span>
                                         </div>
+                                        <div id="paypal-button-container">
+                                        </div>
                                     </div>
-                                    <div id="paypal-button-container">
-                                    </div>
+
                                 </div>
                             </form>
                         </div>

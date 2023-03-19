@@ -31,8 +31,9 @@ if (isset($_POST['sub_total'])) {
         $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name=?");
         $stmt->execute(array($sum_total, $_SESSION['username']));
         if ($stmt) {
+            echo "201";
 ?>
-            <div class="alert alert-success"> تم شحن الرصيد بنجاح </div>
+
         <?php
         }
     } else {

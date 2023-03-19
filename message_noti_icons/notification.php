@@ -13,7 +13,7 @@
             <?php
             foreach ($alldeal as $deal) {
             ?>
-                <li><a class="dropdown-item" href="../deals"> <?php echo $deal['message']; ?> </a></li>
+                <li><a class="dropdown-item" href="deals"> <?php echo $deal['message']; ?> </a></li>
             <?php
             }
             ?>
