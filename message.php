@@ -165,13 +165,14 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                         $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name = ? ");
                                         $stmt->execute(array($new_balance, $_SESSION['username']));
                                         if ($stmt) {
-                                            $stmt = $connect->prepare("INSERT INTO all_notification (noti_from,noti_to,message)
-                                            VALUE(:zfrom,:zto,:zmessage)
+                                            $stmt = $connect->prepare("INSERT INTO all_notification (noti_from,noti_to,message,noti_desc)
+                                            VALUE(:zfrom,:zto,:zmessage,:znoti_desc)
                                             ");
                                             $stmt->execute(array(
                                                 "zfrom" => $_SESSION['username'],
                                                 "zto" => $data['user_name'],
-                                                "zmessage" => 'لقد بدا ' . $_SESSION['username'] . "صفقة جديدة بينكما",
+                                                "zmessage" => ' لقد بدا ' . $_SESSION['username'] . "  صفقة جديدة بينكما  ",
+                                                "znoti_desc"=>'بدء صفقة جديدة'
                                             ));
                             ?>
                                             <br>

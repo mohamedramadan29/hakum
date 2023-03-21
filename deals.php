@@ -6,7 +6,9 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location:login");
 }
-
+// update notification
+$stmt = $connect->prepare("UPDATE all_notification SET noti=1 WHERE noti_to=? AND noti_desc='بدء صفقة جديدة'");
+$stmt->execute(array($_SESSION['username']));
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
@@ -155,12 +157,12 @@ $userdata = $stmt->fetch();
                                                         }
                                                         ?>
                                                     </p>
-                                                    <p style="font-weight: bold;"> <span> <img src="uploads/dollar.png" alt=""> سعر الصفقة المتفقة علية  : </span> <?php echo $data['sub_total'] ?> دولار </p>
+                                                    <p style="font-weight: bold;"> <span> <img src="uploads/dollar.png" alt=""> سعر الصفقة المتفقة علية : </span> <?php echo $data['sub_total'] ?> دولار </p>
                                                 </div>
                                             </div>
                                             <div class="person_info">
                                                 <div class="image_person">
-                                                    <p > المسافر <span> : <?php echo $data['travel_owner']; ?> </span> </p> 
+                                                    <p> المسافر <span> : <?php echo $data['travel_owner']; ?> </span> </p>
                                                     <p> صاحب الشحنة <span> : <?php echo $data['product_owner']; ?> </span> </p>
                                                 </div>
                                                 <div class="send_request">
