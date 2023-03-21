@@ -146,10 +146,10 @@ if (isset($_GET['pro_id'])) {
                                             $arrieve_at,
                                             $pro_id
                                         ));
-                                        if(!empty($pro_image_temp)){
+                                        if (!empty($pro_image_temp)) {
                                             $stmt = $connect->prepare("UPDATE products SET pro_image=? WHERE pro_id=?");
                                             $stmt->execute(array(
-                                                $pro_image_uploaded,$pro_id
+                                                $pro_image_uploaded, $pro_id
                                             ));
                                         }
                                         if ($stmt) {
@@ -198,7 +198,12 @@ if (isset($_GET['pro_id'])) {
                                                 <div>
                                                     <select required name="pro_from_city" class="form-control select2" id="pro_from_city">
                                                         <option value=""> -- اختر المدينة -- </option>
-
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ?");
+                                                        $stmt->execute(array($pro_data['pro_from_city']));
+                                                        $city_data = $stmt->fetch();
+                                                        ?>
+                                                        <option value="<?php echo $city_data['id'] ?>" selected> <?php echo $city_data['name']; ?> </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -224,6 +229,12 @@ if (isset($_GET['pro_id'])) {
                                                 <div>
                                                     <select required name="pro_to_city" class="form-control select2" id="pro_to_city">
                                                         <option value=""> -- اختر المدينة -- </option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ?");
+                                                        $stmt->execute(array($pro_data['pro_to_city']));
+                                                        $city_data = $stmt->fetch();
+                                                        ?>
+                                                        <option value="<?php echo $city_data['id'] ?>" selected> <?php echo $city_data['name']; ?> </option>
                                                     </select>
                                                 </div>
                                             </div>

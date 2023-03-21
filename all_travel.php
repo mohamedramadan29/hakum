@@ -110,9 +110,8 @@ $userdata = $stmt->fetch();
                                         foreach ($alltravel as $travel) { ?>
                                             <div class="col-lg-12">
                                                 <div class="travel_data">
-                                                    <div class="info">
-                                                        <div class="product">
-                                                        </div>
+                                                    <div class="info edit_button_section">
+                                                        
                                                         <div class="product_info">
                                                             <p> <span> <img src="uploads/from.png" alt=""> من : </span>
                                                                 <?php
@@ -135,6 +134,9 @@ $userdata = $stmt->fetch();
                                                                 echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
                                                             <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
                                                             <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                                        </div>
+                                                        <div>
+                                                            <a href="edit_travel.php?travel_id=<?php echo $travel['travel_id']; ?>" type="submit" class="btn btn-primary" name="edit_product"> تعديل الرحلة <i class="fa fa-edit"> </i> </a>
                                                         </div>
                                                     </div>
                                                 </div>
