@@ -92,7 +92,7 @@ include 'init.php';
                                         echo $country_data['name'] . "-" . $city_data['name']  ?>
                                     </p>
                                     <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
-                                    <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم  </p>
+                                    <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
                                     <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
                                 </div>
                             </div>
