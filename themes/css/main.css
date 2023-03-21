@@ -1023,3 +1023,6 @@ input[type='email'] {
     min-width: 350px;
     margin-right: 10px;
 }
+.edit_button_section{
+    justify-content: space-between;
+}

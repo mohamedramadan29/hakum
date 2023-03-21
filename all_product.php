@@ -87,7 +87,7 @@ $userdata = $stmt->fetch();
                                     <a href="deals">
                                         <div class="control_setting_section">
                                             <i class="fa fa-handshake"></i>
-                                            <p> صفقاتي  </p>
+                                            <p> صفقاتي </p>
                                         </div>
                                     </a>
                                 </div>
@@ -110,7 +110,7 @@ $userdata = $stmt->fetch();
                                     ?>
                                             <div class="col-lg-12">
                                                 <div class=" travel_data">
-                                                    <div class="info">
+                                                    <div class="info edit_button_section">
                                                         <div class="product">
                                                             <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
                                                         </div>
@@ -137,8 +137,10 @@ $userdata = $stmt->fetch();
                                                                 echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
                                                             <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
                                                         </div>
+                                                        <div>
+                                                            <a href="edit_product.php?pro_id=<?php echo $product['pro_id']; ?>" type="submit" class="btn btn-primary" name="edit_product"> تعديل الشحنة <i class="fa fa-edit"> </i> </a>
+                                                        </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         <?php

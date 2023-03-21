@@ -99,6 +99,7 @@ $userdata = $stmt->fetch();
                         <?php
                         if (isset($_POST['with_draw_money'])) {
                             $request_money = $_POST['withdraw_total'];
+                            $paypal_email = filter_var($_POST['paypal_email'], FILTER_SANITIZE_EMAIL);
                             $formerror = [];
 
                             if ($request_money < 10) {
@@ -107,25 +108,26 @@ $userdata = $stmt->fetch();
                             $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
                             $stmt->execute(array($_SESSION['username']));
                             $withuser = $stmt->fetch();
-                            $userbalance = $withuser['balance']; 
+                            $userbalance = $withuser['balance'];
                             if ($userbalance < $request_money) {
-                                ?>
-                                <li class="alert alert-danger"> رصيدك الحالي لا يسمح بعمل هذا الطلب  </li>
+                        ?>
+                                <li class="alert alert-danger"> رصيدك الحالي لا يسمح بعمل هذا الطلب </li>
                                 <?php
                                 $formerror[] = ' رصيدك الحالي لا يسمح بعمل هذا الطلب  ';
                             } elseif ($userbalance >= $request_money && empty($formerror)) {
                                 $new_balance = $userbalance - $request_money;
-                                $stmt = $connect->prepare("INSERT INTO withdraw (user,price)
-                            VALUE(:zuser,:zprice)
+                                $stmt = $connect->prepare("INSERT INTO withdraw (user,email,price)
+                            VALUE(:zuser,:zemail,:zprice)
                             ");
                                 $stmt->execute(array(
                                     "zuser" => $_SESSION['username'],
+                                    "zemail" => $paypal_email,
                                     "zprice" => $request_money
                                 ));
                                 $stmt = $connect->prepare("UPDATE users SET balance=? WHERE name=?");
                                 $stmt->execute(array($new_balance, $_SESSION['username']));
                                 if ($stmt) {
-                        ?>
+                                ?>
                                     <p class="alert alert-success"> تم طلب سحب اموال بنجاح يستغرق طلب السحب عادة اقل من 24 ساعه </p>
                                 <?php
                                 }
@@ -146,13 +148,24 @@ $userdata = $stmt->fetch();
                                 <div>
                                     <h3> الرصيد الكلي </h3>
                                     <span> <?php echo $userdata['balance']; ?> دولار </span>
-                                    <br>
-                                    <!--
-                                    <h3> طلبات السحب  </h3>
-                                    <span> 30 دولار </span>
-                    -->
 
                                 </div>
+                                <?php 
+                                $stmt = $connect->prepare("SELECT SUM(price) as total_withdraw  FROM withdraw WHERE user=? AND status = 0");
+                                $stmt->execute(array($_SESSION['username']));
+                                $result = $stmt->fetch();
+                                $count = $stmt->rowCount();
+                                if($count > 0){
+                                    $total_withdraw = $result['total_withdraw'];
+                                    ?>
+                                    <div>
+                                    <h3> طلبات السحب </h3>
+                                    <span> <?php echo $total_withdraw; ?> دولار </span>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                
                                 <div>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#withdraw">
                                         سحب رصيد
@@ -192,8 +205,7 @@ $userdata = $stmt->fetch();
 <div class="modal fade" id="withdraw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <br>
     <br>
-    <br>
-
+    <br><br>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -202,7 +214,12 @@ $userdata = $stmt->fetch();
             </div>
             <form action="" method="post">
                 <div class="modal-body">
+                    <div class="box" style="width: 100%;">
+                        <label> البريد الالكتروني (الباي بال ) </label>
+                        <input required type="email" id="paypal_email" name="paypal_email" class="form-control">
 
+                    </div>
+                    <br>
                     <div class="box" style="width: 100%;">
 
                         <input type="hidden" name="user_name" value="<?php echo $_SESSION['username']; ?>">
