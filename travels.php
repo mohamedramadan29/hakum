@@ -64,7 +64,7 @@ include 'init.php';
                 $stmt->execute();
                 $alltravel = $stmt->fetchall();
                 foreach ($alltravel as $travel) { ?>
-                    <div class="col-lg-6 animate__animated animate__fadeInUp animate__delay-0.3s">
+                    <div class="col-lg-4 animate__animated animate__fadeInUp animate__delay-0.3s">
                         <div class="travel_data">
                             <div class="info">
                                 <div class="product">

@@ -6,7 +6,7 @@ if (isset($_SESSION['username'])) {
     header("Location:login");
 }
 // update
-//include 'init.php' notification
+include 'init.php';
 $stmt = $connect->prepare("UPDATE all_notification SET noti=1 WHERE noti_to=? AND noti_desc='بدء صفقة جديدة'");
 $stmt->execute(array($_SESSION['username']));
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
