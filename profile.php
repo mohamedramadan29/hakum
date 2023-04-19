@@ -87,7 +87,7 @@ $userdata = $stmt->fetch();
                                     <a href="deals">
                                         <div class="control_setting_section">
                                             <i class="fa fa-handshake"></i>
-                                            <p> صفقاتي  </p>
+                                            <p> صفقاتي </p>
                                         </div>
                                     </a>
                                 </div>
@@ -102,6 +102,7 @@ $userdata = $stmt->fetch();
                             $email = $_POST['email'];
                             $phone = $_POST['phone'];
                             $birthday = $_POST['birthday'];
+                            $password = $_POST['password'];
 
                             $address = $_POST['address'];
                             if (!empty($_FILES['passport']['name'])) {
@@ -140,8 +141,8 @@ $userdata = $stmt->fetch();
                                 $formerror[] = 'البريد الالكتروني مستخدم من قبل ';
                             }
                             if (empty($formerror)) {
-                                $stmt = $connect->prepare('UPDATE users SET email=?,phone=?,birthday=?,address=? WHERE name=?');
-                                $stmt->execute(array($email, $phone, $birthday, $address, $_SESSION['username']));
+                                $stmt = $connect->prepare('UPDATE users SET email=?,password=?,phone=?,birthday=?,address=? WHERE name=?');
+                                $stmt->execute(array($email, sha1($password), $phone, $birthday, $address, $_SESSION['username']));
 
                                 if (!empty($_FILES['passport']['tmp_name'])) {
                                     $stmt = $connect->prepare("UPDATE users SET passport=? WHERE name=?");
@@ -185,6 +186,10 @@ $userdata = $stmt->fetch();
                                 <div class="box">
                                     <label for="">تاريخ الميلاد </label>
                                     <input type="text" name="birthday" id="birthday" class="form-control" value="<?php echo $userdata['birthday']; ?>">
+                                </div>
+                                <div class="box">
+                                    <label for=""> تغير كلمة المرور الحالية </label>
+                                    <input type="password" name="password" id="password" class="form-control">
                                 </div>
                                 <div class="box">
                                     <label for=""> صورة جواز السفر </label>

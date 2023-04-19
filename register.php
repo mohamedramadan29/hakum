@@ -89,12 +89,13 @@ include 'init.php';
                                 <label for=""> اعادة كلمة المرور </label>
                                 <input required type="password" name="confirm_password" id="confirm_password" class="form-control">
                             </div>
+                            
+                            <div class="box forget_box">
                             <div class="box">
                                 <button name="new_account" class="btn btn-primary"> حساب جديد </button>
                             </div>
-                            <div class="box forget_box">
                                 <label for="">
-                                    <a href="login"> تسجيل دخول </a>
+                                    <a href="login"> تسجيل دخول ! </a>
                                 </label>
                             </div>
                         </form>

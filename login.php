@@ -21,14 +21,14 @@ include 'init.php';
                             $formerror[] = ' من فضلك ادخل كلمة المرور ';
                         }
                         if (empty($formerror)) {
-                            $stmt = $connect->prepare('SELECT * FROM users WHERE name=? AND password=?');
-                            $stmt->execute(array($name, sha1($password)));
+                            $stmt = $connect->prepare('SELECT * FROM users WHERE password=? AND (name=? OR email=?)');
+                            $stmt->execute(array(sha1($password), $name, $name));
                             $data = $stmt->fetch();
                             $count = $stmt->rowCount();
                             if ($count > 0) {
-                                $_SESSION['username'] = $_POST['name'];
-                                $_SESSION['userid'] = $_POST['user_id'];
-                               // echo "Goood";
+                                $_SESSION['username'] = $data['name'];
+                                $_SESSION['userid'] = $data['user_id'];
+                                // echo "Goood";
                                 header('Location:profile');
                             } else {
                                 $formerror[] = 'لا يوجد سجل بهذة البيانات';
@@ -51,7 +51,7 @@ include 'init.php';
                         <h2> تسجيل دخول </h2>
                         <form action="" method="POST">
                             <div class="box">
-                                <label for=""> اسم المستخدم </label>
+                                <label for=""> اسم المستخدم او البريد الألكتروني</label>
                                 <input type="text" name="name" id="name" class="form-control">
                             </div>
                             <div class="box">
@@ -66,7 +66,7 @@ include 'init.php';
                                     <a href="register"> حساب جديد </a>
                                 </label>
                                 <label for="">
-                                    <a href="register"> نسيت كلمة المرور ؟ </a>
+                                    <a href="forget_password"> نسيت كلمة المرور ؟ </a>
                                 </label>
                             </div>
                         </form>
