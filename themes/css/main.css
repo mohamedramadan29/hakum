@@ -20,8 +20,9 @@ body {
     width: 100%;
     background-color: #fff;
     z-index: 99999;
-    padding: 15px;
+    padding-right: 15px;
     box-shadow: 0px 0px 6px 0px #ccc;
+    padding-left: 15px;
 }
 
 .navbar .notification {
@@ -51,7 +52,7 @@ body {
 }
 
 .navbar .dropdown {
-    top: -11px;
+    top: -6px;
 }
 
 .chat_not_box {
@@ -112,10 +113,19 @@ START HERO SECTION
     background-image: url(../../uploads/background.jpg);
     background-size: cover;
     background-position: center;
-    padding-top: 220px;
+
     background-repeat: no-repeat;
     min-height: 500px;
-
+    position: relative;
+}
+.hero .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4 , 135 , 226 , 0.6 );
+    padding-top:150px;
 }
 
 
@@ -126,16 +136,17 @@ START HERO SECTION
 
 .hero .data .info h2 {
     font-weight: 900;
-    font-size: 50px;
-    color: var(--second-color);
-    margin-bottom: 30px;
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 .hero .data .info p {
-    font-size: 30px;
+    font-size: 20px;
     color: #fff;
-    line-height: 1.6;
-    font-weight: 500;
+    line-height: 2;
+    text-align: center;
 }
 
 .button {
@@ -266,6 +277,7 @@ END ABOUT US SECTION
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid #ccc;
+    background-color:#fbfbfb;
 }
 
 .travel .data .person_info .image_person {
@@ -1026,3 +1038,50 @@ input[type='email'] {
 .edit_button_section{
     justify-content: space-between;
 }
+/* START SECTION HOW WORK  */
+.how_work{
+    background-color: #fbfbfb;
+    padding: 40px;
+    padding-top: 90px;
+}
+.how_work .data{
+    text-align: center;
+}
+.how_work .data h2{
+    color: #404040;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 500;
+}
+.how_work .data .info{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    border-top: 2px solid var(--main-color);
+    padding: 10px;
+    min-height: 175px;
+}
+.how_work .data .info h4{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.how_work .data .info p{
+    font-size: 16px;
+    line-height: 2;
+    color: #525151;
+}
+#register{
+    background-color: var(--main-color);
+    color:#fff;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#login{
+    border:1px solid var(--main-color);
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+/* END SECTION HOW WORK  */

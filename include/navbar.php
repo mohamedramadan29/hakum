@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index"> <img style="max-width: 55px;" src="uploads/logo2.png" alt=""> </a>
+    <a class="navbar-brand" href="index"> <img style="max-width: 65px;" src="uploads/logo2_new.png" alt=""> </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
           <a class="nav-link" id="travels" href="travels"> رحلات </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="products" href="#"> شحنات </a>
+          <a class="nav-link" id="products" href="products"> شحنات </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact_us" href="contact_us"> تواصل معنا </a>
@@ -28,7 +28,21 @@
         ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="uploads/avatar.gif" alt="">
+                <?php
+                $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
+                $stmt->execute(array($_SESSION['username']));
+                $user_data = $stmt->fetch();
+                if($user_data['profile_image'] !=null && $user_data['profile_image'] !=''){
+                    ?>
+                    <img src="website_uploads/<?php echo $user_data['profile_image'] ?>" alt="">
+                <?php
+                }else{
+                    ?>
+                    <img src="uploads/avatar.gif" alt="">
+                <?php
+                }
+                ?>
+
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="profile"> <i class="fa fa-user"></i> حسابي </a></li>
@@ -45,12 +59,13 @@
 
         } else {
         ?>
+            <li class="nav-item login">
+                <a id="login" class="nav-link" href="login"> دخول </a>
+            </li>
           <li class="nav-item new_account">
             <a id="register" class="nav-link" href="register"> حساب جديد </a>
           </li>
-          <li class="nav-item login">
-            <a id="login" class="nav-link" href="login"> دخول </a>
-          </li>
+
         <?php
         }
 

@@ -1,12 +1,12 @@
 <?php
 $page_title = ' هاكم  - حسابي ';
-session_start();
-include 'init.php';
+session_start();;
 if (isset($_SESSION['username'])) {
 } else {
     header("Location:login");
 }
-// update notification
+// update
+//include 'init.php' notification
 $stmt = $connect->prepare("UPDATE all_notification SET noti=1 WHERE noti_to=? AND noti_desc='بدء صفقة جديدة'");
 $stmt->execute(array($_SESSION['username']));
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
