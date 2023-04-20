@@ -110,7 +110,6 @@ $userdata = $stmt->fetch();
                             $email = $_POST['email'];
                             $phone = $_POST['phone'];
                             $birthday = $_POST['birthday'];
-                            $password = $_POST['password'];
 
                             $address = $_POST['address'];
                             if (!empty($_FILES['passport']['name'])) {

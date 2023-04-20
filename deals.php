@@ -7,7 +7,7 @@ if (isset($_SESSION['username'])) {
 }
 // update
 include 'init.php';
-$stmt = $connect->prepare("UPDATE all_notification SET noti=1 WHERE noti_to=? AND noti_desc='بدء صفقة جديدة'");
+$stmt = $connect->prepare("UPDATE all_notification SET noti=1 WHERE noti_to=? AND (noti_desc='بدء صفقة جديدة' OR noti_desc='اتمام صفقة بينكما')");
 $stmt->execute(array($_SESSION['username']));
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
@@ -144,15 +144,15 @@ $userdata = $stmt->fetch();
                                                     <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span>
                                                         <?php
                                                         if ($data['status'] == 1) { ?>
-                                                            <span class="bg bg-warning"> تحت التنفيذ </span>
+                                                            <span class="btn btn-warning btn-sm"> تحت التنفيذ </span>
                                                         <?php
                                                         } elseif ($data['status'] == 2) {
                                                         ?>
-                                                            <span class="bg bg-info"> تمت </span>
+                                                            <span class="btn btn-success btn-sm"> تمت </span>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <span class="bg bg-primary"> متاحة </span>
+                                                            <span class="btn btn-primary btn-sm"> متاحة </span>
                                                         <?php
                                                         }
                                                         ?>

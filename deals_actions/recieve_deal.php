@@ -24,6 +24,15 @@ if (isset($_POST['recieve_deal'])) {
             $stmt->execute(array($new_balance,$travel_owner));
         }
         if($stmt){
+            $stmt = $connect->prepare("INSERT INTO all_notification (noti_from,noti_to,message,noti_desc)
+            VALUE(:zfrom,:zto,:zmessage,:znoti_desc)
+            ");
+            $stmt->execute(array(
+                "zfrom" => $_SESSION['username'],
+                "zto" => $travel_owner,
+                "zmessage" => "  تم استلام الصفقة بنجاح   ",
+                "znoti_desc"=>'اتمام صفقة بينكما'
+            ));
             ?>
             <div class="container">
                 <div class="alert alert-success" style="color: #0f5132; background-color: #d1e7dd; text-align:center; padding:10px; margin-top:50px;font-size:22px;"> تم اتمام واستلام الصفقة بنجاح </div>

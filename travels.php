@@ -55,12 +55,6 @@ include 'init.php';
             <div class="row">
                 <?php
                 $stmt = $connect->prepare("SELECT * FROM travels");
-                /* $calc_page = ($page - 1) * $num_result_in_page;
-                if ($calc_page < 1) {
-                    $calc_page = 1;
-                }
-                */
-                //$stmt->bindParam('ii',$calc_page, $num_result_in_page);
                 $stmt->execute();
                 $alltravel = $stmt->fetchall();
                 foreach ($alltravel as $travel) { ?>
@@ -93,7 +87,27 @@ include 'init.php';
                                     </p>
                                     <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
                                     <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
-                                    <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                    <?php
+                                    $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id = ?");
+                                    $stmt->execute(array($travel['travel_id']));
+                                    $deal_data = $stmt->fetch();
+                                    $count_deal = $stmt->rowCount();
+                                    if ($count_deal > 0) {
+                                        if ($deal_data['status'] == 1) { ?>
+                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تحت التنفيذ </p>
+                                        <?php
+                                        }
+                                        elseif ($deal_data['status'] == 2) { ?>
+                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تمت </p>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </div>
                             </div>
                             <div class="person_info">

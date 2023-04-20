@@ -84,7 +84,7 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                 <form action="" method="post">
                                     <p style="font-weight: bold;"> سعر الصفقة المتفق علية : <?php echo $deal_data_options['sub_total'];  ?> دولار </p>
                                     <?php
-                                    if ($deal_data_options['status'] == 1) {
+                                    if ($deal_data_options['status'] != 2) {
                                     ?>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recieve_deal">
                                             استلام الصفقة <i class="fa fa-check"></i>
@@ -96,7 +96,7 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                     ?>
                                         <p class="alert alert-success">
                                             تم اتمام و استلام الصفقة بنجاح <i class="fa fa-check"></i>
-                                    </p>
+                                        </p>
 
                                     <?php
                                     }
@@ -172,12 +172,18 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                                 "zfrom" => $_SESSION['username'],
                                                 "zto" => $data['user_name'],
                                                 "zmessage" => ' لقد بدا ' . $_SESSION['username'] . "  صفقة جديدة بينكما  ",
-                                                "znoti_desc"=>'بدء صفقة جديدة'
+                                                "znoti_desc" => 'بدء صفقة جديدة'
                                             ));
                             ?>
                                             <br>
                                             <div class="alert alert-success"> راائع :: تم بدء الصفقة بينكما بنجاح </div>
+                                            <script>
+                                                setTimeout(function() {
+                                                    window.location.href = "deals";
+                                                }, 3000);
+                                            </script>
                                         <?php
+
                                         }
                                     } else {
                                         ?>
@@ -230,7 +236,6 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                     <button type="submit" class="btn btn-primary" name="recieve_deal"> نعم متاكد </button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
