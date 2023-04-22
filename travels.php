@@ -13,24 +13,45 @@ include 'init.php';
         <div class="data">
             <form action="" method="post">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="info">
-                            <span class="fa fa-home"></span><input type="text" class="form-control" placeholder="من مدينة | دولة ">
+                    <div class="col-lg-4">
+                        <div class="info2">
+                            <!-- <input type="text" class="form-control" placeholder=" مكان المغادرة  "> -->
+                            <select name="travel_from_country" id="" class="form-control select2">
+                                <option value=""> -- اختر مكان المغادرة --</option>
+                                <?php
+                                $stmt = $connect->prepare("SELECT * FROM countries");
+                                $stmt->execute();
+                                $allcountry = $stmt->fetchAll();
+                                foreach ($allcountry as $country) {
+                                ?>
+                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="info">
-                            <span class="fa fa-plane"></span><input type="text" class="form-control" placeholder="الي مدينة | دولة ">
+                    <div class="col-lg-4">
+                        <div class="info2">
+                            <!-- <input type="text" class="form-control" placeholder=" مكان المغادرة  "> -->
+                            <select name="travel_to_country" id="" class="form-control select2">
+                                <option value=""> -- اختر مكان الوصول --</option>
+                                <?php
+                                $stmt = $connect->prepare("SELECT * FROM countries");
+                                $stmt->execute();
+                                $allcountry = $stmt->fetchAll();
+                                foreach ($allcountry as $country) {
+                                ?>
+                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="info">
-                            <input type="date" class="form-control" placeholder=" توقيت الرحلة ">
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="info">
-                            <button class="btn btn-primary search_button"> بحث <i class="fa fa-search"></i> </button>
+                            <button type="submit" class="btn btn-primary search_button" name="search_button"> بحث <i class="fa fa-search"></i> </button>
                         </div>
                     </div>
                 </div>
@@ -44,121 +65,131 @@ include 'init.php';
     <div class="container-fluid">
         <div class="data">
             <?php
-            $stmt = $connect->prepare("SELECT * FROM travels");
-            $stmt->execute();
-            $total_pages = $stmt->RowCount();
-            $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
-
-            $num_result_in_page = 5;
-            ?>
-
-            <div class="row">
-                <?php
+            if (isset($_POST['search_button'])) {
+                $travel_from = 
                 $stmt = $connect->prepare("SELECT * FROM travels");
                 $stmt->execute();
                 $alltravel = $stmt->fetchall();
-                foreach ($alltravel as $travel) { ?>
-                    <div class="col-lg-4 animate__animated animate__fadeInUp animate__delay-0.3s">
-                        <div class="travel_data">
-                            <div class="info">
-                                <div class="product">
-                                </div>
-                                <div class="product_info">
-                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                $count = $stmt->rowCount();
+            } else {
+                $stmt = $connect->prepare("SELECT * FROM travels");
+                $stmt->execute();
+                $alltravel = $stmt->fetchall();
+                $count = $stmt->rowCount();
+            ?>
+
+            <?php
+            }
+            ?>
+            <?php
+            if ($count > 0) {
+            ?>
+                <div class="row">
+                    <?php
+
+                    foreach ($alltravel as $travel) { ?>
+                        <div class="col-lg-4 animate__animated animate__fadeInUp animate__delay-0.3s">
+                            <div class="travel_data">
+                                <div class="info">
+                                    <div class="product">
+                                    </div>
+                                    <div class="product_info">
+                                        <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                                            <?php
+                                            $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                            $stmt->execute(array($travel['travel_from_country']));
+                                            $country_data = $stmt->fetch();
+                                            $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                            $stmt->execute(array($travel['travel_from_city']));
+                                            $city_data = $stmt->fetch();
+                                            echo $country_data['name'] . "-" . $city_data['name']
+                                            ?>
+                                        </p>
+                                        <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                            <?php
+                                            $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                            $stmt->execute(array($travel['travel_to_country']));
+                                            $country_data = $stmt->fetch();
+                                            $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                            $stmt->execute(array($travel['travel_to_city']));
+                                            $city_data = $stmt->fetch();
+                                            echo $country_data['name'] . "-" . $city_data['name']  ?>
+                                        </p>
+                                        <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
+                                        <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
                                         <?php
-                                        $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
-                                        $stmt->execute(array($travel['travel_from_country']));
-                                        $country_data = $stmt->fetch();
-                                        $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
-                                        $stmt->execute(array($travel['travel_from_city']));
-                                        $city_data = $stmt->fetch();
-                                        echo $country_data['name'] . "-" . $city_data['name']
-                                        ?>
-                                    </p>
-                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
-                                        <?php
-                                        $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
-                                        $stmt->execute(array($travel['travel_to_country']));
-                                        $country_data = $stmt->fetch();
-                                        $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
-                                        $stmt->execute(array($travel['travel_to_city']));
-                                        $city_data = $stmt->fetch();
-                                        echo $country_data['name'] . "-" . $city_data['name']  ?>
-                                    </p>
-                                    <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
-                                    <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
-                                    <?php
-                                    $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id = ?");
-                                    $stmt->execute(array($travel['travel_id']));
-                                    $deal_data = $stmt->fetch();
-                                    $count_deal = $stmt->rowCount();
-                                    if ($count_deal > 0) {
-                                        if ($deal_data['status'] == 1) { ?>
-                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تحت التنفيذ </p>
+                                        $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id = ?");
+                                        $stmt->execute(array($travel['travel_id']));
+                                        $deal_data = $stmt->fetch();
+                                        $count_deal = $stmt->rowCount();
+                                        if ($count_deal > 0) {
+                                            if ($deal_data['status'] == 1) { ?>
+                                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تحت التنفيذ </p>
+                                            <?php
+                                            } elseif ($deal_data['status'] == 2) { ?>
+                                                <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تمت </p>
+                                            <?php
+                                            }
+                                        } else {
+                                            ?>
+                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
                                         <?php
                                         }
-                                        elseif ($deal_data['status'] == 2) { ?>
-                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تمت </p>
-                                        <?php
-                                        }
-                                    } else {
                                         ?>
-                                        <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
-                                    <?php
-                                    }
-                                    ?>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="person_info">
-                                <div class="image_person">
-                                    <?php
-                                    $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
-                                    $stmt->execute(array($travel['user_name']));
-                                    $userdata = $stmt->fetch();
-                                    if ($userdata['profile_image'] != "") {
-                                    ?>
-                                        <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <img src="uploads/avatar.gif" alt="">
-                                    <?php
-                                    }
-                                    ?>
-
-                                    <p> <?php echo $travel['user_name'] ?> </p>
-                                </div>
-                                <div class="send_request">
-                                    <?php
-                                    if (isset($_SESSION['username'])) {
-                                        if ($_SESSION['username'] === $travel['user_name']) {
-                                    ?>
-                                            <a href="all_travel" class="button btn"> تفاصيل الرحلة </a>
+                                <div class="person_info">
+                                    <div class="image_person">
+                                        <?php
+                                        $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
+                                        $stmt->execute(array($travel['user_name']));
+                                        $userdata = $stmt->fetch();
+                                        if ($userdata['profile_image'] != "") {
+                                        ?>
+                                            <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
                                         <?php
                                         } else {
                                         ?>
-                                            <a href="message?user=<?php echo $travel['user_name'] ?>&travel_id=<?php echo $travel['travel_id']; ?>" class="button btn"> التفاصيل وارسال طلب </a>
+                                            <img src="uploads/avatar.gif" alt="">
                                         <?php
                                         }
-                                    } else {
                                         ?>
-                                        <a href="login" class="button btn"> التفاصيل وارسال طلب </a>
-                                    <?php
-                                    }
 
-                                    ?>
+                                        <p> <?php echo $travel['user_name'] ?> </p>
+                                    </div>
+                                    <div class="send_request">
+                                        <?php
+                                        if (isset($_SESSION['username'])) {
+                                            if ($_SESSION['username'] === $travel['user_name']) {
+                                        ?>
+                                                <a href="all_travel" class="button btn"> تفاصيل الرحلة </a>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <a href="message?user=<?php echo $travel['user_name'] ?>&travel_id=<?php echo $travel['travel_id']; ?>" class="button btn"> التفاصيل وارسال طلب </a>
+                                            <?php
+                                            }
+                                        } else {
+                                            ?>
+                                            <a href="login" class="button btn"> التفاصيل وارسال طلب </a>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
 
-                <?php
+                    <?php
 
-                }
-                ?>
-            </div>
+                    }
+                    ?>
+                </div>
+            <?php
+            }
+            ?>
+
         </div>
         <div class="pagin">
             <nav aria-label="...">
@@ -232,3 +263,45 @@ include 'init.php';
 <?php
 
 include $tem . 'footer.php';
+?>
+
+<script>
+    $(document).ready(function() {
+        // مكان المغادرة 
+        $('#pro_form_country').change(function() {
+            var country_id = $(this).val();
+            if (country_id != '') {
+                $.ajax({
+                    url: "get_cities.php",
+                    method: "POST",
+                    data: {
+                        country_id: country_id
+                    },
+                    success: function(data) {
+                        $('#pro_from_city').html(data);
+                    }
+                });
+            } else {
+                $('#pro_from_city').html('<option value="">-- اختر المدينة --</option>');
+            }
+        });
+        // مكان الوصول
+        $('#pro_to_country').change(function() {
+            var country_id = $(this).val();
+            if (country_id != '') {
+                $.ajax({
+                    url: "get_cities.php",
+                    method: "POST",
+                    data: {
+                        country_id: country_id
+                    },
+                    success: function(data) {
+                        $('#pro_to_city').html(data);
+                    }
+                });
+            } else {
+                $('#pro_to_city').html('<option value="">-- اختر المدينة --</option>');
+            }
+        });
+    });
+</script>
