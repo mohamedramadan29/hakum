@@ -168,7 +168,7 @@ include 'init.php';
                                             <?php
                                             } else {
                                             ?>
-                                                <a href="message?user=<?php echo $product['user_name'] ?>&product_id=<?php echo $product['pro_id']; ?>" class="button btn"> التفاصيل وارسال طلب </a>
+                                                <a href="pro_message?user=<?php echo $product['user_name'] ?>&pro_id=<?php echo $product['pro_id']; ?>" class="button btn"> التفاصيل وارسال طلب </a>
                                             <?php
                                             }
                                         } else {

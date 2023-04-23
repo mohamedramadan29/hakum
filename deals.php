@@ -100,6 +100,7 @@ $userdata = $stmt->fetch();
                 <div class="col-lg-8">
                     <div class="slide2">
                         <h3> الصفقات </h3>
+                        <p> الرحلات </p>
                         <?php
                         $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_owner=? OR product_owner=?");
                         $stmt->execute(array($_SESSION['username'], $_SESSION['username']));
@@ -187,7 +188,100 @@ $userdata = $stmt->fetch();
                             }
                         } else {
                             ?>
-                            <div class="alert alert-success"> لا يوجد لديك صفقات في الوقت الحالي </div>
+                            <div class="alert alert-success"> لا يوجد لديك صفقات رحلات في الوقت الحالي </div>
+                        <?php
+                        }
+                        ?>
+                        <!------------------------------------------------------------->
+                        <p> الشحنات </p>
+                        <?php
+                        $stmt = $connect->prepare("SELECT * FROM product_deal WHERE travel_owner=? OR product_owner=?");
+                        $stmt->execute(array($_SESSION['username'], $_SESSION['username']));
+                        $alldata = $stmt->fetchAll();
+                        $count = $stmt->rowCount();
+                        if ($count > 0) {
+                            foreach ($alldata as $data) {
+                                $stmt = $connect->prepare("SELECT * FROM products WHERE pro_id=?");
+                                $stmt->execute(array($data['pro_id']));
+                                $product = $stmt->fetch();
+                        ?>
+                                <div class="travel">
+                                    <div class="data">
+                                        <div class="travel_data">
+                                            <div class="info">
+                                                <div class="product">
+                                                </div>
+                                                <div class="product_info">
+                                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                                        $stmt->execute(array($product['pro_from_country']));
+                                                        $country_data = $stmt->fetch();
+                                                        $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                                        $stmt->execute(array($product['pro_from_city']));
+                                                        $city_data = $stmt->fetch();
+                                                        echo $country_data['name'] . "-" . $city_data['name']
+                                                        ?>
+                                                    </p>
+                                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
+                                                        $stmt->execute(array($product['pro_to_country']));
+                                                        $country_data = $stmt->fetch();
+                                                        $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
+                                                        $stmt->execute(array($product['pro_to_city']));
+                                                        $city_data = $stmt->fetch();
+                                                        echo $country_data['name'] . "-" . $city_data['name']  ?>
+                                                    </p>
+                                                    <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
+                                                    <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
+                                                    <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span>
+                                                        <?php
+                                                        if ($data['status'] == 1) { ?>
+                                                            <span class="btn btn-warning btn-sm"> تحت التنفيذ </span>
+                                                        <?php
+                                                        } elseif ($data['status'] == 2) {
+                                                        ?>
+                                                            <span class="btn btn-success btn-sm"> تمت </span>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <span class="btn btn-primary btn-sm"> متاحة </span>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </p>
+                                                    <p style="font-weight: bold;"> <span> <img src="uploads/dollar.png" alt=""> سعر الصفقة المتفقة علية : </span> <?php echo $data['sub_total'] ?> دولار </p>
+                                                </div>
+                                            </div>
+                                            <div class="person_info">
+                                                <div class="image_person">
+                                                    <p> المسافر <span> : <?php echo $data['travel_owner']; ?> </span> </p>
+                                                    <p> صاحب الشحنة <span> : <?php echo $data['product_owner']; ?> </span> </p>
+                                                </div>
+                                                <div class="send_request">
+                                                    <?php
+                                                    if (isset($_SESSION['username'])) {
+                                                        if ($_SESSION['username'] === $data['travel_owner']) {
+                                                    ?>
+                                                            <a href="message?user=<?php echo $data['product_owner'] ?>&travel_id=<?php echo $data['travel_id']; ?>" class="button btn"> مناقشة الصفقة </a>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <a href="message?user=<?php echo $data['travel_owner'] ?>&travel_id=<?php echo $data['travel_id']; ?>" class="button btn"> مناقشة الصفقة </a>
+                                                    <?php
+                                                        }
+                                                    }  ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <div class="alert alert-success"> لا يوجد لديك صفقات رحلات في الوقت الحالي </div>
                         <?php
                         }
                         ?>

@@ -3,8 +3,8 @@
         <i class="fa fa-envelope nav-link"></i> </a>
     <span class="noti_num">
         <?php
-        $stmt = $connect->prepare("SELECT COUNT(*) as unread_msg ,  msg_from, travel_id, msg FROM chat WHERE msg_to=? AND noti_show=0 GROUP BY msg_from, travel_id, msg
-              ORDER BY MAX(id) DESC");
+        $stmt = $connect->prepare("SELECT COUNT(*) as unread_msg,msg_from,travel_id,pro_id,msg FROM chat WHERE msg_to=? AND noti_show=0 GROUP BY msg_from, travel_id,pro_id, msg
+            ORDER BY MAX(id) DESC");
         $stmt->execute(array($_SESSION['username']));
         $allchats = $stmt->fetchAll();
         $count = $stmt->rowCount();
@@ -18,12 +18,24 @@
             foreach ($allchats as $chat) {
         ?>
                 <li>
-                    <a class="dropdown-item" href="message?user=<?php echo $chat['msg_from']; ?>&travel_id=<?php echo $chat['travel_id']; ?>">
+                    <?php
+                    if ($chat['travel_id'] == 0) {
+                    ?>
+                        <a class="dropdown-item" href="pro_message?user=<?php echo $chat['msg_from']; ?>&pro_id=<?php echo $chat['pro_id']; ?>">
                         <?php
-                        $msg = $chat['msg'];
-                        $msg = explode(' ', $msg);
-                        $msg = implode(' ', array_slice($msg, 0, 8)) . "...";
-                        echo $msg ?> </a>
+                    } else {
+                        ?>
+                            <a class="dropdown-item" href="message?user=<?php echo $chat['msg_from']; ?>&travel_id=<?php echo $chat['travel_id']; ?>">
+                            <?php
+                        }
+
+                            ?>
+
+                            <?php
+                            $msg = $chat['msg'];
+                            $msg = explode(' ', $msg);
+                            $msg = implode(' ', array_slice($msg, 0, 8)) . "...";
+                            echo $msg ?> </a>
                 </li>
             <?php
             }
@@ -48,13 +60,22 @@
                     <?php
                     }
                     ?>
-
-                    <a class="dropdown-item" href="message?user=<?php echo $chat['msg_from']; ?>&travel_id=<?php echo $chat['travel_id']; ?>">
+                    <?php
+                    if ($chat['travel_id'] == 0) {
+                    ?>
+                        <a class="dropdown-item" href="pro_message?user=<?php echo $chat['msg_from']; ?>&pro_id=<?php echo $chat['pro_id']; ?>">
                         <?php
-                        $msg = $chat['msg'];
-                        $msg = explode(' ', $msg);
-                        $msg = implode(' ', array_slice($msg, 0, 8)) . "...";
-                        echo $msg ?> </a>
+                    } else {
+                        ?>
+                            <a class="dropdown-item" href="message?user=<?php echo $chat['msg_from']; ?>&travel_id=<?php echo $chat['travel_id']; ?>">
+                            <?php
+                        }
+                            ?>
+                            <?php
+                            $msg = $chat['msg'];
+                            $msg = explode(' ', $msg);
+                            $msg = implode(' ', array_slice($msg, 0, 8)) . "...";
+                            echo $msg ?> </a>
                 </li>
         <?php
             }

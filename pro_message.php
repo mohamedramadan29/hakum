@@ -9,11 +9,11 @@ if (isset($_SESSION['username'])) {
 if (isset($_GET['user'])) {
     $username = $_GET['user'];
 }
-if (isset($_GET['travel_id']) && is_numeric($_GET['travel_id'])) {
-    $travel_id = $_GET['travel_id'];
+if (isset($_GET['pro_id']) && is_numeric($_GET['pro_id'])) {
+    $pro_id = $_GET['pro_id'];
 }
-$stmt = $connect->prepare("UPDATE chat SET noti_show = 1 WHERE msg_from = ? AND msg_to = ? AND travel_id=? ");
-$stmt->execute(array($username, $_SESSION['username'], $travel_id))
+$stmt = $connect->prepare("UPDATE chat SET noti_show = 1 WHERE msg_from = ? AND msg_to = ? AND pro_id=? ");
+$stmt->execute(array($username, $_SESSION['username'], $pro_id))
 ?>
 <div class="chat_section">
     <div class="container">
@@ -28,7 +28,7 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                             <div class="message_text">
                                 <input type="hidden" name="from_person" id="from_person" value="<?php echo $_SESSION['username'] ?>">
                                 <input type="hidden" name="to_person" id="to_person" value="<?php echo $username; ?>">
-                                <input type="hidden" name="travel_id" id="travel_id" value="<?php echo $travel_id; ?>">
+                                <input type="hidden" name="pro_id" id="pro_id" value="<?php echo $pro_id; ?>">
                                 <textarea required name="msg" id="msg"></textarea>
                                 <div class="send_message_button">
                                     <button type="submit" class="btn btn-primary btn-block"> ارسال <i class="fa fa-plane"></i> </button>
@@ -43,17 +43,17 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                     <h2>معلومات</h2>
                     <div class="info">
                         <?php
-                        $stmt = $connect->prepare("SELECT * FROM travels WHERE travel_id=?");
-                        $stmt->execute(array($travel_id));
+                        $stmt = $connect->prepare("SELECT * FROM products WHERE pro_id=?");
+                        $stmt->execute(array($pro_id));
                         $data = $stmt->fetch();
                         ?>
                         <p>الرحلة من :
                             <?php
                             $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
-                            $stmt->execute(array($data['travel_from_country']));
+                            $stmt->execute(array($data['pro_from_country']));
                             $country_data = $stmt->fetch();
                             $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
-                            $stmt->execute(array($data['travel_from_city']));
+                            $stmt->execute(array($data['pro_from_city']));
                             $city_data = $stmt->fetch();
                             echo $country_data['name'] . "-" . $city_data['name']
                             ?>
@@ -62,21 +62,20 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
 
                             <?php
                             $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
-                            $stmt->execute(array($data['travel_to_country']));
+                            $stmt->execute(array($data['pro_to_country']));
                             $country_data = $stmt->fetch();
                             $stmt = $connect->prepare("SELECT * FROM cities WHERE id = ? ");
-                            $stmt->execute(array($data['travel_to_city']));
+                            $stmt->execute(array($data['pro_to_city']));
                             $city_data = $stmt->fetch();
                             echo $country_data['name'] . "-" . $city_data['name']  ?>
                         </p>
-                        <p> موعد الرحلة: <?php echo $data['travel_date'];  ?> </p>
-                        <p> موعد الوصل المتوقع : <?php echo $data['travel_arrive_date'];  ?> </p>
-                        <p> الوزن المتاح : <?php echo $data['av_weight'];  ?> كجم </p>
+                        <p> موعد الوصل المتوقع : <?php echo $data['arrieve_at'];  ?> </p>
+                        <p> وزن المنتج : <?php echo $data['pro_weight'];  ?> كجم </p>
                         <?php
                         if ($_SESSION['username'] === $data['user_name']) {
                         } else {
-                            $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id=? AND product_owner=?");
-                            $stmt->execute(array($data['travel_id'], $_SESSION['username']));
+                            $stmt = $connect->prepare("SELECT * FROM product_deal WHERE pro_id=? AND product_owner=?");
+                            $stmt->execute(array($data['pro_id'], $_SESSION['username']));
                             $deal_data_options = $stmt->fetch();
                             $count = $stmt->rowCount();
                             if ($count > 0) {
@@ -148,12 +147,12 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
                                 $count = $stmt->rowcount();
                                 if ($count > 0) {
                                     if ($userdata['balance'] >= $deal_value) {
-                                        // insert travel to travels_deal done
-                                        $stmt = $connect->prepare("INSERT INTO travel_deal (travel_id, travel_owner, product_owner , sub_total,discount,total,status)
-                                        VALUE(:ztravel_id, :ztravel_owner , :zproduct_owner , :zsub_total,:zdiscount,:ztotal,1)
+                                        // insert travel to products_deal done
+                                        $stmt = $connect->prepare("INSERT INTO product_deal (pro_id, travel_owner, product_owner , sub_total,discount,total,status)
+                                        VALUE(:zpro_id, :ztravel_owner , :zproduct_owner , :zsub_total,:zdiscount,:ztotal,1)
                                         ");
                                         $stmt->execute(array(
-                                            "ztravel_id" => $travel_id,
+                                            "zpro_id" => $pro_id,
                                             "ztravel_owner" => $data['user_name'],
                                             "zproduct_owner" => $_SESSION['username'],
                                             "zsub_total" => $deal_value,
@@ -227,7 +226,7 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
             <form action="deals_actions/recieve_deal.php" method="post">
                 <div class="modal-body">
                     <p> هل انت متاكد من استلام الصفقة ؟ </p>
-                    <input type="hidden" name="travel_id" value="<?php echo $deal_data_options['travel_id']; ?>">
+                    <input type="hidden" name="pro_id" value="<?php echo $deal_data_options['pro_id']; ?>">
                     <input type="hidden" name="travel_owner" value="<?php echo $deal_data_options['travel_owner']; ?>">
                     <input type="hidden" name="product_owner" value="<?php echo $deal_data_options['product_owner']; ?>">
                 </div>
@@ -264,10 +263,10 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
         setInterval(function() {
             let from = $("#from_person").val();
             let to = $("#to_person").val();
-            let travel_id = $("#travel_id").val();
+            let pro_id = $("#pro_id").val();
             $.ajax({
                 type: "POST",
-                url: "msg/fetch_travel_msg.php?travel_id=" + travel_id + '&from=' + from + '&to=' + to,
+                url: "msg/fetch_pro_msg.php?pro_id=" + pro_id + '&from=' + from + '&to=' + to,
                 dataType: "html",
                 success: function(data) {
                     $('#demo').html(data);
@@ -286,15 +285,15 @@ $stmt->execute(array($username, $_SESSION['username'], $travel_id))
             let msg = $("#msg").val();
             let from_person = $("#from_person").val();
             let to_person = $("#to_person").val();
-            let travel_id = $("#travel_id").val();
+            let pro_id = $("#pro_id").val();
             $.ajax({
                 type: "POST",
-                url: "msg/send_travel_msg",
+                url: "msg/send_pro_msg",
                 data: {
                     msg: msg,
                     from_person: from_person,
                     to_person: to_person,
-                    travel_id: travel_id
+                    pro_id: pro_id
                 },
                 success: function() {
                     $("#msg").val('');
