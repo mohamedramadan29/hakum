@@ -60,18 +60,20 @@ body {
     height: 200px;
     overflow-y: scroll;
 }
-.chat_not_box li{
+
+.chat_not_box li {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin-top: 10px;
 }
 
-.chat_not_box li img{
+.chat_not_box li img {
     width: 40px !important;
     height: 40px !important;
     margin-right: 10px;
 }
+
 .navbar .dropdown img {
     width: 50px;
     height: 50px;
@@ -118,14 +120,15 @@ START HERO SECTION
     min-height: 500px;
     position: relative;
 }
-.hero .overlay{
+
+.hero .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(4 , 135 , 226 , 0.6 );
-    padding-top:150px;
+    background-color: rgba(4, 135, 226, 0.6);
+    padding-top: 150px;
 }
 
 
@@ -256,8 +259,10 @@ END ABOUT US SECTION
 
 .travel .data .info .product img {
 
-    max-width: 150px;
-    max-height: 160px;
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    border: 1px solid #e9e9e9;
 }
 
 
@@ -277,7 +282,7 @@ END ABOUT US SECTION
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid #ccc;
-    background-color:#fbfbfb;
+    background-color: #fbfbfb;
 }
 
 .travel .data .person_info .image_person {
@@ -431,12 +436,11 @@ END ABOUT US SECTION
     margin: auto;
     display: block;
     width: 100%;
-    box-shadow: 0px 0px 10px 2px #e9e9e9;
     border-radius: 10px;
 }
 
 .form_search h2 {
-    color: #404040;
+    color: #fff;
     margin-bottom: 20px;
     font-size: 30px;
     font-weight: 500;
@@ -1035,25 +1039,30 @@ input[type='email'] {
     min-width: 150px;
     margin-right: 10px;
 }
-.edit_button_section{
+
+.edit_button_section {
     justify-content: space-between;
 }
+
 /* START SECTION HOW WORK  */
-.how_work{
+.how_work {
     background-color: #fbfbfb;
     padding: 40px;
     padding-top: 90px;
 }
-.how_work .data{
+
+.how_work .data {
     text-align: center;
 }
-.how_work .data h2{
+
+.how_work .data h2 {
     color: #404040;
     margin-bottom: 40px;
     font-size: 30px;
     font-weight: 500;
 }
-.how_work .data .info{
+
+.how_work .data .info {
     background-color: #fff;
     padding: 5px;
     border-radius: 5px;
@@ -1061,27 +1070,43 @@ input[type='email'] {
     padding: 10px;
     min-height: 175px;
 }
-.how_work .data .info h4{
+
+.how_work .data .info h4 {
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 20px;
 }
-.how_work .data .info p{
+
+.how_work .data .info p {
     font-size: 16px;
     line-height: 2;
     color: #525151;
 }
-#register{
+
+#register {
     background-color: var(--main-color);
-    color:#fff;
+    color: #fff;
     border-radius: 5px;
     margin-right: 5px;
     margin-left: 5px;
 }
-#login{
-    border:1px solid var(--main-color);
+
+#login {
+    border: 1px solid var(--main-color);
     border-radius: 5px;
     margin-right: 5px;
     margin-left: 5px;
 }
+
 /* END SECTION HOW WORK  */
+.form_search {
+    background-image: url('../../uploads/search_background.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 400px;
+}
+
+.form_search .select2-container {
+    width: 100% !important;
+}

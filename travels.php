@@ -13,7 +13,7 @@ include 'init.php';
         <div class="data">
             <form action="" method="post">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="info2">
                             <!-- <input type="text" class="form-control" placeholder=" مكان المغادرة  "> -->
                             <select name="travel_from_country" id="" class="form-control select2">
@@ -24,14 +24,14 @@ include 'init.php';
                                 $allcountry = $stmt->fetchAll();
                                 foreach ($allcountry as $country) {
                                 ?>
-                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                    <option <?php if (isset($_REQUEST['travel_from_country']) && ($_REQUEST['travel_from_country'] == $country['id'])) echo 'selected'; ?> value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="info2">
                             <!-- <input type="text" class="form-control" placeholder=" مكان المغادرة  "> -->
                             <select name="travel_to_country" id="" class="form-control select2">
@@ -42,14 +42,14 @@ include 'init.php';
                                 $allcountry = $stmt->fetchAll();
                                 foreach ($allcountry as $country) {
                                 ?>
-                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                    <option <?php if (isset($_REQUEST['travel_to_country']) && ($_REQUEST['travel_to_country'] == $country['id'])) echo 'selected'; ?> value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <div class="info">
                             <button type="submit" class="btn btn-primary search_button" name="search_button"> بحث <i class="fa fa-search"></i> </button>
                         </div>
@@ -66,11 +66,34 @@ include 'init.php';
         <div class="data">
             <?php
             if (isset($_POST['search_button'])) {
-                $travel_from = 
-                $stmt = $connect->prepare("SELECT * FROM travels");
-                $stmt->execute();
-                $alltravel = $stmt->fetchall();
-                $count = $stmt->rowCount();
+                $travel_from = $_POST['travel_from_country'];
+                $travel_to = $_POST['travel_to_country'];
+                if ($travel_from == '' && $travel_to == '') {
+                    $stmt = $connect->prepare("SELECT * FROM travels");
+                    $stmt->execute();
+                    $alltravel = $stmt->fetchall();
+                    $count = $stmt->rowCount();
+                } elseif ($travel_from != '') {
+                    $stmt = $connect->prepare("SELECT * FROM travels WHERE travel_from_country=?");
+                    $stmt->execute(array($travel_from));
+                    $alltravel = $stmt->fetchall();
+                    $count = $stmt->rowCount();
+                } elseif ($travel_to != '') {
+                    $stmt = $connect->prepare("SELECT * FROM travels WHERE travel_to_country=?");
+                    $stmt->execute(array($travel_to));
+                    $alltravel = $stmt->fetchall();
+                    $count = $stmt->rowCount();
+                } elseif ($travel_from != '' && $travel_to != '') {
+                    $stmt = $connect->prepare("SELECT * FROM travels WHERE travel_from_country=? AND travel_to_country=?");
+                    $stmt->execute(array($travel_from, $travel_to));
+                    $alltravel = $stmt->fetchall();
+                    $count = $stmt->rowCount();
+                } else {
+                    $stmt = $connect->prepare("SELECT * FROM travels");
+                    $stmt->execute();
+                    $alltravel = $stmt->fetchall();
+                    $count = $stmt->rowCount();
+                }
             } else {
                 $stmt = $connect->prepare("SELECT * FROM travels");
                 $stmt->execute();
@@ -186,6 +209,10 @@ include 'init.php';
                     }
                     ?>
                 </div>
+            <?php
+            } else {
+            ?>
+                <div class="alert alert-info"> لا يوجد بيانات !! </div>
             <?php
             }
             ?>

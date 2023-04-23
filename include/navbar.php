@@ -10,10 +10,10 @@
           <a class="nav-link" id="index" aria-current="page" href="index">الرئيسية</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="travels" href="travels.php"> رحلات </a>
+          <a class="nav-link" id="travels" href="travels"> رحلات </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="products" href="products.php"> شحنات </a>
+          <a class="nav-link" id="products" href="products"> شحنات </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact_us" href="contact_us"> تواصل معنا </a>
