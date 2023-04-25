@@ -49,6 +49,7 @@ $stmt->execute(array($username, $_SESSION['username'], $pro_id))
                         ?>
                         <p>الرحلة من :
                             <?php
+                            
                             $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                             $stmt->execute(array($data['pro_from_country']));
                             $country_data = $stmt->fetch();
@@ -72,7 +73,7 @@ $stmt->execute(array($username, $_SESSION['username'], $pro_id))
                         <p> موعد الوصل المتوقع : <?php echo $data['arrieve_at'];  ?> </p>
                         <p> وزن المنتج : <?php echo $data['pro_weight'];  ?> كجم </p>
                         <?php
-                        if ($_SESSION['username'] === $data['user_name']) {
+                        if ($_SESSION['username'] != $data['user_name']) {
                         } else {
                             $stmt = $connect->prepare("SELECT * FROM product_deal WHERE pro_id=? AND product_owner=?");
                             $stmt->execute(array($data['pro_id'], $_SESSION['username']));
@@ -153,7 +154,7 @@ $stmt->execute(array($username, $_SESSION['username'], $pro_id))
                                         ");
                                         $stmt->execute(array(
                                             "zpro_id" => $pro_id,
-                                            "ztravel_owner" => $data['user_name'],
+                                            "ztravel_owner" => $username,
                                             "zproduct_owner" => $_SESSION['username'],
                                             "zsub_total" => $deal_value,
                                             "zdiscount" => $discount,
@@ -169,7 +170,7 @@ $stmt->execute(array($username, $_SESSION['username'], $pro_id))
                                             ");
                                             $stmt->execute(array(
                                                 "zfrom" => $_SESSION['username'],
-                                                "zto" => $data['user_name'],
+                                                "zto" => $username,
                                                 "zmessage" => ' لقد بدا ' . $_SESSION['username'] . "  صفقة جديدة بينكما  ",
                                                 "znoti_desc" => 'بدء صفقة جديدة'
                                             ));
@@ -223,7 +224,7 @@ $stmt->execute(array($username, $_SESSION['username'], $pro_id))
                 <h5 class="modal-title" id="exampleModalLabel"> استلام الصفقة </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="deals_actions/recieve_deal.php" method="post">
+            <form action="deals_actions/pro_deal.php" method="post">
                 <div class="modal-body">
                     <p> هل انت متاكد من استلام الصفقة ؟ </p>
                     <input type="hidden" name="pro_id" value="<?php echo $deal_data_options['pro_id']; ?>">
@@ -231,8 +232,8 @@ $stmt->execute(array($username, $_SESSION['username'], $pro_id))
                     <input type="hidden" name="product_owner" value="<?php echo $deal_data_options['product_owner']; ?>">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" name="recieve_deal" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
-                    <button type="submit" class="btn btn-primary" name="recieve_deal"> نعم متاكد </button>
+                    <button type="button" name="pro_deal" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary" name="pro_deal"> نعم متاكد </button>
                 </div>
             </form>
         </div>

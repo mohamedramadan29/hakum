@@ -1,18 +1,18 @@
 <?php
 session_start();
 include '../connect.php';
-if (isset($_POST['recieve_deal'])) {
-    $travel_id = $_POST['travel_id'];
+if (isset($_POST['pro_deal'])) {
+    $pro_id = $_POST['pro_id'];
     $travel_owner = $_POST['travel_owner'];
     $product_owner = $_POST['product_owner'];
-    $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_owner=? AND product_owner=? AND travel_id=? AND status=1");
-    $stmt->execute(array($travel_owner, $product_owner, $travel_id));
+    $stmt = $connect->prepare("SELECT * FROM product_deal WHERE travel_owner=? AND product_owner=? AND pro_id=? AND status=1");
+    $stmt->execute(array($travel_owner, $product_owner, $pro_id));
     $deal_data = $stmt->fetch();
     $travel_balance = $deal_data['total'];
     $count = $stmt->rowCount();
     if ($count > 0) {
-        $stmt = $connect->prepare("UPDATE travel_deal SET status=2 WHERE travel_owner=? AND product_owner=? AND travel_id=? AND status=1");
-        $stmt->execute(array($travel_owner, $product_owner, $travel_id));
+        $stmt = $connect->prepare("UPDATE product_deal SET status=2 WHERE travel_owner=? AND product_owner=? AND pro_id=? AND status=1");
+        $stmt->execute(array($travel_owner, $product_owner, $pro_id));
         $stmt = $connect->prepare("SELECT * FROM users WHERE name=?");
         $stmt->execute(array($travel_owner));
         $userdata = $stmt->fetch();

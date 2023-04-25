@@ -99,8 +99,7 @@ $userdata = $stmt->fetch();
                 </div>
                 <div class="col-lg-8">
                     <div class="slide2">
-                        <h3> الصفقات </h3>
-                        <p> الرحلات </p>
+                        <h3> الصفقات </h3> 
                         <?php
                         $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_owner=? OR product_owner=?");
                         $stmt->execute(array($_SESSION['username'], $_SESSION['username']));
@@ -192,8 +191,7 @@ $userdata = $stmt->fetch();
                         <?php
                         }
                         ?>
-                        <!------------------------------------------------------------->
-                        <p> الشحنات </p>
+                        <!-------------------------------------------------------------> 
                         <?php
                         $stmt = $connect->prepare("SELECT * FROM product_deal WHERE travel_owner=? OR product_owner=?");
                         $stmt->execute(array($_SESSION['username'], $_SESSION['username']));
@@ -264,11 +262,11 @@ $userdata = $stmt->fetch();
                                                     if (isset($_SESSION['username'])) {
                                                         if ($_SESSION['username'] === $data['travel_owner']) {
                                                     ?>
-                                                            <a href="message?user=<?php echo $data['product_owner'] ?>&travel_id=<?php echo $data['travel_id']; ?>" class="button btn"> مناقشة الصفقة </a>
+                                                            <a href="pro_message?user=<?php echo $data['product_owner'] ?>&pro_id=<?php echo $data['pro_id']; ?>" class="button btn"> مناقشة الصفقة </a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a href="message?user=<?php echo $data['travel_owner'] ?>&travel_id=<?php echo $data['travel_id']; ?>" class="button btn"> مناقشة الصفقة </a>
+                                                            <a href="pro_message?user=<?php echo $data['travel_owner'] ?>&pro_id=<?php echo $data['pro_id']; ?>" class="button btn"> مناقشة الصفقة </a>
                                                     <?php
                                                         }
                                                     }  ?>
