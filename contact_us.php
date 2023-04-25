@@ -33,10 +33,10 @@ include 'init.php';
                     <?php
 
                     if (isset($_POST['send_message'])) {
-                        $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
-                        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-                        $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
-                        $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $subject = $_POST['subject'];
+                        $message = $_POST['message'];
                         $formerror = [];
                         if (empty($name)) {
                             $formerror[] = ' من فضلك ادخل الاسم  ';
@@ -48,13 +48,14 @@ include 'init.php';
                             $formerror[] = ' من فضلك ادخل رسالتك   ';
                         }
                         if (empty($formerror)) {
-                            $stmt = $connect->prepare("INSERT INTO contact_us (name, email, subject, message)
-                            VALUE(:zname, :zemail, :zsub,:zmessage)");
+                            $stmt = $connect->prepare("INSERT INTO contact_us (name, email, subject, message,time)
+                            VALUE(:zname, :zemail, :zsub,:zmessage,:ztime)");
                             $stmt->execute(array(
                                 "zname" => $name,
                                 "zemail" => $email,
                                 "zsub" => $subject,
                                 "zmessage" => $message,
+                                "ztime" => date('Y-m-d H:i:s')
                             ));
                             if ($stmt) {
                     ?>

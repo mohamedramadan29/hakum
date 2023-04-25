@@ -150,22 +150,23 @@ $userdata = $stmt->fetch();
                                     <span> <?php echo $userdata['balance']; ?> دولار </span>
 
                                 </div>
-                                <?php 
+                                <?php
                                 $stmt = $connect->prepare("SELECT SUM(price) as total_withdraw  FROM withdraw WHERE user=? AND status = 0");
                                 $stmt->execute(array($_SESSION['username']));
                                 $result = $stmt->fetch();
                                 $count = $stmt->rowCount();
-                                if($count > 0){
-                                    $total_withdraw = $result['total_withdraw'];
-                                    ?>
-                                    <div>
-                                    <h3> طلبات السحب </h3>
-                                    <span> <?php echo $total_withdraw; ?> دولار </span>
-                                    </div>
-                                    <?php
-                                }
-                                ?>
                                 
+                                if ($result['total_withdraw']  > 0) {
+                                    $total_withdraw = $result['total_withdraw'];
+                                ?>
+                                    <div>
+                                        <h3> طلبات السحب </h3>
+                                        <span> <?php echo $total_withdraw; ?> دولار </span>
+                                    </div>
+                                <?php
+                                } 
+                                ?>
+
                                 <div>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#withdraw">
                                         سحب رصيد

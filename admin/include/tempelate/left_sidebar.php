@@ -88,7 +88,7 @@
                   <!-- END Coashes Section -->
 
 
-                  <!-- END Services Section -->
+                  <!-- END Services Section 
                   <li class="nav-item" id="lnk-message">
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa-solid fa-envelope color2"></i>
@@ -107,7 +107,44 @@
                           </li>
                       </ul>
                   </li>
-
+-->
+                  <!--   START Add balance  -->
+                  <li class="nav-item" id="lnk-coash">
+                      <a href="#" class="nav-link nav-link2">
+                          <i class="fa-solid fa-images color2"></i>
+                          <p>
+                              الصفقات والرصيد
+                              <i class="right fas fa-angle-left "></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item" id="lnk-rep-coash">
+                              <a href="main.php?dir=balance&page=report" class="nav-link">
+                                  <i class="far fa-circle nav-icon color3"></i>
+                                  <p> الرحلات </p>
+                              </a>
+                          </li>
+                          <li class="nav-item" id="lnk-rep-coash">
+                              <a href="main.php?dir=balance2&page=report" class="nav-link">
+                                  <i class="far fa-circle nav-icon color3"></i>
+                                  <p> الشحنات </p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <!-- END Add Balance  -->
+                  <!--   START Add balance  -->
+                  <li class="nav-item" id="lnk-coash">
+                      <a href="main.php?dir=withdraw&page=report" class="nav-link nav-link2">
+                          <i class="fa-solid fa-images color2"></i>
+                          <p>
+                              طلبات السحب
+                              <i class="right fas fa-angle-left "></i>
+                          </p>
+                      </a>
+                      
+                  </li>
+                  <!-- END Add Balance  -->
                   <li class="nav-item" id="lnk-message">
                       <a href="#" class="nav-link nav-link2">
                           <i class="fa-solid fa-envelope color2"></i>
@@ -127,25 +164,7 @@
                       </ul>
                   </li>
 
-                  <!--   START Add balance  -->
-                  <li class="nav-item" id="lnk-coash">
-                      <a href="#" class="nav-link nav-link2">
-                          <i class="fa-solid fa-images color2"></i>
-                          <p>
-                              الرصيد وعمليات الشحن
-                              <i class="right fas fa-angle-left "></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item" id="lnk-rep-coash">
-                              <a href="main.php?dir=balance&page=report" class="nav-link">
-                                  <i class="far fa-circle nav-icon color3"></i>
-                                  <p> مشاهدة التحويلات </p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-                  <!-- END Add Balance  -->
+
 
                   <li class="nav-item" id="lnk-review">
                       <a href="main.php?dir=settings&page=report" class="nav-link nav-link2">
@@ -155,7 +174,7 @@
                               <i class="right fas fa-angle-left "></i>
                           </p>
                       </a>
-                     
+
                   </li>
 
                   <li class="nav-item">

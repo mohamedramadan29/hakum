@@ -36,7 +36,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $stmt = $connect->prepare('SELECT * FROM travel_deal
+                    $stmt = $connect->prepare('SELECT * FROM product_deal
                         ');
                     $stmt->execute();
                     $alltype = $stmt->fetchAll();

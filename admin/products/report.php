@@ -26,8 +26,8 @@
                         <th> # </th>
                         <th> اسم المستخدم </th>
                         <th> اسم المنتج </th>
-                        <th>  من </th>
-                        <th> الي </th> 
+                        <th> من </th>
+                        <th> الي </th>
                         <th> تاريخ الوصول </th>
                         <th> الحالة </th>
                         <th> </th>
@@ -43,9 +43,33 @@
                             <td> <?php echo  $i++ ?> </td>
                             <td><?php echo $type['user_name']; ?> </td>
                             <td><?php echo $type['pro_name']; ?> </td>
-                            <td><?php echo $type['pro_from']; ?> </td>
-                            <td> <?php echo $type['pro_to']; ?> </td>
-                            <td> <?php echo $type['arrieve_at']; ?> </td> 
+                            <td><?php
+                                $stmt = $connect->prepare("SELECT * FROM  countries WHERE id=?");
+                                $stmt->execute(array($type['pro_from_country']));
+                                $from_data_country = $stmt->fetch();
+                                ////////////
+                                $stmt = $connect->prepare("SELECT * FROM  cities WHERE id=?");
+                                $stmt->execute(array($type['pro_from_city']));
+                                $from_data_city = $stmt->fetch();
+                                echo $from_data_city['name'];
+                                echo "--";
+                                echo $from_data_country['name'];
+
+                                ?> </td>
+                            <td> <?php
+                                    $stmt = $connect->prepare("SELECT * FROM  countries WHERE id=?");
+                                    $stmt->execute(array($type['pro_to_country']));
+                                    $from_data_country = $stmt->fetch();
+                                    ////////////
+                                    $stmt = $connect->prepare("SELECT * FROM  cities WHERE id=?");
+                                    $stmt->execute(array($type['pro_to_city']));
+                                    $from_data_city = $stmt->fetch();
+                                    echo $from_data_city['name'];
+                                    echo "--";
+                                    echo $from_data_country['name'];
+
+                                    ?> </td>
+                            <td> <?php echo $type['arrieve_at']; ?> </td>
                             <td>
                                 <?php
                                 if ($type['pro_status'] == 0) {

@@ -63,6 +63,24 @@ include $tem . 'left_sidebar.php';
             include 'balance/report.php';
         }
         // END balance  
+        // START balance   
+        if ($dir == 'balance2' && $page == 'add') {
+        } elseif ($dir == 'balance2' && $page == 'edit') {
+        } elseif ($dir == 'balance2' && $page == 'delete') {
+            include 'balance2/delete.php';
+        } elseif ($dir == 'balance2' && $page == 'report') {
+            include 'balance2/report.php';
+        }
+        // END balance  
+        // START Withdraw
+        if ($dir == 'withdraw' && $page == 'add') {
+        } elseif ($dir == 'withdraw' && $page == 'edit') {
+        } elseif ($dir == 'withdraw' && $page == 'delete') {
+            include 'withdraw/delete.php';
+        } elseif ($dir == 'withdraw' && $page == 'report') {
+            include 'withdraw/report.php';
+        }
+        // END Withdraw
         // START Settings   
         if ($dir == 'settings' && $page == 'add') {
         } elseif ($dir == 'settings' && $page == 'edit') {

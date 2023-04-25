@@ -4,7 +4,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"> <i class="fa fa-heart"></i> <a href="main.php?dir=dashboard&page=dashboard"> <?php echo $website_title; ?></a> <i class="fa fa-chevron-left"></i> </li>
-                    <li class="breadcrumb-item active" aria-current="page"> مشاهدة الرحلات  </li>
+                    <li class="breadcrumb-item active" aria-current="page"> مشاهدة الرحلات </li>
                 </ol>
             </nav>
         </div>
@@ -19,7 +19,7 @@
                     اضف كورس جديد <i class="fa fa-plus"></i>
                 </button>
             </div>
-                                            -->
+            -->
             <table id="tableone" class="table table-light table-striped table-hover table-bordered">
                 <thead>
                     <tr>
@@ -42,18 +42,54 @@
                         foreach ($alltype as $type) { ?> <tr>
                             <td> <?php echo  $i++ ?> </td>
                             <td><?php echo $type['user_name']; ?> </td>
-                            <td><?php echo $type['travel_from']; ?> </td>
-                            <td> <?php echo $type['travel_to']; ?> </td>
+                            <td><?php
+                                $stmt = $connect->prepare("SELECT * FROM  countries WHERE id=?");
+                                $stmt->execute(array($type['travel_from_country']));
+                                $from_data_country = $stmt->fetch();
+                                ////////////
+                                $stmt = $connect->prepare("SELECT * FROM  cities WHERE id=?");
+                                $stmt->execute(array($type['travel_from_city']));
+                                $from_data_city = $stmt->fetch();
+                                echo $from_data_city['name'];
+                                echo "--";
+                                echo $from_data_country['name'];
+
+                                ?> </td>
+                            <td> <?php
+                                    $stmt = $connect->prepare("SELECT * FROM  countries WHERE id=?");
+                                    $stmt->execute(array($type['travel_to_country']));
+                                    $from_data_country = $stmt->fetch();
+                                    ////////////
+                                    $stmt = $connect->prepare("SELECT * FROM  cities WHERE id=?");
+                                    $stmt->execute(array($type['travel_to_city']));
+                                    $from_data_city = $stmt->fetch();
+                                    echo $from_data_city['name'];
+                                    echo "--";
+                                    echo $from_data_country['name'];
+
+                                    ?> </td>
                             <td> <?php echo $type['travel_date']; ?> </td>
                             <td> <?php echo $type['travel_arrive_date']; ?> </td>
                             <td>
                                 <?php
-                                if ($type['travel_status'] == 0) {
+                                $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id=?");
+                                $stmt->execute(array($type['travel_id']));
+                                $deal_data = $stmt->fetch();
+                                $count = $stmt->rowCount();
+
+                                if ($count > 0) {
+                                    if ($deal_data['status'] == 1) {
                                 ?>
-                                    <span class="btn btn-warning btn-sm"> مفتوحة </span>
-                                <?php
-                                } elseif ($type['travel_status'] == 1) { ?>
-                                    <span class="btn btn-success btn-sm"> انتهت </span>
+                                        <span class="btn btn-warning btn-sm"> تحت التنفيذ </span>
+                                    <?php
+                                    } elseif ($deal_data['status'] == 2) {
+                                    ?>
+                                        <span class="btn btn-info btn-sm"> تمت </span>
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <span class="btn btn-primary btn-sm"> مفتوحة </span>
                                 <?php
                                 }
                                 ?>
