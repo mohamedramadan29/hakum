@@ -1110,3 +1110,83 @@ input[type='email'] {
 .form_search .select2-container {
     width: 100% !important;
 }
+
+@media(max-width:991px) {
+    .navbar-toggler {
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+    }
+
+    .hero .data .info h2 {
+        font-size: 25px;
+    }
+
+    .hero .data .info p {
+        font-size: 18px;
+    }
+
+    .how_work {
+        padding: 10px;
+    }
+
+    .how_work .data .info {
+        margin-bottom: 15px;
+    }
+
+    .travel .data h2 {
+        font-size: 25px;
+    }
+
+    .travel .data .info {
+        display: block;
+    }
+
+    .travel .data .info .product img {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .travel .data .person_info {
+        display: block;
+        padding-top: 15px
+    }
+
+    .travel .data .person_info .image_person {
+        display: inline-flex;
+    }
+    .register_now .data h2{
+        font-size: 25px;
+    }
+    .form_search{
+        padding: 0px;
+    }
+    .form_search h2{
+        font-size: 25px;
+    }
+    .travel_head{
+        padding-top:20px;
+    }
+    .form_search .info2{
+        margin-bottom:15px;
+        margin-right: -20px;
+    }
+    .form_search .data{
+        padding: 25px;
+    }
+    .profile{
+        padding: 0;
+    }
+    .profile .data{
+        padding: 0;
+    }
+    .profile .personal_image img{
+        width:130px;
+        height:130px;
+    }
+    .pro_from{
+        display: block;
+    }
+    .pro_from .select2-container{
+        margin-bottom: 15px;
+    }
+}
