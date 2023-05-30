@@ -1,5 +1,5 @@
 body {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Almarai', sans-serif;
 
 }
 
@@ -1066,15 +1066,16 @@ input[type='email'] {
     background-color: #fff;
     padding: 5px;
     border-radius: 5px;
-    border-top: 2px solid var(--main-color);
     padding: 10px;
     min-height: 175px;
+    box-shadow: 0px 0px 5px 0px #f1f1f1;
 }
 
 .how_work .data .info h4 {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .how_work .data .info p {
@@ -1117,6 +1118,10 @@ input[type='email'] {
         border: 1px solid #ccc;
     }
 
+    .hero {
+        background-position: inherit;
+    }
+
     .hero .data .info h2 {
         font-size: 25px;
     }
@@ -1154,39 +1159,61 @@ input[type='email'] {
     .travel .data .person_info .image_person {
         display: inline-flex;
     }
-    .register_now .data h2{
+
+    .register_now .data h2 {
         font-size: 25px;
     }
-    .form_search{
+
+    .form_search {
         padding: 0px;
     }
-    .form_search h2{
+
+    .form_search h2 {
         font-size: 25px;
     }
-    .travel_head{
-        padding-top:20px;
+
+    .travel_head {
+        padding-top: 20px;
     }
-    .form_search .info2{
-        margin-bottom:15px;
+
+    .form_search .info2 {
+        margin-bottom: 15px;
         margin-right: -20px;
     }
-    .form_search .data{
+
+    .form_search .data {
         padding: 25px;
     }
-    .profile{
+
+    .profile {
         padding: 0;
     }
-    .profile .data{
+
+    .profile .data {
         padding: 0;
     }
-    .profile .personal_image img{
-        width:130px;
-        height:130px;
+
+    .profile .personal_image img {
+        width: 130px;
+        height: 130px;
     }
-    .pro_from{
+
+    .pro_from {
         display: block;
     }
-    .pro_from .select2-container{
+
+    .pro_from .select2-container {
         margin-bottom: 15px;
+    }
+
+    #login,
+    #register {
+margin-bottom: 10px;
+        padding: 10px;
+        text-align: center;
+        display: inline-block;
+    }
+    .how_work .data h2{
+        margin-top: 40px;
     }
 }
