@@ -602,8 +602,15 @@ END ABOUT US SECTION
 
 .login_page .data .login_form .box {
     margin-bottom: 20px;
+    position: relative;
 }
-
+.login_page .data .login_form .box .password_show_icon{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    color: #646060;
+    cursor: pointer;
+}
 .login_page .data .login_form .box label {
     margin-bottom: 10px;
 }

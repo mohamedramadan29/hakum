@@ -24,7 +24,7 @@
                     <div class="info">
                         <h4> تواصل معنا </h4>
                         <ul class="list-unstyled">
-                            <li> <i class="fa fa-envelope"></i> info@hukum.com </li>
+                            <li> <i class="fa fa-envelope"></i> info@haackum.com </li>
                         </ul>
                         <ul class="list-unstyled social_media">
                             <li> <a href="https://www.facebook.com/profile.php?id=100090500351925"> <i class="fa fa-facebook"></i> </a> </li>
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                 </div>
-                <p class="copy_right"> جميع الحقوق محفوظة 2023 &copy; هاكم بواسطة <span style="font-size: 20px;font-weight: bold;color: #fff;"> Mr </span> </p>
+                <p class="copy_right"> جميع الحقوق محفوظة 2023 &copy; هاكم بواسطة </p>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
 
 
 <script src='themes/js/jquery.min.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="themes/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/588e070751.js" crossorigin="anonymous"></script>
 <script src='themes/js/select2.min.js'></script>
 <script src='themes/js/main.js'></script>

@@ -1,7 +1,11 @@
 <?php
+ob_start();
 $page_title = ' هاكم - تسجيل دخول ';
 session_start();
 include 'init.php';
+if(isset($_SESSION['username'])){
+    header('Location:profile');
+}
 ?>
 <div class="login_page">
     <div class="container">
@@ -12,7 +16,6 @@ include 'init.php';
                     if (isset($_POST['login'])) {
                         $name = $_POST['name'];
                         $password = $_POST['password'];
-
                         $formerror = [];
                         if (empty($name)) {
                             $formerror[] = ' من فضلك ادخل اسم المستخدم  ';
@@ -48,6 +51,12 @@ include 'init.php';
                     }
                     ?>
                     <div class="login_form">
+                        <?php
+                        if (isset($_SESSION['success_register'])) { ?>
+                            <div class="alert alert-success"> راائع , تم عمل الحساب بنجاح سجل دخولك الان </div>
+                        <?php }
+                        unset($_SESSION['success_register']);
+                        ?>
                         <h2> تسجيل دخول </h2>
                         <form action="" method="POST">
                             <div class="box">
@@ -57,6 +66,7 @@ include 'init.php';
                             <div class="box">
                                 <label for=""> كلمة المرور </label>
                                 <input type="password" name="password" id="password" class="form-control">
+                                <span onclick="togglePasswordVisibility()" class="fa fa-eye password_show_icon"></span>
                             </div>
                             <div class="box">
                                 <button class="btn btn-primary" name="login" type="submit"> تسجيل دخول </button>
@@ -83,3 +93,20 @@ include 'init.php';
 <?php
 
 include $tem . 'footer.php';
+?>
+
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var passwordIcon = document.querySelector(".password_show_icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordIcon.classList.add("password_show_icon_active");
+        } else {
+            passwordInput.type = "password";
+            passwordIcon.classList.remove("password_show_icon_active");
+        }
+    }
+</script>

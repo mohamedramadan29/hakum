@@ -1,8 +1,20 @@
 <?php
+ob_start();
 $page_title = ' هاكم -    حساب جديد ';
 session_start();
 include 'init.php';
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
+require 'vendor/phpmailer/PHPMailer/src/Exception.php';
+require 'vendor/phpmailer/PHPMailer/src/PHPMailer.php';
+require 'vendor/phpmailer/PHPMailer/src/SMTP.php';
+
+if (isset($_SESSION['username'])) {
+    header('Location:profile');
+}
 ?>
 <div class="login_page">
     <div class="container">
@@ -23,7 +35,7 @@ include 'init.php';
                         if (empty($email)) {
                             $formerror[] = 'من فضلك ادخل البريد الالكتروني ';
                         }
-                        if (strlen($password < 8)) {
+                        if (strlen($password) < 8) {
                             $formerror[] = 'كلمة المرور يجب ان تكون اكثر من 8 احرف ';
                         }
                         if ($password !== $confirm_password) {
@@ -43,14 +55,55 @@ include 'init.php';
                         }
 
                         if (empty($formerror)) {
-                            $stmt = $connect->prepare("INSERT INTO users (name,email,password)
-                            VALUES (:zname,:zemail,:zpassword)");
+                            // Generate a unique activation code
+                            $activationCode = md5(uniqid(rand(), true));
+                            $stmt = $connect->prepare("INSERT INTO users (name,email,password,active_status_code)
+                            VALUES (:zname,:zemail,:zpassword,:zstatus_code)");
                             $stmt->execute(array(
                                 'zname' => $name,
                                 'zemail' => $email,
-                                'zpassword' => $password
+                                'zpassword' => $password,
+                                'zstatus_code' => $activationCode,
                             ));
                             if ($stmt) {
+                                // START SEND MAIL ////////////////////////////////////
+                                //Create an instance; passing `true` enables exceptions
+                                $mail = new PHPMailer(true);
+                                try {
+                                    // الإعدادات الأساسية لإعداد البريد الإلكتروني
+                                    $mail->CharSet = 'UTF-8';
+                                    $mail->WordWrap = true;
+                                    $mail->isSMTP();
+                                    $mail->Host = 'haackum.com';
+                                    $mail->SMTPAuth = true;
+                                    $mail->Username = 'info@haackum.com';
+                                    $mail->Password = 'mohamedramadan2930';
+                                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                                    //To load the French version
+                                    // $mail->setLanguage('ar');
+                                    $mail->Port = 587;
+
+                                    // مُحتوى الرسالة
+
+                                    $mail->setFrom('info@haackum.com', 'هاكم ');
+                                    $mail->addAddress($email, $name);
+                                    $mail->Subject = 'تفعيل الحساب الخاص بك  ';
+                                    $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $name . ",</p>
+                                                    <p style='font-size:18px; font-family:inherit'>شكرا لك على تسجيلك في هاكم .</p>
+                                                    <p style='font-size:18px; font-family:inherit'>كود التفعيل الخاص بك هو:</p>
+                                                    <p><strong>" . $activationCode . "</strong></p>
+                                            ";
+                                    $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
+
+                                    // إرسال البريد الإلكتروني
+                                    $mail->send();
+                                    $_SESSION['mail'] = $email;
+                                    header('Location:activate');
+                                } catch (Exception $e) {
+                                    echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";
+                                }
+                                // END SEND MAIL //////////////////////////////////////
+
                     ?>
                                 <div class="alert alert-success"> راائع , تم عمل الحساب بنجاح سجل دخولك الان </div>
                             <?php
@@ -72,7 +125,7 @@ include 'init.php';
                     ?>
                     <div class="login_form">
                         <h2> حساب جديد </h2>
-                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                        <form action="#" method="post">
                             <div class="box">
                                 <label for=""> اسم المستخدم </label>
                                 <input required type="text" name="name" id="name" value="<?php if (isset($_REQUEST['name'])) echo $_REQUEST['name'] ?>" class="form-control">
@@ -84,16 +137,27 @@ include 'init.php';
                             <div class="box">
                                 <label for=""> كلمة المرور </label>
                                 <input required type="password" name="password" id="password" class="form-control">
+                                <span onclick="togglePasswordVisibility()" class="fa fa-eye password_show_icon"></span>
                             </div>
                             <div class="box">
                                 <label for=""> اعادة كلمة المرور </label>
                                 <input required type="password" name="confirm_password" id="confirm_password" class="form-control">
                             </div>
-                            
-                            <div class="box forget_box">
                             <div class="box">
-                                <button name="new_account" class="btn btn-primary"> حساب جديد </button>
+                                <div class="input_box">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style=" height: 16px !important;">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            أوفق علي <a href="privacy_policy" target="_blank" style="color: var(--second-color); text-decoration: none;"> شروط الاستخدام </a>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="box forget_box">
+                                <div class="box">
+                                    <button name="new_account" class="btn btn-primary"> حساب جديد </button>
+                                </div>
+
                                 <label for="">
                                     <a href="login"> تسجيل دخول ! </a>
                                 </label>
@@ -112,3 +176,18 @@ include 'init.php';
 <?php
 
 include $tem . 'footer.php';
+?>
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var passwordIcon = document.querySelector(".password_show_icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordIcon.classList.add("password_show_icon_active");
+        } else {
+            passwordInput.type = "password";
+            passwordIcon.classList.remove("password_show_icon_active");
+        }
+    }
+</script>
