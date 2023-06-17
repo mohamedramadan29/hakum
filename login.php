@@ -3,7 +3,7 @@ ob_start();
 $page_title = ' هاكم - تسجيل دخول ';
 session_start();
 include 'init.php';
-if(isset($_SESSION['username'])){
+if (isset($_SESSION['username'])) {
     header('Location:profile');
 }
 ?>
@@ -29,10 +29,17 @@ if(isset($_SESSION['username'])){
                             $data = $stmt->fetch();
                             $count = $stmt->rowCount();
                             if ($count > 0) {
-                                $_SESSION['username'] = $data['name'];
-                                $_SESSION['userid'] = $data['user_id'];
-                                // echo "Goood";
-                                header('Location:profile');
+                                if ($data['active_status'] == 1) {
+                                    $_SESSION['username'] = $data['name'];
+                                    $_SESSION['userid'] = $data['user_id'];
+                                    // echo "Goood";
+                                    header('Location:profile');
+                                } else {
+                    ?>
+                                    <div class="alert alert-danger" role="alert"> من فضلك يجب عليك تفعيل الحساب الخاص بك اولا من خلال الايميل المرسل
+                                    </div>
+                            <?php
+                                }
                             } else {
                                 $formerror[] = 'لا يوجد سجل بهذة البيانات';
                             }

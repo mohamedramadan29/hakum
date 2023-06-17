@@ -2,16 +2,11 @@
 ob_start();
 $page_title = ' هاكم -    حساب جديد ';
 session_start();
-include 'init.php';
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function 
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/phpmailer/PHPMailer/src/Exception.php';
-require 'vendor/phpmailer/PHPMailer/src/PHPMailer.php';
-require 'vendor/phpmailer/PHPMailer/src/SMTP.php';
-
+include 'init.php';
 if (isset($_SESSION['username'])) {
     header('Location:profile');
 }

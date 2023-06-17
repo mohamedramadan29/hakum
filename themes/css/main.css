@@ -1223,4 +1223,11 @@ margin-bottom: 10px;
     .how_work .data h2{
         margin-top: 40px;
     }
+    .login_page{
+        padding: 0;
+        padding-top: 20px;
+    }
+    .login_page .data img{
+        margin-bottom: 30px;
+    }
 }
