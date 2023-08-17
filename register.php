@@ -48,8 +48,8 @@ if (isset($_SESSION['username'])) {
                         if ($count > 0) {
                             $formerror[] = ' اسم المستخدم مستخدم من قبل  ';
                         }
-
                         if (empty($formerror)) {
+                            
                             // Generate a unique activation code
                             $activationCode = md5(uniqid(rand(), true));
                             $stmt = $connect->prepare("INSERT INTO users (name,email,password,active_status_code)
@@ -141,7 +141,7 @@ if (isset($_SESSION['username'])) {
                             <div class="box">
                                 <div class="input_box">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style=" height: 16px !important;">
+                                        <input checked class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style=" height: 16px !important;">
                                         <label class="form-check-label" for="flexCheckChecked">
                                             أوفق علي <a href="privacy_policy" target="_blank" style="color: var(--second-color); text-decoration: none;"> شروط الاستخدام </a>
                                         </label>
