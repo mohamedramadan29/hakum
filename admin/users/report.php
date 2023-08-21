@@ -28,6 +28,8 @@
                         <th>البريد الالكتروني</th>
                         <th> رقم الهاتف </th>
                         <th> تاريخ الميلاد </th>
+                        <th> العنوان </th>
+                        <th> الميزانية </th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -36,26 +38,22 @@
                         ');
                         $stmt->execute();
                         $alltype = $stmt->fetchAll();
-                        foreach ($alltype as $type) { ?> <tr>
-                            <td><?php echo $type['name']; ?> </td>
-                            <td><?php echo $type['email']; ?> </td>
+                        foreach ($alltype as $type) { ?>
+                        <tr>
+                            <td> <?php echo $type['name']; ?> </td>
+                            <td> <?php echo $type['email']; ?> </td>
                             <td> <?php echo $type['phone']; ?> </td>
                             <td> <?php echo $type['birthday']; ?> </td>
+                            <td> <?php echo $type['address']; ?> </td>
+                            <td> <?php echo $type['balance']; ?> </td>
                             <td>
-                                <!--
-                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#viewrecord<?php echo $type['user_id']; ?>">
-                                    مشاهدة <i class="fa fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editrecord<?php echo $type['user_id']; ?>">
-                                    تعديل <i class="fa fa-edit"></i>
-                                </button>
-                        -->
                                 <a class="confirm btn btn-danger btn-sm" href="main.php?dir=users&page=delete&user_id=<?php echo $type['user_id']; ?> ">
                                     حذف <i class="fa fa-trash"></i>
                                 </a>
                             </td>
-                        </tr> <?php
-                                ?>
+                        </tr>
+                        <?php
+                        ?>
                         <!-- START MODEL TO Edit RECORD  -->
                         <div class="modal fade" id="editrecord<?php echo $type['cus_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

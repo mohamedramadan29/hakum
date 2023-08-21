@@ -49,7 +49,7 @@ if (isset($_SESSION['username'])) {
                             $formerror[] = ' اسم المستخدم مستخدم من قبل  ';
                         }
                         if (empty($formerror)) {
-                            
+
                             // Generate a unique activation code
                             $activationCode = md5(uniqid(rand(), true));
                             $stmt = $connect->prepare("INSERT INTO users (name,email,password,active_status_code)

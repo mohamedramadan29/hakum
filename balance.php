@@ -239,7 +239,7 @@ $userdata = $stmt->fetch();
     </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=Aa6xGlT7CdEYFS463meNhvyq6Tovq_rlYBK0U2pEMalXKRMy-1GxSFwAd6_UrMFQkaYxQRn-Dop6Gk61&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ASTgYkMzsJ4inC0THJvaXlTRHGp0tJ-_F8iRa-47KDQZMC3lXeJHzpEZx6I4Zqa0Y6ZflooakBrPlpI_"></script>
 <script>
     paypal.Buttons({
         onClick() {
