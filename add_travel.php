@@ -11,6 +11,14 @@ $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
 $user_id = $userdata['user_id'];
+$name = $userdata['name'];
+$email = $userdata['email'];
+$phone = $userdata['phone'];
+$birthday = $userdata['birthday'];
+$profile_image = $userdata['profile_image'];
+$address = $userdata['address'];
+$passport = $userdata['passport'];
+$six = $userdata['six'];
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -108,9 +116,10 @@ $user_id = $userdata['user_id'];
                             $travel_date = $_POST['travel_date'];
                             $travel_arrive_date = $_POST['travel_arrive_date'];
                             $av_weight = $_POST['av_weight'];
+                            $id_number = $_POST['id_number'];
 
                             $errors = [];
-                            if (empty($travel_from_country) || empty($travel_to_country) || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight)) {
+                            if (empty($travel_from_country) || empty($travel_to_country) || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight) || empty($id_number)) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {
@@ -142,77 +151,90 @@ $user_id = $userdata['user_id'];
                         }
 
                         ?>
-                        <div class="my_form">
-                            <form action="" method="post" enctype="multipart/form-data">
+                        <?php
+                        if (empty($name) || empty($email) || empty($phone) || empty($birthday) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number)) {
+                            ?>
+                            <div class="alert alert-danger"> من فضلك ادخل معلوماتك كاملة للتمكن من الأضافة</div>
+                        <?php
+                        }else{
+                            ?>
+                            <div class="my_form">
+                                <form action="" method="post" enctype="multipart/form-data">
 
-                                <div class="box">
-                                    <label for=""> مكان المغادرة </label>
-                                    <div class="pro_from">
-                                        <div>
-                                            <select name="travel_from_country" id="pro_form_country" class="form-control select2">
-                                                <option value=""> -- اختر الدولة --</option>
-                                                <?php
-                                                $stmt = $connect->prepare("SELECT * FROM countries");
-                                                $stmt->execute();
-                                                $allcountry = $stmt->fetchAll();
-                                                foreach ($allcountry as $country) {
-                                                ?>
-                                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <select name="travel_from_city" class="form-control select2" id="pro_from_city">
-                                                <option value=""> -- اختر المدينة -- </option>
-                                            </select>
+                                    <div class="box">
+                                        <label for=""> مكان المغادرة </label>
+                                        <div class="pro_from">
+                                            <div>
+                                                <select name="travel_from_country" id="pro_form_country" class="form-control select2">
+                                                    <option value=""> -- اختر الدولة --</option>
+                                                    <?php
+                                                    $stmt = $connect->prepare("SELECT * FROM countries");
+                                                    $stmt->execute();
+                                                    $allcountry = $stmt->fetchAll();
+                                                    foreach ($allcountry as $country) {
+                                                        ?>
+                                                        <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select name="travel_from_city" class="form-control select2" id="pro_from_city">
+                                                    <option value=""> -- اختر المدينة -- </option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <label for=""> مكان الوصول </label>
-                                    <div class="pro_from">
-                                        <div>
-                                            <select name="travel_to_country" id="pro_to_country" class="form-control select2">
-                                                <option value=""> -- اختر الدولة --</option>
-                                                <?php
-                                                $stmt = $connect->prepare("SELECT * FROM countries");
-                                                $stmt->execute();
-                                                $allcountry = $stmt->fetchAll();
-                                                foreach ($allcountry as $country) {
-                                                ?>
-                                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <select name="travel_to_city" class="form-control select2" id="pro_to_city">
-                                                <option value=""> -- اختر المدينة -- </option>
-                                            </select>
+                                    <div class="box">
+                                        <label for=""> مكان الوصول </label>
+                                        <div class="pro_from">
+                                            <div>
+                                                <select name="travel_to_country" id="pro_to_country" class="form-control select2">
+                                                    <option value=""> -- اختر الدولة --</option>
+                                                    <?php
+                                                    $stmt = $connect->prepare("SELECT * FROM countries");
+                                                    $stmt->execute();
+                                                    $allcountry = $stmt->fetchAll();
+                                                    foreach ($allcountry as $country) {
+                                                        ?>
+                                                        <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select name="travel_to_city" class="form-control select2" id="pro_to_city">
+                                                    <option value=""> -- اختر المدينة -- </option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="box">
+                                        <label for=""> توقيت الوصول المتوقع </label>
+                                        <input min="2023-09-30" type="date" name="travel_arrive_date" id="travel_arrive_date" class="form-control" value="<?php if (isset($_REQUEST['travel_arrive_date'])) echo $_REQUEST['travel_arrive_date'] ?>">
+                                    </div>
 
-                                <div class="box">
-                                    <label for=""> توقيت الرحلة </label>
-                                    <input type="date" name="travel_date" id="travel_date" class="form-control" value="<?php if (isset($_REQUEST['travel_date'])) echo $_REQUEST['travel_date'] ?>">
-                                </div>
-                                <div class="box">
-                                    <label for=""> توقيت الوصول المتوقع </label>
-                                    <input type="date" name="travel_arrive_date" id="travel_arrive_date" class="form-control" value="<?php if (isset($_REQUEST['travel_arrive_date'])) echo $_REQUEST['travel_arrive_date'] ?>">
-                                </div>
-                                <div class="box">
-                                    <label for=""> الوزن المتاح (كجم) </label>
-                                    <input type="number" name="av_weight" id="av_weight" class="form-control" value="<?php if (isset($_REQUEST['av_weight'])) echo $_REQUEST['av_weight'] ?>">
-                                </div>
-                                <div class="box">
-                                    <input type="submit" name="add_travel" class="btn btn-primary" value=" اضافة رحلة ">
-                                </div>
-                            </form>
-                        </div>
+                                    <div class="box">
+                                        <label for=""> توقيت الرحلة </label>
+                                        <input min="2023-09-30" type="date" name="travel_date" id="travel_date" class="form-control" value="<?php if (isset($_REQUEST['travel_date'])) echo $_REQUEST['travel_date'] ?>">
+                                    </div>
+
+                                    <div class="box">
+                                        <label for=""> الوزن المتاح (كجم) </label>
+                                        <input type="number" name="av_weight" id="av_weight" class="form-control" value="<?php if (isset($_REQUEST['av_weight'])) echo $_REQUEST['av_weight'] ?>">
+                                    </div>
+                                    <div class="box">
+                                        <input type="submit" name="add_travel" class="btn btn-primary" value=" اضافة رحلة ">
+                                    </div>
+                                </form>
+                            </div>
+                        <?php
+                        }
+
+                        ?>
+
                     </div>
                 </div>
             </div>

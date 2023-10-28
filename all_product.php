@@ -6,7 +6,6 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location:login");
 }
-
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
@@ -34,7 +33,6 @@ $userdata = $stmt->fetch();
                             <h6> لوحة التحكم </h6>
                             <br>
                             <div class="row">
-
                                 <div class="col-4">
                                     <a href="profile">
                                         <div class="control_setting_section">
@@ -138,7 +136,8 @@ $userdata = $stmt->fetch();
                                                             <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
                                                         </div>
                                                         <div>
-                                                            <a href="edit_product.php?pro_id=<?php echo $product['pro_id']; ?>" type="submit" class="btn btn-primary" name="edit_product"> تعديل الشحنة <i class="fa fa-edit"> </i> </a>
+                                                            <a href="edit_product.php?pro_id=<?php echo $product['pro_id']; ?>" type="submit" class="btn btn-primary btn-sm"> تعديل   <i class="fa fa-edit"> </i> </a>
+                                                            <a href="delete_product.php?pro_id=<?php echo $product['pro_id']; ?>"  onclick="return confirm('  هل انت متاكد من عملية الحذف؟')" type="submit" class="btn btn-danger btn-sm"> حذف   <i class="fa fa-trash"> </i> </a>
                                                         </div>
                                                     </div>
                                                 </div>

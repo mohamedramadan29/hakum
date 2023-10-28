@@ -6,6 +6,6 @@ if (isset($_SESSION['username'])) {
 if (isset($_SESSION['com_id'])) {
     unset($_SESSION['com_id']);
 }
-header('location:index.php');
+header('location:index');
 session_destroy();
 ?>

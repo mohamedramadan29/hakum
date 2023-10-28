@@ -6,12 +6,10 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location:login");
 }
-
 $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
 ?>
-
 <div class="profile">
     <div class="container-fluid">
         <div class="data">
@@ -136,7 +134,8 @@ $userdata = $stmt->fetch();
                                                             <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
                                                         </div>
                                                         <div>
-                                                            <a href="edit_travel.php?travel_id=<?php echo $travel['travel_id']; ?>" type="submit" class="btn btn-primary" name="edit_product"> تعديل الرحلة <i class="fa fa-edit"> </i> </a>
+                                                            <a href="edit_travel.php?travel_id=<?php echo $travel['travel_id']; ?>" type="submit" class="btn btn-primary btn-sm" > تعديل  <i class="fa fa-edit"> </i> </a>
+                                                            <a href="delete_travel.php?travel_id=<?php echo $travel['travel_id']; ?>"  onclick="return confirm('  هل انت متاكد من عملية الحذف؟')" type="submit" class="btn btn-danger btn-sm"> حذف   <i class="fa fa-trash"> </i> </a>
                                                         </div>
                                                     </div>
                                                 </div>

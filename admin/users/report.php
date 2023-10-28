@@ -29,7 +29,10 @@
                         <th> رقم الهاتف </th>
                         <th> تاريخ الميلاد </th>
                         <th> العنوان </th>
+                        <th> النوع </th>
+                        <th> رقم الهوية </th>
                         <th> الميزانية </th>
+                        <th> صورة جواز السفر </th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -45,10 +48,13 @@
                             <td> <?php echo $type['phone']; ?> </td>
                             <td> <?php echo $type['birthday']; ?> </td>
                             <td> <?php echo $type['address']; ?> </td>
+                            <td> <?php echo $type['six']; ?> </td>
+                            <td> <?php echo $type['id_number']; ?> </td>
                             <td> <?php echo $type['balance']; ?> </td>
+                            <td><a target="_blank" class="btn btn-warning btn-sm" href="../website_uploads/<?php echo $type['passport']; ?>"> <i class="fa fa-eye"></i> </a>  </td>
                             <td>
                                 <a class="confirm btn btn-danger btn-sm" href="main.php?dir=users&page=delete&user_id=<?php echo $type['user_id']; ?> ">
-                                    حذف <i class="fa fa-trash"></i>
+                                      <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

@@ -2,10 +2,8 @@
 ob_start();
 $page_title = ' هاكم -    حساب جديد ';
 session_start();
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 include 'init.php';
 if (isset($_SESSION['username'])) {
     header('Location:profile');
@@ -18,11 +16,10 @@ if (isset($_SESSION['username'])) {
                 <div class="col-lg-6">
                     <?php
                     if (isset($_POST['new_account'])) {
-
                         $name = $_POST['name'];
                         $email = $_POST['email'];
-                        $password = sha1($_POST['password']);
-                        $confirm_password = sha1($_POST['confirm_password']);
+                        $password = $_POST['password'];
+                        $confirm_password =  $_POST['confirm_password'] ;
                         $formerror = [];
                         if (empty($name)) {
                             $formerror[] = ' من فضلك ادخل اسم المستخدم  ';
@@ -49,15 +46,15 @@ if (isset($_SESSION['username'])) {
                             $formerror[] = ' اسم المستخدم مستخدم من قبل  ';
                         }
                         if (empty($formerror)) {
-
                             // Generate a unique activation code
                             $activationCode = md5(uniqid(rand(), true));
+                            $activationCode = substr(md5(uniqid(rand(), true)), 0, 5);
                             $stmt = $connect->prepare("INSERT INTO users (name,email,password,active_status_code)
                             VALUES (:zname,:zemail,:zpassword,:zstatus_code)");
                             $stmt->execute(array(
                                 'zname' => $name,
                                 'zemail' => $email,
-                                'zpassword' => $password,
+                                'zpassword' =>sha1($password),
                                 'zstatus_code' => $activationCode,
                             ));
                             if ($stmt) {
@@ -77,9 +74,7 @@ if (isset($_SESSION['username'])) {
                                     //To load the French version
                                     // $mail->setLanguage('ar');
                                     $mail->Port = 587;
-
                                     // مُحتوى الرسالة
-
                                     $mail->setFrom('info@haackum.com', 'هاكم ');
                                     $mail->addAddress($email, $name);
                                     $mail->Subject = 'تفعيل الحساب الخاص بك  ';

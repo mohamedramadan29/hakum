@@ -10,6 +10,15 @@ $stmt = $connect->prepare("SELECT * FROM users WHERE name = ?");
 $stmt->execute(array($_SESSION['username']));
 $userdata = $stmt->fetch();
 $user_id = $userdata['user_id'];
+$name = $userdata['name'];
+$email = $userdata['email'];
+$phone = $userdata['phone'];
+$birthday = $userdata['birthday'];
+$profile_image = $userdata['profile_image'];
+$address = $userdata['address'];
+$passport = $userdata['passport'];
+$six = $userdata['six'];
+$id_number = $userdata['id_number'];
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -20,14 +29,14 @@ $user_id = $userdata['user_id'];
                         <div class="personal_image">
                             <?php
                             if ($userdata['profile_image'] != "") {
-                            ?>
+                                ?>
                                 <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <img src="uploads/profile.png"> <?php
-                                                            }
-                                                                ?>
+                            }
+                            ?>
                             <h3> <?php echo $userdata['name']; ?> </h3>
                         </div>
                         <div class="control_setting">
@@ -87,7 +96,7 @@ $user_id = $userdata['user_id'];
                                     <a href="deals">
                                         <div class="control_setting_section">
                                             <i class="fa fa-handshake"></i>
-                                            <p> صفقاتي  </p>
+                                            <p> صفقاتي </p>
                                         </div>
                                     </a>
                                 </div>
@@ -105,7 +114,7 @@ $user_id = $userdata['user_id'];
                             $pro_from_city = $_POST['pro_from_city'];
                             $pro_to_country = $_POST['pro_to_country'];
                             $pro_to_city = $_POST['pro_to_city'];
-                            
+
                             $arrieve_at = $_POST['arrieve_at'];
                             $pro_weight = $_POST['pro_weight'];
                             $pro_desc = $_POST['pro_desc'];
@@ -123,7 +132,7 @@ $user_id = $userdata['user_id'];
                                 $pro_image_uploaded = '';
                             }
                             $errors = [];
-                            if (empty($pro_name) || empty($pro_form_country) || empty($pro_to_country) || empty($arrieve_at) || empty($pro_desc) || empty($pro_weight)) {
+                            if (empty($pro_name) || empty($pro_form_country) || empty($pro_to_country) || empty($arrieve_at) || empty($pro_desc) || empty($pro_weight) || empty($id_number)) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {
@@ -138,104 +147,127 @@ $user_id = $userdata['user_id'];
                                     'zfrom_country' => $pro_form_country,
                                     'zfrom_city' => $pro_from_city,
                                     'zto_country' => $pro_to_country,
-                                    'zto_city' => $pro_to_city, 
+                                    'zto_city' => $pro_to_city,
                                     'zarrive_at' => $arrieve_at,
                                     'zuser_name' => $_SESSION['username'],
                                     'zuser_id' => $user_id,
                                 ));
                                 if ($stmt) {
-                        ?>
-                                    <li class="alert alert-success"> تم اضافة الشحنة بنجاح </li>
-                                <?php
+                                    ?>
+                                    <li class="alert alert-success"> تم اضافة الشحنة بنجاح</li>
+                                    <?php
                                 }
                             } else {
                                 foreach ($errors as $error) {
-                                ?>
+                                    ?>
                                     <li class="alert alert-danger"> <?php echo $error; ?> </li>
-                        <?php
+                                    <?php
                                 }
                             }
                         }
 
                         ?>
-                        <div class="my_form">
-                            <form action="" method="post" enctype="multipart/form-data">
-                                <div class="box">
-                                    <label for=""> اسم المنتج </label>
-                                    <input required type="text" name="pro_name" id="pro_name" class="form-control" value="<?php if (isset($_REQUEST['pro_name'])) echo $_REQUEST['pro_name'] ?>">
-                                </div>
-                                <div class="box">
-                                    <label for=""> مكان المغادرة </label>
-                                    <div class="pro_from">
-                                        <div>
-                                            <select name="pro_form_country" id="pro_form_country" class="form-control select2">
-                                                <option value=""> -- اختر الدولة --</option>
-                                                <?php
-                                                $stmt = $connect->prepare("SELECT * FROM countries");
-                                                $stmt->execute();
-                                                $allcountry = $stmt->fetchAll();
-                                                foreach ($allcountry as $country) {
-                                                ?>
-                                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <select name="pro_from_city" class="form-control select2" id="pro_from_city">
-                                                <option value=""> -- اختر المدينة -- </option>
-                                            </select>
+                        <?php
+                        if (empty($name) || empty($email) || empty($phone) || empty($birthday) || empty($profile_image) || empty($passport) || empty($six)) {
+                            ?>
+                            <div class="alert alert-danger"> من فضلك ادخل معلوماتك كاملة للتمكن من الأضافة</div>
+                            <?php
+                        } else {
+                            ?>
+                            <div class="my_form">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="box">
+                                        <label for=""> اسم المنتج </label>
+                                        <input required type="text" name="pro_name" id="pro_name" class="form-control"
+                                               value="<?php if (isset($_REQUEST['pro_name'])) echo $_REQUEST['pro_name'] ?>">
+                                    </div>
+                                    <div class="box">
+                                        <label for=""> مكان المغادرة </label>
+                                        <div class="pro_from">
+                                            <div>
+                                                <select name="pro_form_country" id="pro_form_country"
+                                                        class="form-control select2">
+                                                    <option value=""> -- اختر الدولة --</option>
+                                                    <?php
+                                                    $stmt = $connect->prepare("SELECT * FROM countries");
+                                                    $stmt->execute();
+                                                    $allcountry = $stmt->fetchAll();
+                                                    foreach ($allcountry as $country) {
+                                                        ?>
+                                                        <option value="<?php echo $country['id']; ?>"> <?php echo $country['name']; ?> </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select name="pro_from_city" class="form-control select2"
+                                                        id="pro_from_city">
+                                                    <option value=""> -- اختر المدينة --</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <label for=""> مكان الوصول </label>
-                                    <div class="pro_from">
-                                        <div>
-                                            <select name="pro_to_country" id="pro_to_country" class="form-control select2">
-                                                <option value=""> -- اختر الدولة --</option>
-                                                <?php
-                                                $stmt = $connect->prepare("SELECT * FROM countries");
-                                                $stmt->execute();
-                                                $allcountry = $stmt->fetchAll();
-                                                foreach ($allcountry as $country) {
-                                                ?>
-                                                    <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <select name="pro_to_city" class="form-control select2" id="pro_to_city">
-                                                <option value=""> -- اختر المدينة -- </option>
-                                            </select>
+                                    <div class="box">
+                                        <label for=""> مكان الوصول </label>
+                                        <div class="pro_from">
+                                            <div>
+                                                <select name="pro_to_country" id="pro_to_country"
+                                                        class="form-control select2">
+                                                    <option value=""> -- اختر الدولة --</option>
+                                                    <?php
+                                                    $stmt = $connect->prepare("SELECT * FROM countries");
+                                                    $stmt->execute();
+                                                    $allcountry = $stmt->fetchAll();
+                                                    foreach ($allcountry as $country) {
+                                                        ?>
+                                                        <option value="<?php echo $country['id']; ?>"> <?php echo $country['name']; ?> </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select name="pro_to_city" class="form-control select2"
+                                                        id="pro_to_city">
+                                                    <option value=""> -- اختر المدينة --</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="box">
-                                    <label for=""> موعد الوصول المتوقع </label>
-                                    <input required type="date" name="arrieve_at" id="arrieve_at" class="form-control" value="<?php if (isset($_REQUEST['arrieve_at'])) echo $_REQUEST['arrieve_at'] ?>">
-                                </div>
-                                <div class="box">
-                                    <label for=""> صورة المنتج </label>
-                                    <input required type="file" name="pro_image" id="pro_image" class="form-control" value="<?php if (isset($_REQUEST['pro_image'])) echo $_REQUEST['pro_image'] ?>">
-                                </div>
-                                <div class="box">
-                                    <label for=""> وزن المنتج (كجم)</label>
-                                    <input required type="number" min="1" name="pro_weight" id="pro_to" class="form-control" value="<?php if (isset($_REQUEST['pro_weight'])) echo $_REQUEST['pro_weight'] ?>">
-                                </div>
-                                <div class="box">
-                                    <label for=""> وصف المنتج </label>
-                                    <textarea required name="pro_desc" class="form-control"><?php if (isset($_REQUEST['pro_desc'])) echo $_REQUEST['pro_desc'] ?></textarea>
-                                </div>
-                                <div class="box">
-                                    <input type="submit" class="btn btn-primary" name="add_product" value="اضافة شحنة ">
-                                </div>
-                            </form>
-                        </div>
+                                    <div class="box">
+                                        <label for=""> موعد الوصول المتوقع </label>
+                                        <input min="2023-09-30" required type="date" name="arrieve_at" id="arrieve_at"
+                                               class="form-control"
+                                               value="<?php if (isset($_REQUEST['arrieve_at'])) echo $_REQUEST['arrieve_at'] ?>">
+                                    </div>
+                                    <div class="box">
+                                        <label for=""> صورة المنتج </label>
+                                        <input required type="file" name="pro_image" id="pro_image" class="form-control"
+                                               value="<?php if (isset($_REQUEST['pro_image'])) echo $_REQUEST['pro_image'] ?>">
+                                    </div>
+                                    <div class="box">
+                                        <label for=""> وزن المنتج (كجم)</label>
+                                        <input required type="number" min="1" name="pro_weight" id="pro_to"
+                                               class="form-control"
+                                               value="<?php if (isset($_REQUEST['pro_weight'])) echo $_REQUEST['pro_weight'] ?>">
+                                    </div>
+                                    <div class="box">
+                                        <label for=""> وصف المنتج </label>
+                                        <textarea required name="pro_desc"
+                                                  class="form-control"><?php if (isset($_REQUEST['pro_desc'])) echo $_REQUEST['pro_desc'] ?></textarea>
+                                    </div>
+                                    <div class="box">
+                                        <input type="submit" class="btn btn-primary" name="add_product"
+                                               value="اضافة شحنة ">
+                                    </div>
+                                </form>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -247,9 +279,9 @@ include $tem . 'footer.php';
 ?>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // مكان المغادرة 
-        $('#pro_form_country').change(function() {
+        $('#pro_form_country').change(function () {
             var country_id = $(this).val();
             if (country_id != '') {
                 $.ajax({
@@ -258,7 +290,7 @@ include $tem . 'footer.php';
                     data: {
                         country_id: country_id
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $('#pro_from_city').html(data);
                     }
                 });
@@ -267,7 +299,7 @@ include $tem . 'footer.php';
             }
         });
         // مكان الوصول
-        $('#pro_to_country').change(function() {
+        $('#pro_to_country').change(function () {
             var country_id = $(this).val();
             if (country_id != '') {
                 $.ajax({
@@ -276,7 +308,7 @@ include $tem . 'footer.php';
                     data: {
                         country_id: country_id
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $('#pro_to_city').html(data);
                     }
                 });
