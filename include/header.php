@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="themes/css/select2.min.css">
     <link rel="stylesheet" href="themes/css/main.css">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title> <?php echo $page_title; ?> </title>
 </head>
 

@@ -4,6 +4,7 @@ $page_title = ' هاكم -    حساب جديد ';
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 include 'init.php';
 if (isset($_SESSION['username'])) {
     header('Location:profile');
@@ -133,12 +134,14 @@ if (isset($_SESSION['username'])) {
                                 <label for=""> اعادة كلمة المرور </label>
                                 <input required type="password" name="confirm_password" id="confirm_password" class="form-control">
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6LdK5dgoAAAAACV2jBoGrSKMGEkz1_nmIxHLhK5_"></div>
+                            <br/>
                             <div class="box">
                                 <div class="input_box">
                                     <div class="form-check">
                                         <input checked class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style=" height: 16px !important;">
                                         <label class="form-check-label" for="flexCheckChecked">
-                                            أوفق علي <a href="privacy_policy" target="_blank" style="color: var(--second-color); text-decoration: none;"> شروط الاستخدام </a>
+                                            أوفق علي <a href="terms" target="_blank" style="color: var(--second-color); text-decoration: none;"> شروط الاستخدام </a>
                                         </label>
                                     </div>
                                 </div>

@@ -19,6 +19,7 @@ $profile_image = $userdata['profile_image'];
 $address = $userdata['address'];
 $passport = $userdata['passport'];
 $six = $userdata['six'];
+$id_number = $userdata['id_number'];
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -152,6 +153,7 @@ $six = $userdata['six'];
 
                         ?>
                         <?php
+
                         if (empty($name) || empty($email) || empty($phone) || empty($birthday) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number)) {
                             ?>
                             <div class="alert alert-danger"> من فضلك ادخل معلوماتك كاملة للتمكن من الأضافة</div>

@@ -168,7 +168,7 @@ $id_number = $userdata['id_number'];
 
                         ?>
                         <?php
-                        if (empty($name) || empty($email) || empty($phone) || empty($birthday) || empty($profile_image) || empty($passport) || empty($six)) {
+                        if (empty($name) || empty($email) || empty($phone) || empty($birthday) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number)) {
                             ?>
                             <div class="alert alert-danger"> من فضلك ادخل معلوماتك كاملة للتمكن من الأضافة</div>
                             <?php
