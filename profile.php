@@ -30,6 +30,20 @@ $userdata = $stmt->fetch();
                                                             }
                                                                 ?>
                             <h3> <?php echo $userdata['name']; ?> </h3>
+                            <?php
+                            if (
+                                !empty($userdata['name']) && !empty($userdata['email']) && !empty($userdata['phone']) && !empty($userdata['six']) && !empty($userdata['id_number']) &&
+                                !empty($userdata['country']) && !empty($userdata['profile_image'])  && !empty($userdata['nationality']) && !empty($userdata['passport']) && !empty($userdata['address'])
+                            ) {
+                            ?>
+                                <span class="badge badge-success bg-success"> الحساب مكتمل  </span>
+                            <?php
+                            } else {
+                            ?>
+                                <span class="badge badge-danger bg-danger"> الحساب غير مكتمل  </span>
+                            <?php
+                            }
+                            ?>
                         </div>
                         <div class="control_setting">
                             <h6> لوحة التحكم </h6>
@@ -113,6 +127,7 @@ $userdata = $stmt->fetch();
                             $phone = $_POST['phone'];
                             $six = $_POST['six'];
                             $id_number = $_POST['id_number'];
+                            $address = $_POST['address'];
                             $country = $_POST['country'];
                             $city = $_POST['city'];
                             $state = $_POST['state'];
@@ -162,8 +177,8 @@ $userdata = $stmt->fetch();
                                 $formerror[] = ' اسم المستخدم مستخدم من قبل من فضلك ادخل اسم جديد  ';
                             }
                             if (empty($formerror)) {
-                                $stmt = $connect->prepare('UPDATE users SET email=?,country_code=?,phone=?,country=?,city=?,state=?,six=?,id_number=?,nationality=? WHERE name=?');
-                                $stmt->execute(array($email, $country_code, $phone, $country, $city, $state, $six, $id_number, $nationality, $_SESSION['username']));
+                                $stmt = $connect->prepare('UPDATE users SET email=?,country_code=?,phone=?,address=?,country=?,city=?,state=?,six=?,id_number=?,nationality=? WHERE name=?');
+                                $stmt->execute(array($email, $country_code, $phone, $address, $country, $city, $state, $six, $id_number, $nationality, $_SESSION['username']));
                                 if (!empty($_FILES['passport']['tmp_name'])) {
                                     $stmt = $connect->prepare("UPDATE users SET passport=? WHERE name=?");
                                     $stmt->execute(array($passport_uploaded, $_SESSION['username']));
@@ -203,12 +218,14 @@ $userdata = $stmt->fetch();
                                     </div>
                                 </div>
                                 <div class="box">
-                                    <label for="country"> الدولة </label>
-                                    <input required type="text" name="country" id="country" class="form-control" value="<?php echo $userdata['country']; ?>">
-                                    <label for="city"> المدينة </label>
-                                    <input required type="text" name="city" id="city" class="form-control" value="<?php echo $userdata['city']; ?>">
+                                    <label for="country"> العنوان </label>
+                                    <input required type="text" name="address" id="address" class="form-control" value="<?php echo $userdata['address']; ?>">
                                     <label for="state"> الحي </label>
                                     <input required type="text" name="state" id="state" class="form-control" value="<?php echo $userdata['state']; ?>">
+                                    <label for="city"> المدينة </label>
+                                    <input required type="text" name="city" id="city" class="form-control" value="<?php echo $userdata['city']; ?>">
+                                    <label for="country"> الدولة </label>
+                                    <input required type="text" name="country" id="country" class="form-control" value="<?php echo $userdata['country']; ?>">
                                 </div>
                                 <div class="box">
                                     <label for=""> الجنس </label>

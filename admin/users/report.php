@@ -26,9 +26,12 @@
                     <tr>
                         <th>الاسم </th>
                         <th>البريد الالكتروني</th>
+                        <th> كود الدولة   </th>
                         <th> رقم الهاتف </th>
+                        <th> العنوان  </th>
                         <th> الدولة </th>
                         <th> المدينة </th>
+                        <th> الحي </th>
                         <th> النوع </th>
                         <th> الجنسية  </th>
                         <th> رقم الهوية </th>
@@ -47,9 +50,12 @@
                         <tr>
                             <td> <?php echo $type['name']; ?> </td>
                             <td> <?php echo $type['email']; ?> </td>
+                            <td> <?php echo $type['country_code']; ?> </td>
                             <td> <?php echo $type['phone']; ?> </td>
+                            <td> <?php echo $type['address']; ?> </td>
                             <td> <?php echo $type['country']; ?> </td>
                             <td> <?php echo $type['city']; ?> </td>
+                            <td> <?php echo $type['state']; ?> </td>
                             <td> <?php echo $type['six']; ?> </td>
                             <td> <?php echo $type['nationality']; ?> </td>
                             <td> <?php echo $type['id_number']; ?> </td>
@@ -58,7 +64,7 @@
                             <td> <?php
                                     if (
                                         !empty($type['name']) && !empty($type['email']) && !empty($type['phone']) && !empty($type['six']) && !empty($type['id_number']) &&
-                                        !empty($type['country']) && !empty($type['profile_image'])  && !empty($type['nationality']) && !empty($type['passport'])
+                                        !empty($type['country']) && !empty($type['profile_image'])  && !empty($type['nationality']) && !empty($type['passport']) && !empty($type['address'])
                                     ) {
                                     ?>
                                     <span class="badge badge-success"> مكتمل </span>

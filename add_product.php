@@ -14,6 +14,7 @@ $name = $userdata['name'];
 $email = $userdata['email'];
 $phone = $userdata['phone'];
 $profile_image = $userdata['profile_image'];
+$address = $userdata['address'];
 $country = $userdata['country'];
 $passport = $userdata['passport'];
 $six = $userdata['six'];
@@ -132,7 +133,7 @@ $nationality = $userdata['nationality'];
                                 $pro_image_uploaded = '';
                             }
                             $errors = [];
-                            if (empty($name) || empty($email) || empty($phone) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number) || empty($country) || empty($nationality)) {
+                            if (empty($address) || empty($name) || empty($email) || empty($phone) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number) || empty($country) || empty($nationality)) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {

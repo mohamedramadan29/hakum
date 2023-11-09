@@ -13,8 +13,9 @@ $userdata = $stmt->fetch();
 $user_id = $userdata['user_id'];
 $name = $userdata['name'];
 $email = $userdata['email'];
-$phone = $userdata['phone']; 
+$phone = $userdata['phone'];
 $profile_image = $userdata['profile_image'];
+$address = $userdata['address'];
 $country = $userdata['country'];
 $passport = $userdata['passport'];
 $six = $userdata['six'];
@@ -97,7 +98,7 @@ $nationality = $userdata['nationality'];
                                     <a href="deals">
                                         <div class="control_setting_section">
                                             <i class="fa fa-handshake"></i>
-                                            <p> صفقاتي  </p>
+                                            <p> صفقاتي </p>
                                         </div>
                                     </a>
                                 </div>
@@ -120,7 +121,11 @@ $nationality = $userdata['nationality'];
                             $id_number = $_POST['id_number'];
 
                             $errors = [];
-                            if (empty($travel_from_country) || empty($travel_to_country) || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight) || empty($id_number)) {
+                            if (
+                                empty($travel_from_country) || empty($travel_to_country)
+                                || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight) ||
+                                empty($id_number) || empty($address)
+                            ) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
                             if (empty($errors)) {
@@ -155,11 +160,11 @@ $nationality = $userdata['nationality'];
                         <?php
 
                         if (empty($name) || empty($email) || empty($phone) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number) || empty($country) || empty($nationality)) {
-                            ?>
+                        ?>
                             <div class="alert alert-danger"> من فضلك ادخل معلوماتك كاملة للتمكن من الأضافة</div>
                         <?php
-                        }else{
-                            ?>
+                        } else {
+                        ?>
                             <div class="my_form">
                                 <form action="" method="post" enctype="multipart/form-data">
 
@@ -174,9 +179,9 @@ $nationality = $userdata['nationality'];
                                                     $stmt->execute();
                                                     $allcountry = $stmt->fetchAll();
                                                     foreach ($allcountry as $country) {
-                                                        ?>
+                                                    ?>
                                                         <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
-                                                        <?php
+                                                    <?php
                                                     }
                                                     ?>
                                                 </select>
@@ -199,9 +204,9 @@ $nationality = $userdata['nationality'];
                                                     $stmt->execute();
                                                     $allcountry = $stmt->fetchAll();
                                                     foreach ($allcountry as $country) {
-                                                        ?>
+                                                    ?>
                                                         <option value="<?php echo $country['id']; ?>"> <?php echo  $country['name']; ?> </option>
-                                                        <?php
+                                                    <?php
                                                     }
                                                     ?>
                                                 </select>
