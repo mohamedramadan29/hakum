@@ -27,13 +27,15 @@
                         <th>الاسم </th>
                         <th>البريد الالكتروني</th>
                         <th> رقم الهاتف </th>
-                        <th> تاريخ الميلاد </th>
-                        <th> العنوان </th>
+                        <th> الدولة </th>
+                        <th> المدينة </th>
                         <th> النوع </th>
+                        <th> الجنسية  </th>
                         <th> رقم الهوية </th>
                         <th> الميزانية </th>
-                        <th> صورة جواز السفر </th>
-                        <th> </th>
+                        <th> جواز السفر </th>
+                        <th> حالة الحساب </th>
+                        <th> العمليات </th>
                     </tr>
                 </thead>
                 <tbody> <?php
@@ -46,15 +48,31 @@
                             <td> <?php echo $type['name']; ?> </td>
                             <td> <?php echo $type['email']; ?> </td>
                             <td> <?php echo $type['phone']; ?> </td>
-                            <td> <?php echo $type['birthday']; ?> </td>
-                            <td> <?php echo $type['address']; ?> </td>
+                            <td> <?php echo $type['country']; ?> </td>
+                            <td> <?php echo $type['city']; ?> </td>
                             <td> <?php echo $type['six']; ?> </td>
+                            <td> <?php echo $type['nationality']; ?> </td>
                             <td> <?php echo $type['id_number']; ?> </td>
                             <td> <?php echo $type['balance']; ?> </td>
-                            <td><a target="_blank" class="btn btn-warning btn-sm" href="../website_uploads/<?php echo $type['passport']; ?>"> <i class="fa fa-eye"></i> </a>  </td>
+                            <td><a target="_blank" class="btn btn-warning btn-sm" href="../website_uploads/<?php echo $type['passport']; ?>"> <i class="fa fa-eye"></i> </a> </td>
+                            <td> <?php
+                                    if (
+                                        !empty($type['name']) && !empty($type['email']) && !empty($type['phone']) && !empty($type['six']) && !empty($type['id_number']) &&
+                                        !empty($type['country']) && !empty($type['profile_image'])  && !empty($type['nationality']) && !empty($type['passport'])
+                                    ) {
+                                    ?>
+                                    <span class="badge badge-success"> مكتمل </span>
+                                <?php
+                                    } else {
+                                ?>
+                                    <span class="badge badge-danger"> غير مكتمل </span>
+                                <?php
+                                    }
+                                ?>
+                            </td>
                             <td>
                                 <a class="confirm btn btn-danger btn-sm" href="main.php?dir=users&page=delete&user_id=<?php echo $type['user_id']; ?> ">
-                                      <i class="fa fa-trash"></i>
+                                    <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

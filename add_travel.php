@@ -13,13 +13,13 @@ $userdata = $stmt->fetch();
 $user_id = $userdata['user_id'];
 $name = $userdata['name'];
 $email = $userdata['email'];
-$phone = $userdata['phone'];
-$birthday = $userdata['birthday'];
+$phone = $userdata['phone']; 
 $profile_image = $userdata['profile_image'];
-$address = $userdata['address'];
+$country = $userdata['country'];
 $passport = $userdata['passport'];
 $six = $userdata['six'];
 $id_number = $userdata['id_number'];
+$nationality = $userdata['nationality'];
 ?>
 <div class="profile">
     <div class="container-fluid">
@@ -154,7 +154,7 @@ $id_number = $userdata['id_number'];
                         ?>
                         <?php
 
-                        if (empty($name) || empty($email) || empty($phone) || empty($birthday) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number)) {
+                        if (empty($name) || empty($email) || empty($phone) || empty($profile_image) || empty($passport) || empty($six) || empty($id_number) || empty($country) || empty($nationality)) {
                             ?>
                             <div class="alert alert-danger"> من فضلك ادخل معلوماتك كاملة للتمكن من الأضافة</div>
                         <?php
