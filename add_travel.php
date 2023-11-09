@@ -118,13 +118,10 @@ $nationality = $userdata['nationality'];
                             $travel_date = $_POST['travel_date'];
                             $travel_arrive_date = $_POST['travel_arrive_date'];
                             $av_weight = $_POST['av_weight'];
-                            $id_number = $_POST['id_number'];
-
                             $errors = [];
                             if (
                                 empty($travel_from_country) || empty($travel_to_country)
-                                || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight) ||
-                                empty($id_number) || empty($address)
+                                || empty($travel_date) || empty($travel_arrive_date) || empty($av_weight) || empty($address)
                             ) {
                                 $errors[] = 'من فضلك ادخل المعلومات كاملة ';
                             }
