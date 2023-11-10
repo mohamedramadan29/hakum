@@ -21,8 +21,6 @@ include 'init.php';
     </div>
 </div>
 <!-- END HERO SECTION  -->
-
-
 <!-- START HOW WORK  -->
 <div class="how_work">
     <div class="container">
@@ -38,14 +36,14 @@ include 'init.php';
                 </div>
                 <div class="col-lg-4">
                     <div class="info">
-                    <span> <img src="uploads/world.png" alt=""> </span>
+                        <span> <img src="uploads/world.png" alt=""> </span>
                         <h4> أضف رحلة </h4>
                         <p> ضع معلومات رحلتك ،ومقدار الوزن المتاح ،وستأتيك عروض الشحنات التي تناسبك ... </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="info">
-                    <span> <img src="uploads/delivery.png" alt=""> </span>
+                        <span> <img src="uploads/delivery.png" alt=""> </span>
                         <h4> التوصيل </h4>
                         <p> سنوفر لك الدعم التام والمباشر لايصال شحناتك من خلال ربطك بأقرب الرحلات المتوفرة </p>
                     </div>
@@ -111,6 +109,16 @@ include 'init.php';
                                     }
                                     ?>
                                     <p> <?php echo $product['user_name'] ?> </p>
+                                    <?php
+                                    if (
+                                        !empty($userdata['name']) && !empty($userdata['email']) && !empty($userdata['phone']) && !empty($userdata['six']) && !empty($userdata['id_number']) &&
+                                        !empty($userdata['country']) && !empty($userdata['profile_image'])  && !empty($userdata['nationality']) && !empty($userdata['passport']) && !empty($userdata['address'])
+                                    ) {
+                                    ?>
+                                        <span style="display: block;"><i class="fa fa-check" style="color:#fff;background-color: #0463ca;  border-radius: 50%; margin-right: 10px;   width: 16px;  height: 16px;  line-height: 16px;  text-align: center; font-size: 10px;"></i></span>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="send_request">
                                     <a href="#" class="button btn"> التفاصيل وارسال طلب </a>
@@ -210,6 +218,16 @@ include 'init.php';
                                     ?>
 
                                     <p> <?php echo $travel['user_name'] ?> </p>
+                                    <?php
+                                    if (
+                                        !empty($userdata['name']) && !empty($userdata['email']) && !empty($userdata['phone']) && !empty($userdata['six']) && !empty($userdata['id_number']) &&
+                                        !empty($userdata['country']) && !empty($userdata['profile_image'])  && !empty($userdata['nationality']) && !empty($userdata['passport']) && !empty($userdata['address'])
+                                    ) {
+                                    ?>
+                                        <span style="display: block;"><i class="fa fa-check" style="color:#fff;background-color: #0463ca;  border-radius: 50%; margin-right: 10px;   width: 16px;  height: 16px;  line-height: 16px;  text-align: center; font-size: 10px;"></i></span>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="send_request">
                                     <?php

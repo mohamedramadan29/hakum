@@ -158,6 +158,16 @@ include 'init.php';
                                         }
                                         ?>
                                         <p> <?php echo $product['user_name'] ?> </p>
+                                        <?php
+                                        if (
+                                            !empty($userdata['name']) && !empty($userdata['email']) && !empty($userdata['phone']) && !empty($userdata['six']) && !empty($userdata['id_number']) &&
+                                            !empty($userdata['country']) && !empty($userdata['profile_image'])  && !empty($userdata['nationality']) && !empty($userdata['passport']) && !empty($userdata['address'])
+                                        ) {
+                                        ?>
+                                            <span style="display: block;"><i class="fa fa-check" style="color:#fff;background-color: #0463ca;  border-radius: 50%; margin-right: 10px;   width: 16px;  height: 16px;  line-height: 16px;  text-align: center; font-size: 10px;"></i></span>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                     <div class="send_request">
                                         <?php
@@ -181,10 +191,8 @@ include 'init.php';
                                 </div>
                             </div>
                         </div>
-
                     <?php
                     } ?>
-
                 </div>
             <?php
             } else {
