@@ -29,21 +29,21 @@ include 'init.php';
             <div class="row">
                 <div class="col-lg-4">
                     <div class="info">
-                        <span> <img src="uploads/product.png" alt=""> </span>
+                        <span> <img loading="lazy" src="uploads/product.png" alt=""> </span>
                         <h4> أضف شحنة </h4>
                         <p> ضع معلومات الشحنة التي تريد ارسالها ،وسيأتيك عروض الرحلات الأقرب لهدفك </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="info">
-                        <span> <img src="uploads/world.png" alt=""> </span>
+                        <span> <img loading="lazy" src="uploads/world.png" alt=""> </span>
                         <h4> أضف رحلة </h4>
                         <p> ضع معلومات رحلتك ،ومقدار الوزن المتاح ،وستأتيك عروض الشحنات التي تناسبك ... </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="info">
-                        <span> <img src="uploads/delivery.png" alt=""> </span>
+                        <span> <img loading="lazy" src="uploads/delivery.png" alt=""> </span>
                         <h4> التوصيل </h4>
                         <p> سنوفر لك الدعم التام والمباشر لايصال شحناتك من خلال ربطك بأقرب الرحلات المتوفرة </p>
                     </div>
@@ -71,8 +71,8 @@ include 'init.php';
                                     <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
                                 </div>
                                 <div class="product_info">
-                                    <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?></p>
-                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span> <?php
+                                    <p> <span> <img loading="lazy" src="uploads/product_name.png" alt=""> اسم المنتج : </span> <?php echo $product['pro_name'] ?></p>
+                                    <p> <span> <img loading="lazy" src="uploads/from.png" alt=""> من : </span> <?php
                                                                                                 $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                                                                                 $stmt->execute(array($product['pro_from_country']));
                                                                                                 $country_data = $stmt->fetch();
@@ -80,7 +80,7 @@ include 'init.php';
                                                                                                 $stmt->execute(array($product['pro_from_city']));
                                                                                                 $city_data = $stmt->fetch();
                                                                                                 echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
-                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                    <p> <span> <img loading="lazy" src="uploads/airport.png" alt=""> الي : </span>
                                         <?php
                                         $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                         $stmt->execute(array($product['pro_to_country']));
@@ -89,7 +89,7 @@ include 'init.php';
                                         $stmt->execute(array($product['pro_to_city']));
                                         $city_data = $stmt->fetch();
                                         echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
-                                    <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?></p>
+                                    <p> <span> <img loading="lazy" src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?></p>
                                 </div>
                             </div>
                             <div class="person_info">
@@ -100,11 +100,11 @@ include 'init.php';
                                     $userdata = $stmt->fetch();
                                     if ($userdata['profile_image'] != "") {
                                     ?>
-                                        <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                                        <img loading="lazy" src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
                                     <?php
                                     } else {
                                     ?>
-                                        <img src="uploads/avatar.gif" alt="">
+                                        <img loading="lazy" src="uploads/avatar.gif" alt="">
                                     <?php
                                     }
                                     ?>
@@ -155,7 +155,7 @@ include 'init.php';
                                 <div class="product">
                                 </div>
                                 <div class="product_info">
-                                    <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                                    <p> <span> <img loading="lazy" src="uploads/from.png" alt=""> من : </span>
                                         <?php
                                         $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                         $stmt->execute(array($travel['travel_from_country']));
@@ -166,7 +166,7 @@ include 'init.php';
                                         echo $country_data['name'] . "-" . $city_data['name']
                                         ?>
                                     </p>
-                                    <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                    <p> <span> <img loading="lazy" src="uploads/airport.png" alt=""> الي : </span>
                                         <?php
                                         $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                         $stmt->execute(array($travel['travel_to_country']));
@@ -176,8 +176,8 @@ include 'init.php';
                                         $city_data = $stmt->fetch();
                                         echo $country_data['name'] . "-" . $city_data['name']  ?>
                                     </p>
-                                    <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
-                                    <p> <span> <img src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
+                                    <p> <span> <img loading="lazy" src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
+                                    <p> <span> <img loading="lazy" src="uploads/weight.png" alt=""> الوزن المتاح : </span> <?php echo $travel['av_weight'] ?> كجم </p>
                                     <?php
                                     $stmt = $connect->prepare("SELECT * FROM travel_deal WHERE travel_id = ?");
                                     $stmt->execute(array($travel['travel_id']));
@@ -185,15 +185,15 @@ include 'init.php';
                                     $count_deal = $stmt->rowCount();
                                     if ($count_deal > 0) {
                                         if ($deal_data['status'] == 1) { ?>
-                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تحت التنفيذ </p>
+                                            <p> <span> <img loading="lazy" src="uploads/ok.png" alt=""> الحالة : </span> تحت التنفيذ </p>
                                         <?php
                                         } elseif ($deal_data['status'] == 2) { ?>
-                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> تمت </p>
+                                            <p> <span> <img loading="lazy" src="uploads/ok.png" alt=""> الحالة : </span> تمت </p>
                                         <?php
                                         }
                                     } else {
                                         ?>
-                                        <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                        <p> <span> <img loading="lazy" src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
                                     <?php
                                     }
                                     ?>
@@ -208,11 +208,11 @@ include 'init.php';
                                     $userdata = $stmt->fetch();
                                     if ($userdata['profile_image'] != "") {
                                     ?>
-                                        <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                                        <img loading="lazy" src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
                                     <?php
                                     } else {
                                     ?>
-                                        <img src="uploads/avatar.gif" alt="">
+                                        <img loading="lazy" src="uploads/avatar.gif" alt="">
                                     <?php
                                     }
                                     ?>

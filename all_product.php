@@ -20,11 +20,11 @@ $userdata = $stmt->fetch();
                             <?php
                             if ($userdata['profile_image'] != "") {
                             ?>
-                                <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                                <img loading="lazy" src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png"> <?php
+                                <img loading="lazy" src="uploads/profile.png"> <?php
                                                             }
                                                                 ?>
                             <h3> <?php echo $userdata['name']; ?> </h3>
@@ -110,12 +110,12 @@ $userdata = $stmt->fetch();
                                                 <div class=" travel_data">
                                                     <div class="info edit_button_section">
                                                         <div class="product">
-                                                            <img src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
+                                                            <img loading="lazy" src="website_uploads/<?php echo $product['pro_image'] ?>" alt="">
                                                         </div>
                                                         <div class="product_info">
-                                                            <p> <span> <img src="uploads/product_name.png" alt=""> اسم المنتج : </span>
+                                                            <p> <span> <img loading="lazy" src="uploads/product_name.png" alt=""> اسم المنتج : </span>
                                                                 <?php echo $product['pro_name'] ?> </p>
-                                                            <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                                                            <p> <span> <img loading="lazy" src="uploads/from.png" alt=""> من : </span>
                                                                 <?php
                                                                 $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                                                 $stmt->execute(array($product['pro_from_country']));
@@ -124,7 +124,7 @@ $userdata = $stmt->fetch();
                                                                 $stmt->execute(array($product['pro_from_city']));
                                                                 $city_data = $stmt->fetch();
                                                                 echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
-                                                            <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                                            <p> <span> <img loading="lazy" src="uploads/airport.png" alt=""> الي : </span>
                                                                 <?php
                                                                 $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                                                 $stmt->execute(array($product['pro_to_country']));
@@ -133,7 +133,7 @@ $userdata = $stmt->fetch();
                                                                 $stmt->execute(array($product['pro_to_city']));
                                                                 $city_data = $stmt->fetch();
                                                                 echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
-                                                            <p> <span> <img src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
+                                                            <p> <span> <img loading="lazy" src="uploads/timer.png" alt=""> تصل قبل : </span> <?php echo $product['arrieve_at'] ?> </p>
                                                         </div>
                                                         <div>
                                                             <a href="edit_product.php?pro_id=<?php echo $product['pro_id']; ?>" type="submit" class="btn btn-primary btn-sm"> تعديل   <i class="fa fa-edit"> </i> </a>

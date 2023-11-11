@@ -20,11 +20,11 @@ $userdata = $stmt->fetch();
                             <?php
                             if ($userdata['profile_image'] != "") {
                             ?>
-                                <img src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
+                                <img loading="lazy" src="website_uploads/<?php echo $userdata['profile_image'] ?>" alt="">
                             <?php
                             } else {
                             ?>
-                                <img src="uploads/profile.png"> <?php
+                                <img loading="lazy" src="uploads/profile.png"> <?php
                                                             }
                                                                 ?>
                             <h3> <?php echo $userdata['name']; ?> </h3>
@@ -111,7 +111,7 @@ $userdata = $stmt->fetch();
                                                     <div class="info edit_button_section">
                                                         
                                                         <div class="product_info">
-                                                            <p> <span> <img src="uploads/from.png" alt=""> من : </span>
+                                                            <p> <span> <img loading="lazy" src="uploads/from.png" alt=""> من : </span>
                                                                 <?php
                                                                 $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                                                 $stmt->execute(array($travel['travel_from_country']));
@@ -121,7 +121,7 @@ $userdata = $stmt->fetch();
                                                                 $city_data = $stmt->fetch();
                                                                 echo $country_data['name'] . "-" . $city_data['name']
                                                                 ?></p>
-                                                            <p> <span> <img src="uploads/airport.png" alt=""> الي : </span>
+                                                            <p> <span> <img loading="lazy" src="uploads/airport.png" alt=""> الي : </span>
                                                                 <?php
                                                                 $stmt = $connect->prepare("SELECT * FROM countries WHERE id = ? ");
                                                                 $stmt->execute(array($travel['travel_to_country']));
@@ -130,8 +130,8 @@ $userdata = $stmt->fetch();
                                                                 $stmt->execute(array($travel['travel_to_city']));
                                                                 $city_data = $stmt->fetch();
                                                                 echo $country_data['name'] . "-" . $city_data['name']  ?> </p>
-                                                            <p> <span> <img src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
-                                                            <p> <span> <img src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
+                                                            <p> <span> <img loading="lazy" src="uploads/timer.png" alt=""> موعد الرحلة : </span> <?php echo $travel['travel_date'] ?> </p>
+                                                            <p> <span> <img loading="lazy" src="uploads/ok.png" alt=""> الحالة : </span> متاح </p>
                                                         </div>
                                                         <div>
                                                             <a href="edit_travel.php?travel_id=<?php echo $travel['travel_id']; ?>" type="submit" class="btn btn-primary btn-sm" > تعديل  <i class="fa fa-edit"> </i> </a>
