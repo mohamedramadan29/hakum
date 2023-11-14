@@ -1,6 +1,11 @@
 <?php
 $page_title = ' هاكم -  نسيت كلمة المرور   ';
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
 include 'init.php';
 ?>
 <div class="login_page">
@@ -36,16 +41,46 @@ include 'init.php';
                                 $stmt = $connect->prepare("UPDATE users SET pass_code=?, password=? WHERE name=?");
                                 $stmt->execute(array($randomString, sha1($randomString), $data['name']));
                                 $to_email = $data['email'];
-                                $subject = "   طلب استعادة كلمة المرور من منصة هاكم  ";
-                                $body =   " كلمة المورو الجديدة الخاصة بك هي   ";
-                                $body .= " =>  " . $randomString;
-                                $headers = "From: info@entiqa.online";
-                                mail($to_email, $subject, $body, $headers);
-                                if($stmt){
-                                    ?>
-                                    <li class="alert alert-success">   تم ارسال كلمة المرور الجديدة علي الايميل الخاص بك   ( <?php echo $data['email']; ?> )  </li>
-                                    
-                                    <?php
+                                $to_name = $data['name'];
+                                $mail = new PHPMailer(true);
+                                try {
+                                    // الإعدادات الأساسية لإعداد البريد الإلكتروني
+                                    $mail->CharSet = 'UTF-8';
+                                    $mail->WordWrap = true;
+                                    $mail->isSMTP();
+                                    $mail->Host = 'haackum.com';
+                                    $mail->SMTPAuth = true;
+                                    $mail->Username = 'info@haackum.com';
+                                    $mail->Password = 'mohamedramadan2930';
+                                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                                    //To load the French version
+                                    // $mail->setLanguage('ar');
+                                    $mail->Port = 587;
+                                    // مُحتوى الرسالة
+                                    $mail->setFrom('info@haackum.com', 'هاكم ');
+                                    $mail->addAddress($to_email, $to_name);
+                                    $mail->Subject = ' تعديل كلمة المرور ';
+                                    $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $to_name . ",</p>
+                                                    <p style='font-size:18px; font-family:inherit'> كلمة المرور الجديدة الخاصة بك هي  .</p>
+                                                     
+                                                    <p><strong>" . $randomString . "</strong></p>
+                                            ";
+                                    $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
+                                    // إرسال البريد الإلكتروني
+                                    $mail->send();
+                                } catch (Exception $e) {
+                                    echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";
+                                }
+                                // $subject = "   طلب استعادة كلمة المرور من منصة هاكم  ";
+                                // $body =   " كلمة المورو الجديدة الخاصة بك هي   ";
+                                // $body .= " =>  " . $randomString;
+                                // $headers = "From: info@haackum.com";
+                                // mail($to_email, $subject, $body, $headers);
+                                if ($stmt) {
+                    ?>
+                                    <li class="alert alert-success"> تم ارسال كلمة المرور الجديدة علي الايميل الخاص بك ( <?php echo $data['email']; ?> ) </li>
+
+                                <?php
                                     header('refresh:4;url=login');
                                 }
                             } else { ?>
