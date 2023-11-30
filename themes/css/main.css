@@ -1,1 +1,1128 @@
-body{font-family:'Almarai',sans-serif}*{--main-color:#0487E2;--second-color:#0463ca}.navbar-collapse{flex-grow:0!important}.navbar{position:sticky;top:0;left:0;width:100%;background-color:#fff;z-index:99999;padding-right:15px;box-shadow:0 0 6px 0 #ccc;padding-left:15px}.navbar .notification{font-size:22px;margin-top:1px;margin-right:5px;margin-left:5px;position:relative}.navbar .notification .noti_num{position:absolute;top:2px;right:0;font-size:15px;color:red;font-weight:700;text-align:center}.dropdown-toggle::after{display:none}.navbar .notification i{color:#858181}.navbar .dropdown{top:-6px}.chat_not_box{width:350px;height:200px;overflow-y:scroll}.chat_not_box li{display:flex;align-items:center;justify-content:flex-start;margin-top:10px}.chat_not_box li img{width:40px!important;height:40px!important;margin-right:10px}.navbar .dropdown img{width:50px;height:50px;border-radius:50%}.navbar .dropdown li{padding-bottom:5px}.navbar .dropdown li i{padding-left:10px;font-size:15px}.dropdown-menu[data-bs-popper]{left:0;right:auto}.dropdown-item:focus,.dropdown-item:hover{background-color:var(--second-color);color:#fff}.navbar a{color:#606060}.navbar .active{color:var(--main-color)}.hero{background-image:url(../../uploads/background.jpg);background-size:cover;background-position:center;background-repeat:no-repeat;min-height:500px;position:relative}.hero .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(4,135,226,0.6);padding-top:150px}.hero .data img{max-width:100%}.hero .data .info h2{font-weight:900;font-size:35px;color:#fff;text-align:center;margin-bottom:25px}.hero .data .info p{font-size:20px;color:#fff;line-height:2;text-align:center}.button{background-color:#fff;color:var(--main-color);width:150px;padding:10px;border-radius:32px;margin-top:22px;transition:all .3s ease-in-out}.hero .data .info .btn:hover{background-color:var(--main-color);color:#fff}.about_us{padding-top:150px;padding-bottom:60px;background-color:#fbfbfb}.about_us .data .info{padding:15px}.about_us .data .info img{max-width:100%}.about_us .data .info h2{color:#404040;margin-bottom:20px;font-size:30px;font-weight:500}.about_us .data .info p{font-size:16px;line-height:2;color:#383737}.about_us .button{background-color:var(--main-color);color:#fff}.travel{padding-top:60px;padding-bottom:60px;background-color:#fbfbfb}.travel .data{padding:20px}.travel .data .all_button{width:200px;text-align:center;margin:auto;margin-top:40px;display:block;padding:10px}.travel .data h2{color:#404040;margin-bottom:20px;font-size:30px;font-weight:500}.travel .data .travel_data{background-color:#fff;border:1px solid #ccc;padding:10px;border-radius:5px;margin-top:30px}.travel .data .info{display:flex}.travel .data .info .product img{width:150px;height:150px;border-radius:5px;border:1px solid #e9e9e9}.travel .data .info .product_info p{font-size:16px}.travel .data .info .product_info img{width:16px;margin-right:10px;margin-left:5px}.travel .data .person_info{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ccc;background-color:#fbfbfb}.travel .data .person_info .image_person{display:flex;justify-content:center;align-items:center}.travel .data .person_info .image_person img{width:60px;height:60px;border-radius:50%}.travel .data .person_info .image_person p{margin-right:10px;margin-top:15px}.travel .data .person_info .send_request .button{background-color:var(--main-color);color:#fff;width:auto;padding:8px;padding-right:15px;padding-left:15px}.register_now{padding-top:60px;padding-bottom:60px;background-image:url(../../uploads/register.jpg);min-height:400px;background-size:cover;background-attachment:fixed;background-position:center;position:relative;color:#fff;text-align:center;margin-top:100px}.register_now .overlay{top:0;left:0;width:100%;height:100%;content:'';position:absolute;background-color:rgba(4,135,226,0.8)}.register_now .data{min-height:400px;display:flex;align-items:center;flex-direction:column;justify-content:center}.register_now .data h2{color:#fff;font-weight:700;font-size:35px;margin-bottom:20px}.footer{background-color:var(--second-color);padding:20px;color:#fff}.footer .data .info{display:block;padding:10px}.footer .data .info h4{font-weight:500;margin-bottom:30px;font-size:23px}.footer .data .info p{font-size:15px;line-height:1.8}.footer .data .info ul li{margin-top:10px}.footer .data .info ul li i{margin-right:5px;margin-left:5px}.footer .data .info ul li a{text-decoration:none;color:#fff}.footer .social_media li{display:inline-block;background:#fff;width:40px;height:40px;font-size:20px;line-height:40px;text-align:center;border-radius:50%;color:var(--main-color)}.footer .data .social_media li a{color:var(--main-color)!important}.footer .copy_right{text-align:center}.form_search{background-color:#fbfbfb;padding:20px;padding-top:70px}.form_search .data{background-color:#fff;padding:40px;text-align:center;margin:auto;display:block;width:100%;border-radius:10px}.form_search h2{color:#fff;margin-bottom:20px;font-size:30px;font-weight:500}.form_search .search_button{display:block;width:100%;height:45px}.form_search .info{position:relative}.form_search input{height:45px;outline:none;box-shadow:none;padding-right:30px}.form_search .info span{position:absolute;top:16px;right:5px;color:#5e5e5e}.travel_head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}.travel_page{padding-top:0}.travel_page .pagin{padding:20px}.contact_page{padding-top:60px}.contact_page .data img{max-width:100%}.contact_page .data h2{color:#404040;margin-bottom:20px;font-size:30px;font-weight:500}.contact_page .data p{font-size:18px;line-height:1.6;font-weight:500;color:#585858}.contact_form{padding:60px;background-color:#fbfbfb}.contact_form form{padding:20px;background-color:#fff;border-radius:10px;border:1px solid #f1f1f1;max-width:800px;margin:auto}.contact_form form .box{margin-bottom:10px}.contact_form form .box label{margin-bottom:10px}.contact_form form .box .star{color:red}.contact_form .contact_info{background-color:#fff;padding:20px}.contact_form .contact_info a{text-decoration:none;color:#3c3c3c}.contact_form .contact_info i{color:var(--main-color);margin-right:5px;margin-left:5px}.contact_form .social_icon li{display:inline-block;background:var(--main-color);width:40px;height:40px;font-size:20px;line-height:40px;text-align:center;border-radius:50%;color:#fff}.contact_form .social_icon li i{color:#fff!important}.login_page{background-color:#fbfbfb;padding:60px}.login_page .data .login_form{background-color:#fff;padding:20px}.login_page .data .login_form h2{margin-bottom:45px;font-size:30px;color:#5a5a5a;text-align:center}.login_page .data .login_form .box{margin-bottom:20px;position:relative}.login_page .data .login_form .box .password_show_icon{position:absolute;top:50px;left:10px;color:#646060;cursor:pointer}.login_page .data .login_form .box label{margin-bottom:10px}.login_page .data .login_form .box input{height:45px}.login_page .data .login_form .forget_box{display:flex;justify-content:space-between}.login_page .data .login_form .forget_box a{color:#4c4c4c;text-decoration:none}.login_page .data img{max-width:65%;text-align:center;margin:auto;display:block}.profile{background-color:#f2f2f2;padding:20px}.profile .data{padding:20px}.profile .data .slide1,.profile .data .slide2{background-color:#fff;padding:10px;border-radius:10px}.profile .data .slide1 .control_setting a{text-decoration:none}.profile .personal_image{text-align:center}.profile .personal_image img{width:150px;height:150px;border-radius:100%;margin-bottom:10px;border:1px solid #ddd}.profile .personal_image h3{font-size:18px}.control_setting{margin-bottom:60px;margin-top:100px}.profile .control_setting_section{background-color:#fbfbfb;color:#585858;border-radius:5px;padding:5px;margin-bottom:20px;cursor:pointer;transition:all .3s ease-in-out;text-align:center}.profile .control_setting_section:hover{background-color:var(--main-color);color:#fff}.profile .control_setting_section.active{background-color:var(--main-color);color:#fff}.profile .slide2 .my_form .box{margin-bottom:10px}.profile .slide2 .my_form .box label{margin-bottom:10px}.profile .slide2 .my_form .box input{height:45px}.profile .travel{padding:0;background-color:transparent}input[type='email']{direction:rtl}.profile .slide2 .balance_section{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #f1f1f1;padding-bottom:20px}.profile .slide2 .balance_section .balance_num h3{font-size:18px;font-weight:700;margin-bottom:30px}.profile .slide2 .balance_section .balance_num span{font-size:25px;color:var(--main-color)}.profile .slide2 .balance_show .btn{width:200px;align-items:center;text-align:center;padding:20px;font-size:22px}.profile .slide2 .add_balance{margin-top:30px}.profile .slide2 .add_balance h6{font-size:18px;font-weight:700;margin-bottom:30px}.profile .slide2 .add_balance .box{margin-bottom:30px}.profile .slide2 .add_balance .box input{text-align:right}.profile .slide2 .add_balance label{margin-bottom:15px}.chat_section{text-align:right;margin-top:10px;background-color:#f1f1f1;padding-top:90px}.chat_section .data{background:#fff;padding:20px}.chat_section .data .send_message{display:flex;margin-top:20px}.chat_section .data .recever_message{flex-direction:row-reverse}.chat_section .data .sender_message .message_info,.chat_section .data .recever_message .message_info{margin-right:10px;margin-left:10px;background-color:#e4e7eb;padding:10px;border-radius:6px;width:400px;color:#4a4a4a}.chat_section .data .recever_message .message_info{background-color:#efefef}.chat_section .data .sender_message img,.chat_section .data .recever_message img{width:60px;height:60px;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border:1px solid #ccc;background-color:#f1f1f1;display:inline-block}.chat_section .data .sender_message .message_info .sender_name,.chat_section .data .recever_message .message_info .sender_name{font-weight:500;font-size:15px;display:inline-block}.chat_section .data .sender_message .message_info .sender_time,.chat_section .data .recever_message .message_info .sender_time{display:inline-block;float:left}.chat_section .data .sender_message .message_info .sender_m_data,.chat_section .data .recever_message .message_info .sender_m_data{font-size:16px;line-height:1.8}.chat_section form .message_text{margin:20px}.chat_section form textarea{width:100%;height:120px;outline:none;box-shadow:none;border:1px solid #ccc;padding:10px;text-align:right}.chat_section form .message_text .send_message_button{display:flex;flex-direction:column;text-align:center}.chat_section form .message_text button{margin:auto;margin-top:10px;width:120px}.chat_section form .message_text button:hover{background-color:var(--second-color);border-color:var(--second-color)}.chat_section form .message_text .send_attachment{display:block;width:120px;border-radius:3px;font-size:16px;color:#3e3c3c;background:none;border:1px solid #a3a1a1}.chat_section form .message_text .send_attachment:hover{background:none;color:#3e3c3c}.chat_section form .message_text input[type=file]{height:45px;width:400px;text-align:center;margin:auto;margin-top:20px;margin-bottom:20px;display:none;cursor:pointer;outline:none!important;box-shadow:none!important}.chat_section .chat_reason{background-color:#fff;padding:20px;border-radius:3px}.chat_section .chat_reason h2{font-size:16px;padding-bottom:10px;border-bottom:1px solid #f1f1f1}.chat_section .chat_reason .info{margin-top:10px}.chat_section .chat_reason .info p{font-size:16px;line-height:1.7;margin-bottom:20px;margin-top:20px;padding:6px;border:1px solid #f1f1f1;border-radius:5px}.chat_section .chat_reason .info .btn{font-weight:400}.chat_section .chat_reason .info .btn:hover{background-color:var(--second-color);border-color:var(--second-color)}.chat_section .chat_reason .chat_com_option .btn{font-weight:400;margin-bottom:10px;margin-top:10px;display:block;border-radius:0;padding:10px;width:100%}.interview_options{display:none}.interview_options input[type=submit]{margin:auto}.chat_section .chat_reason .chat_com_option .btn-warning{background-color:#e1b12c;color:#111}.chat_section .chat_reason .chat_com_option .btn-warning:hover{background-color:#e1b12c;border-color:#e1b12c}.chat_section .chat_reason .chat_com_option .btn-danger{background-color:#c23616;color:#fff}.chat_section .chat_reason .chat_com_option .btn-danger:hover{background-color:#c23616;border-color:#c23616}.privacy{background-color:#fbfbfb;padding:40px}.privacy .data{padding:10px;background-color:#fff;padding-top:40px;padding-bottom:40px}.privacy .data ul li{margin-top:10px;margin-bottom:10px;line-height:2;color:#4c4b4b}.pro_from{display:flex}.pro_from label{display:block}.select2-container .select2-selection--single{height:45px}.select2-container--default .select2-selection--single .select2-selection__rendered{line-height:45px}.select2-container--default .select2-selection--single .select2-selection__arrow{top:8px}.select2-container{min-width:150px;margin-right:10px}.edit_button_section{justify-content:space-between}.how_work{background-color:#fbfbfb;padding:40px;padding-top:90px}.how_work .data{text-align:center}.how_work .data h2{color:#404040;margin-bottom:40px;font-size:30px;font-weight:500}.how_work .data .info{background-color:#fff;padding:5px;border-radius:5px;padding:10px;min-height:175px;box-shadow:0 0 5px 0 #f1f1f1}.how_work .data .info h4{font-size:20px;font-weight:600;margin-bottom:20px;margin-top:20px}.how_work .data .info p{font-size:16px;line-height:2;color:#525151}#register{background-color:var(--main-color);color:#fff;border-radius:5px;margin-right:5px;margin-left:5px}#login{border:1px solid var(--main-color);border-radius:5px;margin-right:5px;margin-left:5px}.form_search{background-image:url(../../uploads/search_background.png);background-size:cover;background-position:center;position:relative;min-height:400px}.form_search .select2-container{width:100%!important}@media(max-width:991px){.navbar-toggler{background-color:#f7f7f7;border:1px solid #ccc}.hero{background-position:inherit}.hero .data .info h2{font-size:25px}.hero .data .info p{font-size:18px}.how_work{padding:10px}.how_work .data .info{margin-bottom:15px}.travel .data h2{font-size:25px}.travel .data .info{display:block}.travel .data .info .product img{width:100%;margin-bottom:15px}.travel .data .person_info{display:block;padding-top:15px}.travel .data .person_info .image_person{display:inline-flex}.register_now .data h2{font-size:25px}.form_search{padding:0}.form_search h2{font-size:25px}.travel_head{padding-top:20px}.form_search .info2{margin-bottom:15px;margin-right:-20px}.form_search .data{padding:25px}.profile{padding:0}.profile .data{padding:0}.profile .personal_image img{width:130px;height:130px}.pro_from{display:block}.pro_from .select2-container{margin-bottom:15px}#login,#register{margin-bottom:10px;padding:10px;text-align:center;display:inline-block}.how_work .data h2{margin-top:40px}.login_page{padding:0;padding-top:20px}.login_page .data img{margin-bottom:30px}}
+body {
+    font-family: 'Almarai', sans-serif
+}
+
+* {
+    --main-color: #0487E2;
+    --second-color: #0463ca
+}
+
+.navbar-collapse {
+    flex-grow: 0 !important
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 99999;
+    padding-right: 15px;
+    box-shadow: 0 0 6px 0 #ccc;
+    padding-left: 15px
+}
+
+.navbar .notification {
+    font-size: 22px;
+    margin-top: 1px;
+    margin-right: 5px;
+    margin-left: 5px;
+    position: relative
+}
+
+.navbar .notification .noti_num {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 15px;
+    color: red;
+    font-weight: 700;
+    text-align: center
+}
+
+.dropdown-toggle::after {
+    display: none
+}
+
+.navbar .notification i {
+    color: #858181
+}
+
+.navbar .dropdown {
+    top: -6px
+}
+
+.chat_not_box {
+    width: 350px;
+    height: 200px;
+    overflow-y: scroll
+}
+
+.chat_not_box li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px
+}
+
+.chat_not_box li img {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px
+}
+
+.navbar .dropdown img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%
+}
+
+.navbar .dropdown li {
+    padding-bottom: 5px
+}
+
+.navbar .dropdown li i {
+    padding-left: 10px;
+    font-size: 15px
+}
+
+.dropdown-menu[data-bs-popper] {
+    left: 0;
+    right: auto
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: var(--second-color);
+    color: #fff
+}
+
+.navbar a {
+    color: #606060
+}
+
+.navbar .active {
+    color: var(--main-color)
+}
+
+.hero {
+    background-image: url(../../uploads/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    position: relative
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4, 135, 226, 0.6);
+    padding-top: 150px
+}
+
+.hero .data img {
+    max-width: 100%
+}
+
+.hero .data .info h2 {
+    font-weight: 900;
+    font-size: 35px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 25px
+}
+
+.hero .data .info p {
+    font-size: 20px;
+    color: #fff;
+    line-height: 2;
+    text-align: center
+}
+
+.button {
+    background-color: #fff;
+    color: var(--main-color);
+    width: 150px;
+    padding: 10px;
+    border-radius: 32px;
+    margin-top: 22px;
+    transition: all .3s ease-in-out
+}
+
+.hero .data .info .btn:hover {
+    background-color: var(--main-color);
+    color: #fff
+}
+
+.about_us {
+    padding-top: 150px;
+    padding-bottom: 60px;
+    background-color: #fbfbfb
+}
+
+.about_us .data .info {
+    padding: 15px
+}
+
+.about_us .data .info img {
+    max-width: 100%
+}
+
+.about_us .data .info h2 {
+    color: #404040;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.about_us .data .info p {
+    font-size: 16px;
+    line-height: 2;
+    color: #383737
+}
+
+.about_us .button {
+    background-color: var(--main-color);
+    color: #fff
+}
+
+.travel {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #fbfbfb
+}
+
+.travel .data {
+    padding: 20px
+}
+
+.travel .data .all_button {
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
+    display: block;
+    padding: 10px
+}
+
+.travel .data h2 {
+    color: #404040;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.travel .data .travel_data {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 30px
+}
+
+.travel .data .info {
+    display: flex
+}
+
+.travel .data .info .product img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    border: 1px solid #e9e9e9
+}
+
+.travel .data .info .product_info p {
+    font-size: 16px
+}
+
+.travel .data .info .product_info img {
+    width: 16px;
+    margin-right: 10px;
+    margin-left: 5px
+}
+
+.travel .data .person_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    background-color: #fbfbfb
+}
+
+.travel .data .person_info .image_person {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.travel .data .person_info .image_person img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%
+}
+
+.travel .data .person_info .image_person p {
+    margin-right: 10px;
+    margin-top: 15px
+}
+
+.travel .data .person_info .send_request .button {
+    background-color: var(--main-color);
+    color: #fff;
+    width: auto;
+    padding: 8px;
+    padding-right: 15px;
+    padding-left: 15px
+}
+
+.register_now {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-image: url(../../uploads/register.jpg);
+    min-height: 400px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    margin-top: 100px
+}
+
+.register_now .overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    background-color: rgba(4, 135, 226, 0.8)
+}
+
+.register_now .data {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center
+}
+
+.register_now .data h2 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 35px;
+    margin-bottom: 20px
+}
+
+.footer {
+    background-color: var(--second-color);
+    padding: 20px;
+    color: #fff
+}
+
+.footer .data .info {
+    display: block;
+    padding: 10px
+}
+
+.footer .data .info h4 {
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-size: 23px
+}
+
+.footer .data .info p {
+    font-size: 15px;
+    line-height: 1.8
+}
+
+.footer .data .info ul li {
+    margin-top: 10px
+}
+
+.footer .data .info ul li i {
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.footer .data .info ul li a {
+    text-decoration: none;
+    color: #fff
+}
+
+.footer .social_media li {
+    display: inline-block;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    color: var(--main-color)
+}
+
+.footer .data .social_media li a {
+    color: var(--main-color) !important
+}
+
+.footer .copy_right {
+    text-align: center
+}
+
+.form_search {
+    background-color: #fbfbfb;
+    padding: 20px;
+    padding-top: 70px
+}
+
+.form_search .data {
+    background-color: #fff;
+    padding: 40px;
+    text-align: center;
+    margin: auto;
+    display: block;
+    width: 100%;
+    border-radius: 10px
+}
+
+.form_search h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.form_search .search_button {
+    display: block;
+    width: 100%;
+    height: 45px
+}
+
+.form_search .info {
+    position: relative
+}
+
+.form_search input {
+    height: 45px;
+    outline: none;
+    box-shadow: none;
+    padding-right: 30px
+}
+
+.form_search .info span {
+    position: absolute;
+    top: 16px;
+    right: 5px;
+    color: #5e5e5e
+}
+
+.travel_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px
+}
+
+.travel_page {
+    padding-top: 0
+}
+
+.travel_page .pagin {
+    padding: 20px
+}
+
+.contact_page {
+    padding-top: 60px
+}
+
+.contact_page .data img {
+    max-width: 100%
+}
+
+.contact_page .data h2 {
+    color: #404040;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.contact_page .data p {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #585858
+}
+
+.contact_form {
+    padding: 60px;
+    background-color: #fbfbfb
+}
+
+.contact_form form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #f1f1f1;
+    max-width: 800px;
+    margin: auto
+}
+
+.contact_form form .box {
+    margin-bottom: 10px
+}
+
+.contact_form form .box label {
+    margin-bottom: 10px
+}
+
+.contact_form form .box .star {
+    color: red
+}
+
+.contact_form .contact_info {
+    background-color: #fff;
+    padding: 20px
+}
+
+.contact_form .contact_info a {
+    text-decoration: none;
+    color: #3c3c3c
+}
+
+.contact_form .contact_info i {
+    color: var(--main-color);
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.contact_form .social_icon li {
+    display: inline-block;
+    background: var(--main-color);
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff
+}
+
+.contact_form .social_icon li i {
+    color: #fff !important
+}
+
+.login_page {
+    background-color: #fbfbfb;
+    padding: 60px
+}
+
+.login_page .data .login_form {
+    background-color: #fff;
+    padding: 20px
+}
+
+.login_page .data .login_form h2 {
+    margin-bottom: 45px;
+    font-size: 30px;
+    color: #5a5a5a;
+    text-align: center
+}
+
+.login_page .data .login_form .box {
+    margin-bottom: 20px;
+    position: relative
+}
+
+.login_page .data .login_form .box .password_show_icon {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    color: #646060;
+    cursor: pointer
+}
+
+.login_page .data .login_form .box label {
+    margin-bottom: 10px
+}
+
+.login_page .data .login_form .box input {
+    height: 45px
+}
+
+.login_page .data .login_form .forget_box {
+    display: flex;
+    justify-content: space-between
+}
+
+.login_page .data .login_form .forget_box a {
+    color: #4c4c4c;
+    text-decoration: none
+}
+
+.login_page .data img {
+    max-width: 65%;
+    text-align: center;
+    margin: auto;
+    display: block
+}
+
+.profile {
+    background-color: #f2f2f2;
+    padding: 20px
+}
+
+.profile .data {
+    padding: 20px
+}
+
+.profile .data .slide1, .profile .data .slide2 {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px
+}
+
+.profile .data .slide1 .control_setting a {
+    text-decoration: none
+}
+
+.profile .personal_image {
+    text-align: center
+}
+
+.profile .personal_image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ddd
+}
+
+.profile .personal_image h3 {
+    font-size: 18px
+}
+
+.control_setting {
+    margin-bottom: 60px;
+    margin-top: 100px
+}
+
+.profile .control_setting_section {
+    background-color: #fbfbfb;
+    color: #585858;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    text-align: center
+}
+
+.profile .control_setting_section:hover {
+    background-color: var(--main-color);
+    color: #fff
+}
+
+.profile .control_setting_section.active {
+    background-color: var(--main-color);
+    color: #fff
+}
+
+.profile .slide2 .my_form .box {
+    margin-bottom: 10px
+}
+
+.profile .slide2 .my_form .box label {
+    margin-bottom: 10px
+}
+
+.profile .slide2 .my_form .box input {
+    height: 45px
+}
+
+.profile .travel {
+    padding: 0;
+    background-color: transparent
+}
+
+input[type='email'] {
+    direction: rtl
+}
+
+.profile .slide2 .balance_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 20px
+}
+
+.profile .slide2 .balance_section .balance_num h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px
+}
+
+.profile .slide2 .balance_section .balance_num span {
+    font-size: 25px;
+    color: var(--main-color)
+}
+
+.profile .slide2 .balance_show .btn {
+    width: 200px;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    font-size: 22px
+}
+
+.profile .slide2 .add_balance {
+    margin-top: 30px
+}
+
+.profile .slide2 .add_balance h6 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px
+}
+
+.profile .slide2 .add_balance .box {
+    margin-bottom: 30px
+}
+
+.profile .slide2 .add_balance .box input {
+    text-align: right
+}
+
+.profile .slide2 .add_balance label {
+    margin-bottom: 15px
+}
+
+.chat_section {
+    text-align: right;
+    margin-top: 10px;
+    background-color: #f1f1f1;
+    padding-top: 90px
+}
+
+.chat_section .data {
+    background: #fff;
+    padding: 20px
+}
+
+.chat_section .data .send_message {
+    display: flex;
+    margin-top: 20px
+}
+
+.chat_section .data .recever_message {
+    flex-direction: row-reverse
+}
+
+.chat_section .data .sender_message .message_info, .chat_section .data .recever_message .message_info {
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #e4e7eb;
+    padding: 10px;
+    border-radius: 6px;
+    width: 400px;
+    color: #4a4a4a
+}
+
+.chat_section .data .recever_message .message_info {
+    background-color: #efefef
+}
+
+.chat_section .data .sender_message img, .chat_section .data .recever_message img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    display: inline-block
+}
+
+.chat_section .data .sender_message .message_info .sender_name, .chat_section .data .recever_message .message_info .sender_name {
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-block
+}
+
+.chat_section .data .sender_message .message_info .sender_time, .chat_section .data .recever_message .message_info .sender_time {
+    display: inline-block;
+    float: left
+}
+
+.chat_section .data .sender_message .message_info .sender_m_data, .chat_section .data .recever_message .message_info .sender_m_data {
+    font-size: 16px;
+    line-height: 1.8
+}
+
+.chat_section form .message_text {
+    margin: 20px
+}
+
+.chat_section form textarea {
+    width: 100%;
+    height: 120px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: right
+}
+
+.chat_section form .message_text .send_message_button {
+    display: flex;
+    flex-direction: column;
+    text-align: center
+}
+
+.chat_section form .message_text button {
+    margin: auto;
+    margin-top: 10px;
+    width: 120px
+}
+
+.chat_section form .message_text button:hover {
+    background-color: var(--second-color);
+    border-color: var(--second-color)
+}
+
+.chat_section form .message_text .send_attachment {
+    display: block;
+    width: 120px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #3e3c3c;
+    background: none;
+    border: 1px solid #a3a1a1
+}
+
+.chat_section form .message_text .send_attachment:hover {
+    background: none;
+    color: #3e3c3c
+}
+
+.chat_section form .message_text input[type=file] {
+    height: 45px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none;
+    cursor: pointer;
+    outline: none !important;
+    box-shadow: none !important
+}
+
+.chat_section .chat_reason {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 3px
+}
+
+.chat_section .chat_reason h2 {
+    font-size: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1
+}
+
+.chat_section .chat_reason .info {
+    margin-top: 10px
+}
+
+.chat_section .chat_reason .info p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 6px;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px
+}
+
+.chat_section .chat_reason .info .btn {
+    font-weight: 400
+}
+
+.chat_section .chat_reason .info .btn:hover {
+    background-color: var(--second-color);
+    border-color: var(--second-color)
+}
+
+.chat_section .chat_reason .chat_com_option .btn {
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: block;
+    border-radius: 0;
+    padding: 10px;
+    width: 100%
+}
+
+.interview_options {
+    display: none
+}
+
+.interview_options input[type=submit] {
+    margin: auto
+}
+
+.chat_section .chat_reason .chat_com_option .btn-warning {
+    background-color: #e1b12c;
+    color: #111
+}
+
+.chat_section .chat_reason .chat_com_option .btn-warning:hover {
+    background-color: #e1b12c;
+    border-color: #e1b12c
+}
+
+.chat_section .chat_reason .chat_com_option .btn-danger {
+    background-color: #c23616;
+    color: #fff
+}
+
+.chat_section .chat_reason .chat_com_option .btn-danger:hover {
+    background-color: #c23616;
+    border-color: #c23616
+}
+
+.privacy {
+    background-color: #fbfbfb;
+    padding: 40px
+}
+
+.privacy .data {
+    padding: 10px;
+    background-color: #fff;
+    padding-top: 40px;
+    padding-bottom: 40px
+}
+
+.privacy .data ul li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 2;
+    color: #4c4b4b
+}
+
+.pro_from {
+    display: flex
+}
+
+.pro_from label {
+    display: block
+}
+
+.select2-container .select2-selection--single {
+    height: 45px
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 45px
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px
+}
+
+.select2-container {
+    min-width: 150px;
+    margin-right: 10px
+}
+
+.edit_button_section {
+    justify-content: space-between
+}
+
+.how_work {
+    background-color: #fbfbfb;
+    padding: 40px;
+    padding-top: 90px
+}
+
+.how_work .data {
+    text-align: center
+}
+
+.how_work .data h2 {
+    color: #404040;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.how_work .data .info {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 175px;
+    box-shadow: 0 0 5px 0 #f1f1f1
+}
+
+.how_work .data .info h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 20px
+}
+
+.how_work .data .info p {
+    font-size: 16px;
+    line-height: 2;
+    color: #525151
+}
+
+#register {
+    background-color: var(--main-color);
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+#login {
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.form_search {
+    background-image: url(../../uploads/search_background.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 400px
+}
+
+.form_search .select2-container {
+    width: 100% !important
+}
+
+@media (max-width: 991px) {
+    .navbar-toggler {
+        background-color: #f7f7f7;
+        border: 1px solid #ccc
+    }
+
+    .hero {
+        background-position: inherit
+    }
+
+    .hero .data .info h2 {
+        font-size: 25px
+    }
+
+    .hero .data .info p {
+        font-size: 18px
+    }
+
+    .how_work {
+        padding: 10px
+    }
+
+    .how_work .data .info {
+        margin-bottom: 15px
+    }
+
+    .travel .data h2 {
+        font-size: 25px
+    }
+
+    .travel .data .info {
+        display: block
+    }
+
+    .travel .data .info .product img {
+        width: 100%;
+        margin-bottom: 15px
+    }
+
+    .travel .data .person_info {
+        display: block;
+        padding-top: 15px
+    }
+
+    .travel .data .person_info .image_person {
+        display: inline-flex
+    }
+
+    .register_now .data h2 {
+        font-size: 25px
+    }
+
+    .form_search {
+        padding: 0
+    }
+
+    .form_search h2 {
+        font-size: 25px
+    }
+
+    .travel_head {
+        padding-top: 20px
+    }
+
+    .form_search .info2 {
+        margin-bottom: 15px;
+        margin-right: -20px
+    }
+
+    .form_search .data {
+        padding: 25px
+    }
+
+    .profile {
+        padding: 0
+    }
+
+    .profile .data {
+        padding: 0
+    }
+
+    .profile .personal_image img {
+        width: 130px;
+        height: 130px
+    }
+
+    .pro_from {
+        display: block
+    }
+
+    .pro_from .select2-container {
+        margin-bottom: 15px
+    }
+
+    #login, #register {
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: center;
+        display: inline-block
+    }
+
+    .how_work .data h2 {
+        margin-top: 40px
+    }
+
+    .login_page {
+        padding: 0;
+        padding-top: 20px
+    }
+
+    .login_page .data img {
+        margin-bottom: 30px
+    }
+}

@@ -2,8 +2,10 @@
 ob_start();
 $page_title = ' هاكم -    حساب جديد ';
 session_start();
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require 'vendor/autoload.php';
 include 'init.php';
 if (isset($_SESSION['username'])) {
@@ -20,7 +22,7 @@ if (isset($_SESSION['username'])) {
                         $name = $_POST['name'];
                         $email = $_POST['email'];
                         $password = $_POST['password'];
-                        $confirm_password =  $_POST['confirm_password'] ;
+                        $confirm_password =  $_POST['confirm_password'];
                         $formerror = [];
                         if (empty($name)) {
                             $formerror[] = ' من فضلك ادخل اسم المستخدم  ';
@@ -55,7 +57,7 @@ if (isset($_SESSION['username'])) {
                             $stmt->execute(array(
                                 'zname' => $name,
                                 'zemail' => $email,
-                                'zpassword' =>sha1($password),
+                                'zpassword' => sha1($password),
                                 'zstatus_code' => $activationCode,
                             ));
                             if ($stmt) {
@@ -80,22 +82,23 @@ if (isset($_SESSION['username'])) {
                                     $mail->addAddress($email, $name);
                                     $mail->Subject = 'تفعيل الحساب الخاص بك  ';
                                     $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $name . ",</p>
-                                                    <p style='font-size:18px; font-family:inherit'>شكرا لك على تسجيلك في هاكم .</p>
-                                                    <p style='font-size:18px; font-family:inherit'>كود التفعيل الخاص بك هو:</p>
-                                                    <p><strong>" . $activationCode . "</strong></p>
+                                                    <p style='font-size:18px; font-family:inherit'>شكرا لك على تسجيلك في هاكم .</p> 
+                                                    <a  style='font-size:18px; font-family:inherit' href='http://localhost/hakum/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
                                             ";
                                     $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
-
                                     // إرسال البريد الإلكتروني
                                     $mail->send();
                                     $_SESSION['mail'] = $email;
-                                    header('Location:activate');
+                                    //header('Location:activate');
+                    ?>
+                                    <div class="alert alert-success"> تم ارسال لينك التفعيل علي البريد الألكتروني الخاص بك </div>
+                                <?php
                                 } catch (Exception $e) {
                                     echo "حدث خطأ في إرسال البريد الإلكتروني: {$mail->ErrorInfo}";
                                 }
                                 // END SEND MAIL //////////////////////////////////////
 
-                    ?>
+                                ?>
                                 <div class="alert alert-success"> راائع , تم عمل الحساب بنجاح سجل دخولك الان </div>
                             <?php
                             }
@@ -135,7 +138,7 @@ if (isset($_SESSION['username'])) {
                                 <input required type="password" name="confirm_password" id="confirm_password" class="form-control">
                             </div>
                             <div class="g-recaptcha" data-sitekey="6LdK5dgoAAAAACV2jBoGrSKMGEkz1_nmIxHLhK5_"></div>
-                            <br/>
+                            <br />
                             <div class="box">
                                 <div class="input_box">
                                     <div class="form-check">
