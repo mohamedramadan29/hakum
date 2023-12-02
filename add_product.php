@@ -44,7 +44,6 @@ $nationality = $userdata['nationality'];
                             <h6> لوحة التحكم </h6>
                             <br>
                             <div class="row">
-
                                 <div class="col-4">
                                     <a href="profile">
                                         <div class="control_setting_section">
