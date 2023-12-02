@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) {
                                     $mail->Subject = 'تفعيل الحساب الخاص بك  ';
                                     $mail->Body = " <p style='font-size:18px; font-family:inherit'>مرحبا " . $name . ",</p>
                                                     <p style='font-size:18px; font-family:inherit'>شكرا لك على تسجيلك في هاكم .</p> 
-                                                    <a  style='font-size:18px; font-family:inherit' href='http://localhost/hakum/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
+                                                    <a  style='font-size:18px; font-family:inherit' href='https://haackum.com/activate?active_code=$activationCode' class='btn btn-primary'> أضغط هنا لتفعيل الحساب الخاص بك  </a>
                                             ";
                                     $mail->AltBody = 'This is the plain text message body for non-HTML mail clients.';
                                     // إرسال البريد الإلكتروني
